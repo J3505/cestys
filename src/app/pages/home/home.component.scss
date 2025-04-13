@@ -1,0 +1,43 @@
+.underline-animation {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 4px;
+  bottom: -8px;
+  left: 0;
+  background-color: #f97316;
+  transition: width 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+.underline-animation:hover::after {
+  width: 100%;
+}
+
+.title-decoration {
+  position: relative;
+}
+
+.title-decoration::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #f97316, #f59e0b, #f97316);
+  border-radius: 2px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { width: 80px; opacity: 1; }
+  50% { width: 120px; opacity: 0.8; }
+  100% { width: 80px; opacity: 1; }
+}

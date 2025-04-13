@@ -1,0 +1,98 @@
+<!-- Fixed Header/Navigation -->
+<header class="navbar fixed top-0 left-0 w-full bg-white z-50 py-4">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <div class="logo">
+      <img src="./assets/cestys.png" alt="Logo" class="h-12" />
+    </div>
+    <nav class="hidden md:flex items-center space-x-8">
+      <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
+        >Inicio</a
+      >
+      <a routerLink="/cursos" class="nav-link text-gray-700 hover:text-blue-600"
+        >Cursos</a
+      >
+      <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
+        >Nosotros</a
+      >
+      <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
+        >Blog</a
+      >
+    </nav>
+    <div class="hidden md:flex items-center space-x-4">
+      <a href="#" class="btn-secondary px-6 py-2 rounded-full"
+        >Iniciar sesión</a
+      >
+      <a href="#" class="btn-primary text-white px-6 py-2 rounded-full"
+        >Registrarse</a
+      >
+    </div>
+    <!-- Mobile menu button -->
+    <button
+      [class.active]="menuActivo"
+      (click)="toggleMenu()"
+      class="md:hidden hamburger flex flex-col justify-center items-center w-8 h-8 hover:cursor-pointer"
+    >
+      <span class="block w-6 h-0.5 bg-gray-800 mb-1.5"></span>
+      <span class="block w-6 h-0.5 bg-gray-800 mb-1.5"></span>
+      <span class="block w-6 h-0.5 bg-gray-800"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Navigation Menu (hidden by default) -->
+<div
+  class="mobile-menu fixed top-0 right-0 h-full w-full md:w-80 bg-white z-50 shadow-xl p-6"
+  [class.active]="menuActivo"
+>
+  <div class="flex justify-between items-center mb-8">
+    <img src="./assets/cestys.png" alt="Logo" class="h-10" />
+    <button (click)="cerrarMenu()" class="close-menu hover:cursor-pointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+  <nav class="flex flex-col space-y-6">
+    <a routerLink="/"
+    (click)="cerrarMenu()"
+    class="text-gray-700 hover:text-blue-600 text-lg"
+      >Inicio</a
+    >
+    <a routerLink="/cursos"
+    (click)="cerrarMenu()"
+    class="text-gray-700 hover:text-blue-600 text-lg"
+      >Cursos</a
+    >
+    <a routerLink="/"
+    (click)="cerrarMenu()"
+    class="text-gray-700 hover:text-blue-600 text-lg"
+      >Nosotros</a
+    >
+    <a
+    routerLink="/"
+    (click)="cerrarMenu()"
+    class="text-gray-700 hover:text-blue-600 text-lg">Blog</a>
+
+    <div class="pt-6 flex flex-col space-y-4">
+      <a href="#" class="btn-secondary text-center px-6 py-2 rounded-full"
+        >Iniciar sesión</a
+      >
+      <a
+        href="#"
+        class="btn-primary text-white text-center px-6 py-2 rounded-full"
+        >Registrarse</a
+      >
+    </div>
+  </nav>
+</div>
