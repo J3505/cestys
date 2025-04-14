@@ -18,11 +18,5 @@ export class NavbarLandingComponent {
   cerrarMenu(): void {
     this.menuActivo = false;
   }
-  // imagenempresa:string ='assets/cestys.png'
-
-  // isMenuOpen = false;
-  // toggleMenu() {
-  //   this.isMenuOpen = !this.isMenuOpen;
-  // }
 
 }

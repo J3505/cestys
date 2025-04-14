@@ -7,6 +7,6 @@ import { NavbarLandingComponent } from "../../layout/landing/navbar-landing/navb
   templateUrl: './cursos-publicos.component.html',
   styleUrl: './cursos-publicos.component.scss'
 })
-export class CursosPublicosComponent {
+export default class CursosPublicosComponent {
 
 }

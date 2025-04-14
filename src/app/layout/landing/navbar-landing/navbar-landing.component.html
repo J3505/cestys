@@ -11,7 +11,7 @@
       <a routerLink="/cursos" class="nav-link text-gray-700 hover:text-blue-600"
         >Cursos</a
       >
-      <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
+      <a routerLink="/nosotros" class="nav-link text-gray-700 hover:text-blue-600"
         >Nosotros</a
       >
       <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
@@ -19,10 +19,12 @@
       >
     </nav>
     <div class="hidden md:flex items-center space-x-4">
-      <a href="#" class="btn-secondary px-6 py-2 rounded-full"
+      <a routerLink="auth/login"
+      (click)="cerrarMenu()"
+      class="btn-secondary px-6 py-2 rounded-full"
         >Iniciar sesión</a
       >
-      <a href="#" class="btn-primary text-white px-6 py-2 rounded-full"
+      <a routerLink="auth/register" class="btn-primary text-white px-6 py-2 rounded-full"
         >Registrarse</a
       >
     </div>
@@ -85,11 +87,11 @@
     class="text-gray-700 hover:text-blue-600 text-lg">Blog</a>
 
     <div class="pt-6 flex flex-col space-y-4">
-      <a href="#" class="btn-secondary text-center px-6 py-2 rounded-full"
+      <a routerLink="auth/login" class="btn-secondary text-center px-6 py-2 rounded-full"
         >Iniciar sesión</a
       >
       <a
-        href="#"
+        routerLink="auth/register"
         class="btn-primary text-white text-center px-6 py-2 rounded-full"
         >Registrarse</a
       >

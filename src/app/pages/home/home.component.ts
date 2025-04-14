@@ -7,6 +7,6 @@ import LayoutLandingComponent from "../../layout/landing/layout-landing/layout-l
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export default class HomeComponent {
 
 }

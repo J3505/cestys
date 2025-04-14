@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './footer-landing.component.scss'
 })
 export class FooterLandingComponent {
-
+  correo: string = 'cestys@gmail.com';
 }

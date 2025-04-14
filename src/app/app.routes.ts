@@ -5,22 +5,19 @@ export const routes: Routes = [
   {
     path:'',
     loadComponent: () => import('./layout/landing/layout-landing/layout-landing.component'),
-        children:[
-      {
-        path:'',
-        loadComponent: ()  => import('./pages/home/home.component').then(m => m.HomeComponent)
 
-      },
-      {
-        path:'cursos',
-        loadComponent: ()  => import('./pages/cursos-publicos/cursos-publicos.component').then(m => m.CursosPublicosComponent)
+      children:[
 
-      },
-      {
-        path:'contacto',
-        loadComponent: ()  => import('./pages/contacto/contacto.component').then(m => m.ContactoComponent)
-
-      },
+      { path:'', loadComponent: ()  => import('./pages/home/home.component')},
+      { path:'cursos',loadComponent: ()  => import('./pages/cursos-publicos/cursos-publicos.component')},
+      { path:'nosotros', loadComponent: ()  => import('./pages/nosotros/nosotros.component')},
+    ]
+  },
+  {
+    path:'auth',
+    children:[
+      {path : 'login', loadComponent: ()=> import ('./auth/login/login.component')},
+      {path : 'register', loadComponent: ()=> import ('./auth/register/register.component')}
     ]
   }
 ];
