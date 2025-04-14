@@ -1,5 +1,5 @@
 <app-navbar-landing></app-navbar-landing>
-<div class="p-16"></div>
+<div class="p-8"></div>
 <!-- Main Content -->
 <main class="flex-1 bg-gray-50 py-8">
   <div class="container mx-auto px-4">
@@ -16,14 +16,14 @@
                 class="pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
               <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <i class="lucide-search h-4 w-4 text-gray-500"></i>
+                <span class="icon-[lucide--search] bg-gray-400"></span>
               </button>
             </div>
             <button class="p-2 rounded-md bg-gray-100 hover:bg-gray-200">
-              <i class="lucide-grid-2x2 h-4 w-4"></i>
+              <span class="icon-[lucide--grid-2x2] bg-gray-400"></span>
             </button>
             <button class="p-2 rounded-md bg-gray-100 hover:bg-gray-200">
-              <i class="lucide-list h-4 w-4"></i>
+              <span class="icon-[lucide--list] bg-gray-400"></span>
             </button>
           </div>
         </div>
@@ -32,26 +32,28 @@
         <div class="space-y-6">
           <!-- Course 1 -->
           <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/3">
-                <img
-                  src="https://via.placeholder.com/300x200"
-                  alt="Course Image"
-                  class="h-full w-full object-cover"
-                >
-              </div>
-              <div class="p-6 md:w-2/3">
-                <h2 class="text-xl font-semibold text-orange-500 mb-2">
-                  Domina La Ofimática: Potencia Tus Habilidades Digitales
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2023</span>
+              <a [routerLink]="['/cursos',1]"  >
+              <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/3">
+                  <img
+                    src="assets/01.jpg"
+                    alt="Course Image"
+                    class="h-full w-full object-cover"
+                  >
                 </div>
-                <p class="text-gray-600">
-                  Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
-                </p>
+                <div class="p-6 md:w-2/3">
+                  <h2 class="text-xl font-semibold text-orange-500 mb-2">
+                    SECRETARIADO EJECUTIVO
+                  </h2>
+                  <div class="flex items-center text-sm text-gray-500 mb-3">
+                    <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2023</span>
+                  </div>
+                  <p class="text-gray-600">
+                    Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
 
           <!-- Course 2 -->
@@ -260,7 +262,7 @@
               </div>
               <div>
                 <h3 class="text-sm font-medium text-gray-800">
-                  Best LearnPress WordPress Theme Collection For 2023
+                  Best LearnPress WordPress Theme Collection For 2025
                 </h3>
               </div>
             </li>

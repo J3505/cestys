@@ -1,0 +1,125 @@
+<div class="p-8"></div>
+<main class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
+  <!-- Article Section -->
+  <div class="w-full md:w-2/3 md:pr-8">
+      <article>
+          <h1 class="text-3xl font-bold mb-2">Domina La Ofimática: Potencia Tus Habilidades Digitales</h1>
+          <div class="flex items-center text-sm text-gray-500 mb-6">
+            <span class="mr-4">
+              <span class="icon-[fa--user] w-[12px] h-[12px] text-gray-500 mr-1"></span>
+              CheminosDuplex
+            </span>
+            <span class="mr-4">
+              <span class="icon-[fa--calendar] w-[12px] h-[12px] text-gray-500 mr-1" ></span>
+              Abril 14, 2025
+            </span>
+            <span class="mr-4">
+              <span class="icon-[fa--comment] w-[12px] h-[12px] text-gray-500 mr-1" ></span>15 Comentarios
+            </span>
+          </div>
+
+          <!-- Featured Image -->
+          <div class="bg-gray-100 rounded-lg p-6 mb-8">
+              <img src="https://dummyimage.com/400x200/c75c1a/fff.png&text=imagen+de+curso+400+x+500" alt="Curso de Ofimática" class="w-full rounded-lg bg-cover">
+          </div>
+
+          <!-- Course Content -->
+          <h2 class="text-2xl font-bold mb-4">Temas para el curso de Ofimática:</h2>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">1. Introducción a la Ofimática</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li class="font-semibold">¿Qué es la ofimática y por qué es importante?</li>
+                  <li>Conociendo las herramientas principales (Microsoft Office, Google Workspace, LibreOffice).</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">2. Microsoft Word / Procesamiento de Texto</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Creación y edición de documentos.</li>
+                  <li>Formato avanzado (tablas, imágenes, encabezados, pies de página).</li>
+                  <li>Plantillas, estilo y combinación de correspondencia.</li>
+                  <li>Exportar a PDF y compartir documentos.</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">3. Microsoft Excel / Hojas de Cálculo</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Introducción a las hojas de cálculo.</li>
+                  <li>Fórmulas y funciones básicas (SUMA, PROMEDIO, SI, BUSCARV).</li>
+                  <li>Gráficos, tablas dinámicas y análisis de datos.</li>
+                  <li>Validación de datos y automatización con macros básicas.</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">4. Microsoft PowerPoint / Presentaciones</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Diseño de presentaciones impactantes.</li>
+                  <li>Uso de transiciones y animaciones.</li>
+                  <li>Incorporación de multimedia (imágenes, videos, audio).</li>
+                  <li>Presentaciones profesionales y trucos para captar la atención.</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">5. Microsoft Outlook / Correo Electrónico</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Gestión eficiente del correo electrónico.</li>
+                  <li>Organización con calendarios y tareas.</li>
+                  <li>Creación de firmas y respuesta automática.</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">6. Google Workspace (Alternativa en la Nube)</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Google Docs, Sheets, Slides: Comparativa con Microsoft Office.</li>
+                  <li>Colaboración en tiempo real.</li>
+                  <li>Almacenamiento y gestión de archivos en Google Drive.</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold text-orange-500 mb-2">7. Productividad y Seguridad Digital</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Atajos de teclado para acelerar tu trabajo.</li>
+                  <li>Copias de seguridad y recuperación de documentos.</li>
+                  <li>Buenas prácticas de ciberseguridad en herramientas ofimáticas.</li>
+              </ul>
+          </div>
+
+          <div class="mb-6">
+              <h3 class="text-xl font-bold mb-2">Bonus:</h3>
+              <ul class="list-disc pl-8 space-y-1">
+                  <li>Automatización básica con macros en Excel.</li>
+                  <li>Consejos para optimizar el tiempo con herramientas.</li>
+              </ul>
+          </div>
+
+          <!-- Social Share -->
+          <div class="flex items-center space-x-4 mb-8">
+              <span class="text-gray-700">Share:</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-red-600 hover:text-red-800"><i class="fab fa-pinterest-p"></i></a>
+              <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-red-700 hover:text-red-900"><i class="fab fa-youtube"></i></a>
+          </div>
+
+          <!-- Comments Section -->
+           @if (estudiante) {
+             <div class="mt-12">
+               <app-comentarios-estudiantes></app-comentarios-estudiantes>
+               <!-- <app-comentarios-estudiantes></app-comentarios-estudiantes> -->
+             </div>
+           }
+      </article>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="w-full md:w-1/3 mt-8 md:mt-0">
+    <app-sidebar-curso></app-sidebar-curso>
+  </div>
+</main>

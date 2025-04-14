@@ -10,6 +10,7 @@ export const routes: Routes = [
 
       { path:'', loadComponent: ()  => import('./pages/home/home.component')},
       { path:'cursos',loadComponent: ()  => import('./pages/cursos-publicos/cursos-publicos.component')},
+      { path:'cursos/:id',loadComponent: ()  => import('./pages/cursos-publicos/curso-detalle/curso-detalle.component')},
       { path:'nosotros', loadComponent: ()  => import('./pages/nosotros/nosotros.component')},
     ]
   },
