@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import LayoutLandingComponent from "../../layout/landing/layout-landing/layout-landing.component";
+// import LayoutLandingComponent from "../../layout/landing/layout-landing/layout-landing.component";
+import { CardsComponent } from "./cards/cards.component";
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CardsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
