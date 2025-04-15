@@ -41,271 +41,42 @@
     <!-- <h2 class="text-4xl font-bold text-center text-orange-500 mb-12">Cursos Populares:</h2> -->
     <!-- Título con animación y decoración -->
     <div class="text-center mb-16">
-      <h2
-        class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration"
-      >
-        <span class="underline-animation">Cursos Populares</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration">
+        <span class="underline-animation uppercase">Cursos Populares</span>
       </h2>
       <p class="text-gray-600 mt-8 max-w-2xl mx-auto">
         Descubre nuestros cursos más demandados y lleva tus habilidades al
         siguiente nivel con instructores expertos.
       </p>
     </div>
-    <!-- Course Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Course Card 1 -->
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
-      >
-        <!-- Course Image -->
-        <div class="h-48 bg-teal-500 relative">
-          <img
-            src="https://i.pinimg.com/736x/ac/3d/88/ac3d8845b9573b16b69769d35456be7b.jpg"
-            alt="Product Management"
-            class="w-full h-full object-cover"
-          />
-          <!-- Student Count Badge -->
-          <div class="absolute bottom-3 left-3 flex items-center">
-            <div class="flex -space-x-2">
-              <div
-                class="w-6 h-6 rounded-full bg-red-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-green-500 border-2 border-white"
-              ></div>
-            </div>
-            <span
-              class="text-xs text-white ml-1 bg-black bg-opacity-50 px-2 py-1 rounded-full"
-              >40 students</span
-            >
-          </div>
-        </div>
+    <!--  Cards de curso -->
+      <app-cards-populares></app-cards-populares>
 
-        <!-- Course Content -->
-        <div class="p-4">
-          <div class="text-xs text-gray-500 mb-2">2-4 YEARS</div>
-          <h3 class="text-lg font-semibold text-teal-600 mb-2">
-            Product Management Basic - Course
-          </h3>
-          <p class="text-xs text-gray-500 mb-4">
-            Product Management Specialization: you will learn with Sarah Johnson
-            - Head of Product | Coursera Platform Course Instructor
-          </p>
 
-          <!-- Price -->
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center">
-              <span class="text-orange-500 font-bold">$ 120</span>
-              <span class="text-gray-400 line-through ml-2 text-sm">$ 400</span>
-            </div>
-            <a
-              href="#"
-              class="bg-teal-600 text-white text-sm px-4 py-2 rounded-md hover:bg-teal-700 transition"
-              >Enroll Now</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Course Card 2 -->
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
-      >
-        <!-- Course Image -->
-        <div class="h-48 bg-yellow-100 relative">
-          <img
-            src="https://i.pinimg.com/736x/ac/3d/88/ac3d8845b9573b16b69769d35456be7b.jpg"
-            alt="Data Science"
-            class="w-full h-full object-cover"
-          />
-          <!-- Student Count Badge -->
-          <div class="absolute bottom-3 left-3 flex items-center">
-            <div class="flex -space-x-2">
-              <div
-                class="w-6 h-6 rounded-full bg-red-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-green-500 border-2 border-white"
-              ></div>
-            </div>
-            <span
-              class="text-xs text-white ml-1 bg-black bg-opacity-50 px-2 py-1 rounded-full"
-              >11 students</span
-            >
-          </div>
-        </div>
-
-        <!-- Course Content -->
-        <div class="p-4">
-          <div class="text-xs text-gray-500 mb-2">2-4 YEARS</div>
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">
-            BM Data Science Professional Certificate
-          </h3>
-          <p class="text-xs text-gray-500 mb-4">
-            Product Management Specialization: you will learn with Sarah Johnson
-            - Head of Product | Coursera Platform Course Instructor
-          </p>
-
-          <!-- Price -->
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center">
-              <span class="text-orange-500 font-bold">$ 150</span>
-              <span class="text-gray-400 line-through ml-2 text-sm">$ 400</span>
-            </div>
-            <a
-              href="#"
-              class="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition"
-              >Enroll Now</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Course Card 3 -->
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
-      >
-        <!-- Course Image -->
-        <div class="h-48 bg-blue-400 relative">
-          <img
-            src="https://i.pinimg.com/736x/ac/3d/88/ac3d8845b9573b16b69769d35456be7b.jpg"
-            alt="Well-Being"
-            class="w-full h-full object-cover"
-          />
-          <!-- Student Count Badge -->
-          <div class="absolute bottom-3 left-3 flex items-center">
-            <div class="flex -space-x-2">
-              <div
-                class="w-6 h-6 rounded-full bg-red-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-green-500 border-2 border-white"
-              ></div>
-            </div>
-            <span
-              class="text-xs text-white ml-1 bg-black bg-opacity-50 px-2 py-1 rounded-full"
-              >234 students</span
-            >
-          </div>
-        </div>
-
-        <!-- Course Content -->
-        <div class="p-4">
-          <div class="text-xs text-gray-500 mb-2">2-4 YEARS</div>
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">
-            The Science of Well-Being
-          </h3>
-          <p class="text-xs text-gray-500 mb-4">
-            Product Management Specialization: you will learn with Sarah Johnson
-            - Head of Product | Coursera Platform Course Instructor
-          </p>
-
-          <!-- Price -->
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center">
-              <span class="text-orange-500 font-bold">$ 130</span>
-              <span class="text-gray-400 line-through ml-2 text-sm">$ 500</span>
-            </div>
-            <a
-              href="#"
-              class="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition"
-              >Enroll Now</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Course Card 4 -->
-      <div
-        class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
-      >
-        <!-- Course Image -->
-        <div class="h-48 bg-gray-100 relative">
-          <img
-            src="https://i.pinimg.com/736x/ac/3d/88/ac3d8845b9573b16b69769d35456be7b.jpg"
-            alt="Ofimática"
-            class="w-full h-full object-cover"
-          />
-          <!-- Student Count Badge -->
-          <div class="absolute bottom-3 left-3 flex items-center">
-            <div class="flex -space-x-2">
-              <div
-                class="w-6 h-6 rounded-full bg-red-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white"
-              ></div>
-              <div
-                class="w-6 h-6 rounded-full bg-green-500 border-2 border-white"
-              ></div>
-            </div>
-            <span
-              class="text-xs text-white ml-1 bg-black bg-opacity-50 px-2 py-1 rounded-full"
-              >342 students</span
-            >
-          </div>
-        </div>
-
-        <!-- Course Content -->
-        <div class="p-4">
-          <div class="text-xs text-gray-500 mb-2">2-4 YEARS</div>
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">
-            Domina la Ofimática: Potencia tus Habilidades Digitales
-          </h3>
-          <p class="text-xs text-gray-500 mb-4">
-            Product Management Specialization: you will learn with Sarah Johnson
-            - Head of Product | Coursera Platform Course Instructor
-          </p>
-
-          <!-- Price -->
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center">
-              <span class="text-orange-500 font-bold">$ 150</span>
-              <span class="text-gray-400 line-through ml-2 text-sm">$ 500</span>
-            </div>
-            <a
-              href="#"
-              class="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition"
-              >Enroll Now</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats Section -->
+    <!-- Sección de Estadísticas -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
       <!-- Stat Card 1 -->
       <div class="border border-gray-200 rounded-lg p-6 text-center">
         <h3 class="text-3xl font-bold text-orange-500 mb-2">25K+</h3>
-        <p class="text-gray-600">Active Students</p>
+        <p class="text-gray-600">Estudiantes activos</p>
       </div>
 
       <!-- Stat Card 2 -->
       <div class="border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-3xl font-bold text-orange-500 mb-2">899</h3>
-        <p class="text-gray-600">Total Courses</p>
+        <h3 class="text-3xl font-bold text-orange-500 mb-2">30</h3>
+        <p class="text-gray-600">Total de cursos</p>
       </div>
 
       <!-- Stat Card 3 -->
       <div class="border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-3xl font-bold text-orange-500 mb-2">158</h3>
+        <h3 class="text-3xl font-bold text-orange-500 mb-2">20</h3>
         <p class="text-gray-600">Instructor</p>
       </div>
 
       <!-- Stat Card 4 -->
       <div class="border border-gray-200 rounded-lg p-6 text-center">
         <h3 class="text-3xl font-bold text-orange-500 mb-2">100%</h3>
-        <p class="text-gray-600">Satisfaction Rate</p>
+        <p class="text-gray-600">Tasa de satisfacción</p>
       </div>
     </div>
   </div>
@@ -584,3 +355,9 @@
     </form>
   </div>
 </section>
+<!-- Botón flotante de WhatsApp -->
+<a href="https://api.whatsapp.com/send?phone=965835151&text=%C2%A1Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n."
+target="_blank"
+class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+  <span class="icon-[fa--whatsapp]  bg-[#bcb4b4] text-2xl"></span>
+</a>

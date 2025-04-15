@@ -1,0 +1,38 @@
+.course-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.15);
+}
+.module-title {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.module-title:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #f97316;
+  border-radius: 50%;
+}
+.feature-badge {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.social-icon {
+  transition: all 0.3s ease;
+}
+.social-icon:hover {
+  transform: scale(1.2);
+}

@@ -2,124 +2,296 @@
 <main class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
   <!-- Article Section -->
   <div class="w-full md:w-2/3 md:pr-8">
-      <article>
-          <h1 class="text-3xl font-bold mb-2">Domina La Ofimática: Potencia Tus Habilidades Digitales</h1>
-          <div class="flex items-center text-sm text-gray-500 mb-6">
-            <span class="mr-4">
-              <span class="icon-[fa--user] w-[12px] h-[12px] text-gray-500 mr-1"></span>
-              CheminosDuplex
+    <article class="course-card rounded-xl p-8 mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <h1 class="text-4xl font-bold mb-4 text-gray-800 leading-tight">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-700">
+            AUTOCAD 2D Y 3D
+          </span>
+          <br>
+          <span class="text-2xl text-gray-600">Diseño y Modelado Avanzado</span>
+        </h1>
+        <div class="flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full">
+          <span class="text-orange-600 font-semibold">
+            <i class="fas fa-star mr-1"></i> Curso Destacado
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center text-sm text-gray-500 mb-8 gap-4">
+        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+          <i class="fas fa-user mr-2 text-orange-500"></i> CheminosDuplex
+        </span>
+        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+          <i class="fas fa-calendar-alt mr-2 text-orange-500"></i> Abril 14, 2025
+        </span>
+        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+          <i class="fas fa-comments mr-2 text-orange-500"></i> 15 Comentarios
+        </span>
+      </div>
+
+      <!-- Featured Image -->
+      <div class="relative rounded-xl overflow-hidden mb-10 group">
+        <img src="https://i.pinimg.com/736x/11/e8/e6/11e8e68479e1e9987667c9f4253e8e4b.jpg"
+             alt="Curso de AutoCAD"
+             class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+          <div>
+            <span class="feature-badge inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-2">
+              <i class="fas fa-bolt mr-1"></i> INSCRIPCIONES ABIERTAS
             </span>
-            <span class="mr-4">
-              <span class="icon-[fa--calendar] w-[12px] h-[12px] text-gray-500 mr-1" ></span>
-              Abril 14, 2025
-            </span>
-            <span class="mr-4">
-              <span class="icon-[fa--comment] w-[12px] h-[12px] text-gray-500 mr-1" ></span>15 Comentarios
-            </span>
+            <h3 class="text-white text-xl font-bold">Domina las herramientas profesionales de diseño arquitectónico e industrial</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course Content -->
+      <div class="space-y-8">
+        <!-- Duración y Nivel del Curso -->
+        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+          <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
+            <i class="fas fa-info-circle text-orange-500 mr-3"></i>
+            Detalles del Curso
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                <i class="fas fa-clock text-orange-500"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700">Duración</h4>
+                <p class="text-gray-600">40 horas (2 meses)</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                <i class="fas fa-signal text-orange-500"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700">Niveles</h4>
+                <p class="text-gray-600">Inicial, Intermedio y Avanzado</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                <i class="fas fa-laptop-house text-orange-500"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700">Modalidad</h4>
+                <p class="text-gray-600">En línea / Presencial</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                <i class="fas fa-certificate text-orange-500"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700">Certificación</h4>
+                <p class="text-gray-600">Incluye certificado oficial</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modules -->
+        <div>
+          <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-4 flex items-center">
+            <i class="fas fa-list-ol text-orange-500 mr-3"></i>
+            Temario del Curso
+          </h2>
+
+          <!-- Module 1 -->
+          <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200 hover:border-orange-300 transition-colors">
+            <h3 class="module-title text-2xl font-bold mb-4 text-orange-600">
+              <i class="fas fa-play-circle mr-2"></i>
+              Introducción a AutoCAD
+            </h3>
+            <ul class="space-y-3 pl-6">
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Instalación y configuración inicial del software</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Interfaz de usuario y herramientas básicas</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Conceptos clave: Capas, bloques y estilos</span>
+              </li>
+            </ul>
           </div>
 
-          <!-- Featured Image -->
-          <div class="bg-gray-100 rounded-lg p-6 mb-8">
-              <img src="https://dummyimage.com/400x200/c75c1a/fff.png&text=imagen+de+curso+400+x+500" alt="Curso de Ofimática" class="w-full rounded-lg bg-cover">
+          <!-- Module 2 -->
+          <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200 hover:border-orange-300 transition-colors">
+            <h3 class="module-title text-2xl font-bold mb-4 text-orange-600">
+              <i class="fas fa-layer-group mr-2"></i>
+              Nivel Inicial
+            </h3>
+            <ul class="space-y-3 pl-6">
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Interfaz AutoCad 2024</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Dibujo de Piezas con Comandos: Líneas / Polilíneas / Círculos / Arcos</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Edición de Objetos: Rotar / Mover / Copiar</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Array / Explode / Mirror / etc</span>
+              </li>
+            </ul>
           </div>
 
-          <!-- Course Content -->
-          <h2 class="text-2xl font-bold mb-4">Temas para el curso de Ofimática:</h2>
-
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">1. Introducción a la Ofimática</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li class="font-semibold">¿Qué es la ofimática y por qué es importante?</li>
-                  <li>Conociendo las herramientas principales (Microsoft Office, Google Workspace, LibreOffice).</li>
-              </ul>
+          <!-- Module 3 -->
+          <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200 hover:border-orange-300 transition-colors">
+            <h3 class="module-title text-2xl font-bold mb-4 text-orange-600">
+              <i class="fas fa-chart-line mr-2"></i>
+              Nivel Intermedio
+            </h3>
+            <ul class="space-y-3 pl-6">
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Trazo de Planos: Layer / Capas, Multilíneas, Acotación</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Bloques / Bloques Dinámicos</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Textos para Complementar Planos</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Ploteo de Impresión (Model / Layout)</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">2. Microsoft Word / Procesamiento de Texto</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Creación y edición de documentos.</li>
-                  <li>Formato avanzado (tablas, imágenes, encabezados, pies de página).</li>
-                  <li>Plantillas, estilo y combinación de correspondencia.</li>
-                  <li>Exportar a PDF y compartir documentos.</li>
-              </ul>
+          <!-- Module 4 -->
+          <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200 hover:border-orange-300 transition-colors">
+            <h3 class="module-title text-2xl font-bold mb-4 text-orange-600">
+              <i class="fas fa-cubes mr-2"></i>
+              Nivel Avanzado
+            </h3>
+            <ul class="space-y-3 pl-6">
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Procedimientos para trabajar en Tres Dimensiones</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Construcción de Objetos en 3D</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-check text-xs"></i>
+                </span>
+                <span>Representación Realista de la Geometría</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">3. Microsoft Excel / Hojas de Cálculo</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Introducción a las hojas de cálculo.</li>
-                  <li>Fórmulas y funciones básicas (SUMA, PROMEDIO, SI, BUSCARV).</li>
-                  <li>Gráficos, tablas dinámicas y análisis de datos.</li>
-                  <li>Validación de datos y automatización con macros básicas.</li>
-              </ul>
+          <!-- Bonus -->
+          <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-200">
+            <h3 class="module-title text-2xl font-bold mb-4 text-orange-600">
+              <i class="fas fa-gift mr-2"></i>
+              Contenido Bonus
+            </h3>
+            <ul class="space-y-3 pl-6">
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-star text-xs"></i>
+                </span>
+                <span>Automatización básica con macros en Excel</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-star text-xs"></i>
+                </span>
+                <span>Consejos para optimizar el tiempo con herramientas</span>
+              </li>
+              <li class="flex items-start">
+                <span class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1">
+                  <i class="fas fa-star text-xs"></i>
+                </span>
+                <span>Biblioteca de recursos exclusivos para estudiantes</span>
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">4. Microsoft PowerPoint / Presentaciones</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Diseño de presentaciones impactantes.</li>
-                  <li>Uso de transiciones y animaciones.</li>
-                  <li>Incorporación de multimedia (imágenes, videos, audio).</li>
-                  <li>Presentaciones profesionales y trucos para captar la atención.</li>
-              </ul>
+        <!-- Social Share -->
+        <div class="mt-12 bg-gray-50 rounded-xl p-6">
+          <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+            <i class="fas fa-share-alt text-orange-500 mr-3"></i>
+            Compartir este curso
+          </h3>
+          <div class="flex flex-wrap gap-4">
+            <a href="#" class="social-icon bg-blue-600 text-white p-2.5 rounded-full hover:bg-blue-700">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon bg-blue-400 text-white p-2.5 rounded-full hover:bg-blue-500">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon bg-red-600 text-white p-2.5 rounded-full hover:bg-red-700">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon bg-green-500 text-white p-2.5 rounded-full hover:bg-green-600">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon bg-pink-600 text-white p-2.5 rounded-full hover:bg-pink-700">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon bg-gray-800 text-white p-2.5 rounded-full hover:bg-gray-900">
+              <i class="fas fa-envelope"></i>
+            </a>
           </div>
-
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">5. Microsoft Outlook / Correo Electrónico</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Gestión eficiente del correo electrónico.</li>
-                  <li>Organización con calendarios y tareas.</li>
-                  <li>Creación de firmas y respuesta automática.</li>
-              </ul>
-          </div>
-
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">6. Google Workspace (Alternativa en la Nube)</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Google Docs, Sheets, Slides: Comparativa con Microsoft Office.</li>
-                  <li>Colaboración en tiempo real.</li>
-                  <li>Almacenamiento y gestión de archivos en Google Drive.</li>
-              </ul>
-          </div>
-
-          <div class="mb-6">
-              <h3 class="text-xl font-bold text-orange-500 mb-2">7. Productividad y Seguridad Digital</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Atajos de teclado para acelerar tu trabajo.</li>
-                  <li>Copias de seguridad y recuperación de documentos.</li>
-                  <li>Buenas prácticas de ciberseguridad en herramientas ofimáticas.</li>
-              </ul>
-          </div>
-
-          <div class="mb-6">
-              <h3 class="text-xl font-bold mb-2">Bonus:</h3>
-              <ul class="list-disc pl-8 space-y-1">
-                  <li>Automatización básica con macros en Excel.</li>
-                  <li>Consejos para optimizar el tiempo con herramientas.</li>
-              </ul>
-          </div>
-
-          <!-- Social Share -->
-          <div class="flex items-center space-x-4 mb-8">
-              <span class="text-gray-700">Share:</span>
-              <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="text-red-600 hover:text-red-800"><i class="fab fa-pinterest-p"></i></a>
-              <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="text-red-700 hover:text-red-900"><i class="fab fa-youtube"></i></a>
-          </div>
-
-          <!-- Comments Section -->
-           @if (estudiante) {
-             <div class="mt-12">
-               <app-comentarios-estudiantes></app-comentarios-estudiantes>
-               <!-- <app-comentarios-estudiantes></app-comentarios-estudiantes> -->
-             </div>
-           }
-      </article>
+        </div>
+      </div>
+      <!-- Comments Section -->
+      @if (estudiante) {
+        <div class="mt-12">
+          <app-comentarios-estudiantes></app-comentarios-estudiantes>
+        </div>
+      }
+    </article>
   </div>
-
   <!-- Sidebar -->
   <div class="w-full md:w-1/3 mt-8 md:mt-0">
     <app-sidebar-curso></app-sidebar-curso>
   </div>
+
 </main>
