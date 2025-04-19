@@ -1,1 +1,19 @@
-<p>header works!</p>
+<header class="bg-white shadow-sm p-4 flex justify-between items-center">
+  <div class="flex items-center">
+      <button id="sidebarToggle" class="md:hidden mr-4 text-orange-600">
+          <i class="fas fa-bars text-xl"></i>
+      </button>
+      <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
+  </div>
+  <div class="flex items-center space-x-4">
+      <div class="relative">
+          <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+          <input type="text" placeholder="Buscar..." class="pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-orange-300">
+      </div>
+      <button class="relative text-gray-500 hover:text-orange-600">
+          <i class="fas fa-bell text-xl"></i>
+          <span class="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold cursor-pointer">AD</div>
+  </div>
+</header>

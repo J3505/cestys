@@ -1,0 +1,222 @@
+<!-- Content -->
+<main class="p-4">
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Total Cursos</p>
+                  <h3 class="text-2xl font-bold mt-2">124</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                  <i class="fas fa-book text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Estudiantes</p>
+                  <h3 class="text-2xl font-bold mt-2">2,543</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                  <i class="fas fa-users text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Ventas</p>
+                  <h3 class="text-2xl font-bold mt-2">$24,850</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 15% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                  <i class="fas fa-dollar-sign text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Satisfacción</p>
+                  <h3 class="text-2xl font-bold mt-2">94%</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 3% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                  <i class="fas fa-smile text-xl"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Ventas mensuales</h3>
+              <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Últimos 6 meses</option>
+                  <option>Este año</option>
+                  <option>Todo</option>
+              </select>
+          </div>
+          <canvas id="salesChart" height="250"></canvas>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Cursos más populares</h3>
+              <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Este mes</option>
+                  <option>Este año</option>
+                  <option>Todo</option>
+              </select>
+          </div>
+          <canvas id="coursesChart" height="250"></canvas>
+      </div>
+  </div>
+
+  <!-- Recent Activity and Top Courses -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Actividad reciente</h3>
+              <button class="text-orange-600 text-sm font-medium">Ver todo</button>
+          </div>
+
+          <div class="space-y-4">
+              <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-orange-100 text-orange-600 rounded-lg">
+                      <i class="fas fa-shopping-cart"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Nueva compra de curso</p>
+                      <p class="text-sm text-gray-500">Juan Pérez compró "Marketing Digital Avanzado"</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 15 minutos</p>
+                  </div>
+                  <span class="text-sm font-medium text-orange-600">$49.99</span>
+              </div>
+
+              <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                      <i class="fas fa-user-plus"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Nuevo estudiante</p>
+                      <p class="text-sm text-gray-500">María González se registró en la plataforma</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 1 hora</p>
+                  </div>
+              </div>
+
+              <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-green-100 text-green-600 rounded-lg">
+                      <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Curso completado</p>
+                      <p class="text-sm text-gray-500">Carlos Ruiz completó "Programación en Python"</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 3 horas</p>
+                  </div>
+              </div>
+
+              <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-purple-100 text-purple-600 rounded-lg">
+                      <i class="fas fa-comment"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Nuevo comentario</p>
+                      <p class="text-sm text-gray-500">Ana López dejó un comentario en "Diseño UX/UI"</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 5 horas</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Cursos destacados</h3>
+              <button class="text-orange-600 text-sm font-medium">Ver todos</button>
+          </div>
+
+          <div class="space-y-4">
+              <div class="flex items-center space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <img src="https://via.placeholder.com/60" alt="Curso" class="w-14 h-14 rounded-lg object-cover">
+                  <div>
+                      <p class="font-medium">Marketing Digital</p>
+                      <div class="flex items-center mt-1">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                          </div>
+                          <span class="text-xs text-gray-500 ml-1">(128)</span>
+                      </div>
+                      <p class="text-sm font-semibold text-orange-600 mt-1">$59.99</p>
+                  </div>
+              </div>
+
+              <div class="flex items-center space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <img src="https://via.placeholder.com/60" alt="Curso" class="w-14 h-14 rounded-lg object-cover">
+                  <div>
+                      <p class="font-medium">Programación Web</p>
+                      <div class="flex items-center mt-1">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="far fa-star"></i>
+                          </div>
+                          <span class="text-xs text-gray-500 ml-1">(96)</span>
+                      </div>
+                      <p class="text-sm font-semibold text-orange-600 mt-1">$79.99</p>
+                  </div>
+              </div>
+
+              <div class="flex items-center space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <img src="https://via.placeholder.com/60" alt="Curso" class="w-14 h-14 rounded-lg object-cover">
+                  <div>
+                      <p class="font-medium">Diseño UX/UI</p>
+                      <div class="flex items-center mt-1">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                          </div>
+                          <span class="text-xs text-gray-500 ml-1">(75)</span>
+                      </div>
+                      <p class="text-sm font-semibold text-orange-600 mt-1">$49.99</p>
+                  </div>
+              </div>
+
+              <div class="flex items-center space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                  <img src="https://via.placeholder.com/60" alt="Curso" class="w-14 h-14 rounded-lg object-cover">
+                  <div>
+                      <p class="font-medium">Data Science</p>
+                      <div class="flex items-center mt-1">
+                          <div class="flex text-orange-400">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                          </div>
+                          <span class="text-xs text-gray-500 ml-1">(64)</span>
+                      </div>
+                      <p class="text-sm font-semibold text-orange-600 mt-1">$89.99</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

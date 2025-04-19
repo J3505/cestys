@@ -20,5 +20,17 @@ export const routes: Routes = [
       {path : 'login', loadComponent: ()=> import ('./auth/login/login.component')},
       {path : 'register', loadComponent: ()=> import ('./auth/register/register.component')}
     ]
+  },
+  {
+    path:'admin',
+    loadComponent: () => import ('./layout/admin/layout-admin/layout-admin.component'),
+    children:[
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', loadComponent: () => import ('./admin/dashboard/dashboard.component')},
+      { path: 'cursos', loadComponent: () => import ('./admin/cursos/cursos.component')},
+      { path: 'estudiantes', loadComponent: () => import ('./admin/estudiantes/estudiantes.component')},
+      {path: 'ventas', loadComponent: () => import ('./admin/ventas/ventas.component')}
+    ]
+
   }
 ];

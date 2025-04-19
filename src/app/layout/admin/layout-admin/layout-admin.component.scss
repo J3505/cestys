@@ -1,0 +1,22 @@
+.sidebar {
+  transition: all 0.3s ease;
+}
+@media (max-width: 768px) {
+  .sidebar {
+      transform: translateX(-100%);
+      position: absolute;
+      z-index: 50;
+  }
+  .sidebar.active {
+      transform: translateX(0);
+  }
+}
+
+
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.02);
+}

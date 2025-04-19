@@ -1,0 +1,506 @@
+<!-- Contenido -->
+ <main class="p-4">
+  <!-- Action Bar -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+      <div>
+          <h1 class="text-2xl font-bold text-gray-800">Gestión de Ventas</h1>
+          <p class="text-gray-500">Monitorea y administra todas las transacciones</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative">
+              <select class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 appearance-none bg-white">
+                  <option>Este mes</option>
+                  <option>Último mes</option>
+                  <option>Este año</option>
+                  <option>Personalizado</option>
+              </select>
+              <i class="fas fa-calendar absolute left-3 top-2.5 text-gray-400"></i>
+          </div>
+          <button class="gradient-orange text-white px-4 py-2 rounded-lg flex items-center justify-center hover:opacity-90">
+              <i class="fas fa-download mr-2"></i>
+              Exportar Informe
+          </button>
+      </div>
+  </div>
+
+  <!-- Card de Estadísticas -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Ingresos Totales</p>
+                  <h3 class="text-2xl font-bold mt-2">$24,850</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 15% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                  <i class="fas fa-dollar-sign text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Ventas del Mes</p>
+                  <h3 class="text-2xl font-bold mt-2">342</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% vs mes anterior</p>
+              </div>
+              <div class="p-3 rounded-lg bg-green-100 text-green-600">
+                  <i class="fas fa-shopping-cart text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Tasa de Conversión</p>
+                  <h3 class="text-2xl font-bold mt-2">5.8%</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 1.2% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-blue-100 text-blue-600">
+                  <i class="fas fa-exchange-alt text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Valor Promedio</p>
+                  <h3 class="text-2xl font-bold mt-2">$72.66</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 4% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-purple-100 text-purple-600">
+                  <i class="fas fa-chart-bar text-xl"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Ventas mensuales</h3>
+              <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Últimos 6 meses</option>
+                  <option>Este año</option>
+                  <option>Todo</option>
+              </select>
+          </div>
+          <canvas id="salesChart" height="250"></canvas>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Ventas por categoría</h3>
+              <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Este mes</option>
+                  <option>Este año</option>
+                  <option>Todo</option>
+              </select>
+          </div>
+          <canvas id="categoriesChart" height="250"></canvas>
+      </div>
+  </div>
+
+  <!-- Transactions Table -->
+  <div class="bg-white rounded-xl shadow-sm mb-6 overflow-hidden">
+      <div class="p-6 border-b flex justify-between items-center">
+          <h3 class="font-semibold">Transacciones Recientes</h3>
+          <div class="flex space-x-2">
+              <button class="px-3 py-1 text-sm border rounded-lg hover:bg-orange-50">
+                  <i class="fas fa-filter mr-1"></i> Filtrar
+              </button>
+              <button class="px-3 py-1 text-sm border rounded-lg hover:bg-orange-50">
+                  <i class="fas fa-sort mr-1"></i> Ordenar
+              </button>
+          </div>
+      </div>
+      <div class="overflow-x-auto">
+          <table class="w-full">
+              <thead class="bg-gray-50 text-left">
+                  <tr>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiante</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Curso</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Método</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Monto</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                  </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                  <tr class="hover:bg-orange-50 transaction-row">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">#TRX-8742</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">15/07/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold mr-2">JP</div>
+                              <span>Juan Pérez</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Marketing Digital Avanzado</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <i class="fab fa-cc-visa text-blue-600 mr-2"></i>
+                              <span>Visa ****4582</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">$59.99</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Completado</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2 transaction-actions">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-file-invoice"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50 transaction-row">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">#TRX-8741</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">15/07/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-bold mr-2">MG</div>
+                              <span>María González</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Diseño UX/UI Profesional</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <i class="fab fa-paypal text-blue-800 mr-2"></i>
+                              <span>PayPal</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">$49.99</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Completado</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2 transaction-actions">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-file-invoice"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50 transaction-row">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">#TRX-8740</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">14/07/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold mr-2">CR</div>
+                              <span>Carlos Ruiz</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Programación en Python</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <i class="fab fa-cc-mastercard text-red-600 mr-2"></i>
+                              <span>Mastercard ****7845</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">$69.99</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Completado</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2 transaction-actions">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-file-invoice"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50 transaction-row">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">#TRX-8739</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">14/07/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white text-xs font-bold mr-2">AL</div>
+                              <span>Ana López</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Data Science y Machine Learning</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <i class="fab fa-cc-amex text-blue-800 mr-2"></i>
+                              <span>Amex ****1234</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">$89.99</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-600">Pendiente</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2 transaction-actions">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-file-invoice"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50 transaction-row">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">#TRX-8738</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">13/07/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs font-bold mr-2">LM</div>
+                              <span>Luis Martínez</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Finanzas Personales</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <i class="fab fa-cc-visa text-blue-600 mr-2"></i>
+                              <span>Visa ****6789</span>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">$39.99</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-600">Reembolsado</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2 transaction-actions">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-file-invoice"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="p-4 border-t flex justify-between items-center">
+          <p class="text-sm text-gray-500">Mostrando 5 de 342 transacciones</p>
+          <div class="flex space-x-1">
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">
+                  <i class="fas fa-chevron-left text-sm text-gray-500"></i>
+              </button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-orange-500 text-white">1</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">2</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">3</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">...</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">69</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">
+                  <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Top Products and Payment Methods -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Top Products -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div class="p-6 border-b">
+              <h3 class="font-semibold">Cursos Más Vendidos</h3>
+          </div>
+          <div class="p-6">
+              <div class="space-y-4">
+                  <div class="flex items-center">
+                      <img src="https://via.placeholder.com/60" alt="Curso" class="w-12 h-12 rounded-lg object-cover mr-4">
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Marketing Digital Avanzado</p>
+                              <p class="font-semibold text-orange-600">$59.99</p>
+                          </div>
+                          <div class="flex justify-between mt-1">
+                              <div class="flex items-center text-sm text-gray-500">
+                                  <i class="fas fa-shopping-cart mr-1"></i>
+                                  <span>128 ventas</span>
+                              </div>
+                              <p class="text-sm text-green-600">+15% este mes</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="flex items-center">
+                      <img src="https://via.placeholder.com/60" alt="Curso" class="w-12 h-12 rounded-lg object-cover mr-4">
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Programación Web Full Stack</p>
+                              <p class="font-semibold text-orange-600">$79.99</p>
+                          </div>
+                          <div class="flex justify-between mt-1">
+                              <div class="flex items-center text-sm text-gray-500">
+                                  <i class="fas fa-shopping-cart mr-1"></i>
+                                  <span>96 ventas</span>
+                              </div>
+                              <p class="text-sm text-green-600">+8% este mes</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="flex items-center">
+                      <img src="https://via.placeholder.com/60" alt="Curso" class="w-12 h-12 rounded-lg object-cover mr-4">
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Diseño UX/UI Profesional</p>
+                              <p class="font-semibold text-orange-600">$49.99</p>
+                          </div>
+                          <div class="flex justify-between mt-1">
+                              <div class="flex items-center text-sm text-gray-500">
+                                  <i class="fas fa-shopping-cart mr-1"></i>
+                                  <span>75 ventas</span>
+                              </div>
+                              <p class="text-sm text-green-600">+12% este mes</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="flex items-center">
+                      <img src="https://via.placeholder.com/60" alt="Curso" class="w-12 h-12 rounded-lg object-cover mr-4">
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Data Science y Machine Learning</p>
+                              <p class="font-semibold text-orange-600">$89.99</p>
+                          </div>
+                          <div class="flex justify-between mt-1">
+                              <div class="flex items-center text-sm text-gray-500">
+                                  <i class="fas fa-shopping-cart mr-1"></i>
+                                  <span>64 ventas</span>
+                              </div>
+                              <p class="text-sm text-green-600">+5% este mes</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="flex items-center">
+                      <img src="https://via.placeholder.com/60" alt="Curso" class="w-12 h-12 rounded-lg object-cover mr-4">
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Finanzas Personales</p>
+                              <p class="font-semibold text-orange-600">$39.99</p>
+                          </div>
+                          <div class="flex justify-between mt-1">
+                              <div class="flex items-center text-sm text-gray-500">
+                                  <i class="fas fa-shopping-cart mr-1"></i>
+                                  <span>112 ventas</span>
+                              </div>
+                              <p class="text-sm text-green-600">+10% este mes</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div class="p-6 border-b">
+              <h3 class="font-semibold">Métodos de Pago</h3>
+          </div>
+          <div class="p-6">
+              <canvas id="paymentMethodsChart" height="250"></canvas>
+
+              <div class="grid grid-cols-2 gap-4 mt-6">
+                  <div class="p-4 bg-gray-50 rounded-lg">
+                      <div class="flex items-center mb-2">
+                          <i class="fab fa-cc-visa text-blue-600 text-xl mr-2"></i>
+                          <h4 class="font-medium">Tarjetas de Crédito</h4>
+                      </div>
+                      <p class="text-2xl font-bold">65%</p>
+                      <p class="text-sm text-gray-500">$16,152.50</p>
+                  </div>
+
+                  <div class="p-4 bg-gray-50 rounded-lg">
+                      <div class="flex items-center mb-2">
+                          <i class="fab fa-paypal text-blue-800 text-xl mr-2"></i>
+                          <h4 class="font-medium">PayPal</h4>
+                      </div>
+                      <p class="text-2xl font-bold">25%</p>
+                      <p class="text-sm text-gray-500">$6,212.50</p>
+                  </div>
+
+                  <div class="p-4 bg-gray-50 rounded-lg">
+                      <div class="flex items-center mb-2">
+                          <i class="fas fa-university text-gray-700 text-xl mr-2"></i>
+                          <h4 class="font-medium">Transferencia</h4>
+                      </div>
+                      <p class="text-2xl font-bold">8%</p>
+                      <p class="text-sm text-gray-500">$1,988.00</p>
+                  </div>
+
+                  <div class="p-4 bg-gray-50 rounded-lg">
+                      <div class="flex items-center mb-2">
+                          <i class="fas fa-wallet text-green-600 text-xl mr-2"></i>
+                          <h4 class="font-medium">Otros</h4>
+                      </div>
+                      <p class="text-2xl font-bold">2%</p>
+                      <p class="text-sm text-gray-500">$497.00</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Sales Trends -->
+  <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <div class="flex justify-between items-center mb-6">
+          <h3 class="font-semibold">Tendencias de Ventas</h3>
+          <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+              <option>Últimos 30 días</option>
+              <option>Últimos 90 días</option>
+              <option>Este año</option>
+          </select>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="col-span-2">
+              <canvas id="trendsChart" height="250"></canvas>
+          </div>
+
+          <div class="space-y-6">
+              <div>
+                  <h4 class="text-sm text-gray-500 mb-2">Tasa de crecimiento</h4>
+                  <div class="flex items-end">
+                      <p class="text-2xl font-bold">+15.8%</p>
+                      <p class="text-sm text-green-600 ml-2">+2.3%</p>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                      <div class="bg-orange-500 h-1.5 rounded-full" style="width: 75%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <h4 class="text-sm text-gray-500 mb-2">Tasa de conversión</h4>
+                  <div class="flex items-end">
+                      <p class="text-2xl font-bold">5.8%</p>
+                      <p class="text-sm text-green-600 ml-2">+1.2%</p>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                      <div class="bg-orange-500 h-1.5 rounded-full" style="width: 58%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <h4 class="text-sm text-gray-500 mb-2">Valor promedio de venta</h4>
+                  <div class="flex items-end">
+                      <p class="text-2xl font-bold">$72.66</p>
+                      <p class="text-sm text-green-600 ml-2">+4%</p>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                      <div class="bg-orange-500 h-1.5 rounded-full" style="width: 65%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <h4 class="text-sm text-gray-500 mb-2">Tasa de reembolso</h4>
+                  <div class="flex items-end">
+                      <p class="text-2xl font-bold">1.2%</p>
+                      <p class="text-sm text-red-600 ml-2">+0.3%</p>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                      <div class="bg-red-500 h-1.5 rounded-full" style="width: 12%"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

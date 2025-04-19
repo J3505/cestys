@@ -1,0 +1,583 @@
+<!-- Content -->
+<main class="p-4">
+  <!-- Action Bar -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+      <div>
+          <h1 class="text-2xl font-bold text-gray-800">Gestión de Estudiantes</h1>
+          <p class="text-gray-500">Administra todos los estudiantes de la plataforma</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative">
+              <select class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 appearance-none bg-white">
+                  <option>Todos los estudiantes</option>
+                  <option>Activos</option>
+                  <option>Inactivos</option>
+                  <option>Nuevos</option>
+              </select>
+              <i class="fas fa-filter absolute left-3 top-2.5 text-gray-400"></i>
+          </div>
+          <button class="gradient-orange text-white px-4 py-2 rounded-lg flex items-center justify-center hover:opacity-90">
+              <i class="fas fa-plus mr-2"></i>
+              Nuevo Estudiante
+          </button>
+      </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Total Estudiantes</p>
+                  <h3 class="text-2xl font-bold mt-2">2,543</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                  <i class="fas fa-users text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Estudiantes Activos</p>
+                  <h3 class="text-2xl font-bold mt-2">1,876</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 5% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-green-100 text-green-600">
+                  <i class="fas fa-user-check text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Tasa de Finalización</p>
+                  <h3 class="text-2xl font-bold mt-2">68%</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 3% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-blue-100 text-blue-600">
+                  <i class="fas fa-graduation-cap text-xl"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+          <div class="flex justify-between items-start">
+              <div>
+                  <p class="text-gray-500">Nuevos Estudiantes</p>
+                  <h3 class="text-2xl font-bold mt-2">215</h3>
+                  <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% este mes</p>
+              </div>
+              <div class="p-3 rounded-lg bg-purple-100 text-purple-600">
+                  <i class="fas fa-user-plus text-xl"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Registro de estudiantes</h3>
+              <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Últimos 6 meses</option>
+                  <option>Este año</option>
+                  <option>Todo</option>
+              </select>
+          </div>
+          <canvas id="registrationChart" height="250"></canvas>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">Distribución por categorías</h3>
+              <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Este mes</option>
+                  <option>Este año</option>
+                  <option>Todo</option>
+              </select>
+          </div>
+          <canvas id="categoriesChart" height="250"></canvas>
+      </div>
+  </div>
+
+  <!-- Tabla de Estudiantes -->
+  <div class="bg-white rounded-xl shadow-sm mb-6 overflow-hidden">
+      <div class="p-6 border-b">
+          <h3 class="font-semibold">Listado de Estudiantes</h3>
+      </div>
+      <div class="overflow-x-auto">
+          <table class="w-full">
+              <thead class="bg-gray-50 text-left">
+                  <tr>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiante</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha Registro</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Cursos</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Progreso</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Último Acceso</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                  </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                  <tr class="hover:bg-orange-50">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold mr-3">JP</div>
+                              <div>
+                                  <p class="font-medium">Juan Pérez</p>
+                                  <p class="text-xs text-gray-500">ID: #ST12345</p>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">juan.perezxejemplo.com</td>
+                      <td class="px-6 py-4 whitespace-nowrap">15/01/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">3</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="w-full bg-gray-200 rounded-full h-2.5">
+                              <div class="bg-orange-500 h-2.5 rounded-full" style="width: 75%"></div>
+                          </div>
+                          <span class="text-xs text-gray-500">75%</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Hace 2 horas</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Activo</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold mr-3">MG</div>
+                              <div>
+                                  <p class="font-medium">María González</p>
+                                  <p class="text-xs text-gray-500">ID: #ST12346</p>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">maria.gonzalezxejemplo.com</td>
+                      <td class="px-6 py-4 whitespace-nowrap">22/02/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">5</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="w-full bg-gray-200 rounded-full h-2.5">
+                              <div class="bg-orange-500 h-2.5 rounded-full" style="width: 90%"></div>
+                          </div>
+                          <span class="text-xs text-gray-500">90%</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Hace 1 día</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Activo</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold mr-3">CR</div>
+                              <div>
+                                  <p class="font-medium">Carlos Ruiz</p>
+                                  <p class="text-xs text-gray-500">ID: #ST12347</p>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">carlos.ruizxejemplo.com</td>
+                      <td class="px-6 py-4 whitespace-nowrap">10/03/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">2</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="w-full bg-gray-200 rounded-full h-2.5">
+                              <div class="bg-orange-500 h-2.5 rounded-full" style="width: 100%"></div>
+                          </div>
+                          <span class="text-xs text-gray-500">100%</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Hace 3 horas</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Activo</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold mr-3">AL</div>
+                              <div>
+                                  <p class="font-medium">Ana López</p>
+                                  <p class="text-xs text-gray-500">ID: #ST12348</p>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">ana.lopezxejemplo.com</td>
+                      <td class="px-6 py-4 whitespace-nowrap">05/04/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">4</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="w-full bg-gray-200 rounded-full h-2.5">
+                              <div class="bg-orange-500 h-2.5 rounded-full" style="width: 60%"></div>
+                          </div>
+                          <span class="text-xs text-gray-500">60%</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Hace 5 horas</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Activo</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr class="hover:bg-orange-50">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold mr-3">LM</div>
+                              <div>
+                                  <p class="font-medium">Luis Martínez</p>
+                                  <p class="text-xs text-gray-500">ID: #ST12349</p>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">luis.martinezxejemplo.com</td>
+                      <td class="px-6 py-4 whitespace-nowrap">18/04/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">1</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="w-full bg-gray-200 rounded-full h-2.5">
+                              <div class="bg-orange-500 h-2.5 rounded-full" style="width: 25%"></div>
+                          </div>
+                          <span class="text-xs text-gray-500">25%</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">Hace 2 días</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-600">Inactivo</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex space-x-2">
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
+                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="p-4 border-t flex justify-between items-center">
+          <p class="text-sm text-gray-500">Mostrando 5 de 2,543 estudiantes</p>
+          <div class="flex space-x-1">
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">
+                  <i class="fas fa-chevron-left text-sm text-gray-500"></i>
+              </button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-orange-500 text-white">1</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">2</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">3</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">...</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">509</button>
+              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">
+                  <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Top Students -->
+  <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <div class="flex justify-between items-center mb-6">
+          <h3 class="font-semibold">Estudiantes Destacados</h3>
+          <button class="text-orange-600 text-sm font-medium">Ver todos</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Student Card 1 -->
+          <div class="bg-orange-50 rounded-xl p-6 hover-scale student-card">
+              <div class="flex justify-between mb-4">
+                  <div class="flex items-center">
+                      <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold mr-3">JP</div>
+                      <div>
+                          <p class="font-medium">Juan Pérez</p>
+                          <p class="text-xs text-gray-500">3 cursos completados</p>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+              </div>
+              <div class="space-y-3">
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Progreso total</span>
+                          <span>75%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-orange-500 h-2.5 rounded-full" style="width: 75%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Asistencia</span>
+                          <span>90%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-green-500 h-2.5 rounded-full" style="width: 90%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Calificación</span>
+                          <span>4.8/5</span>
+                      </div>
+                      <div class="flex text-orange-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star-half-alt"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Student Card 2 -->
+          <div class="bg-orange-50 rounded-xl p-6 hover-scale student-card">
+              <div class="flex justify-between mb-4">
+                  <div class="flex items-center">
+                      <div class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold mr-3">MG</div>
+                      <div>
+                          <p class="font-medium">María González</p>
+                          <p class="text-xs text-gray-500">5 cursos completados</p>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+              </div>
+              <div class="space-y-3">
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Progreso total</span>
+                          <span>90%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-orange-500 h-2.5 rounded-full" style="width: 90%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Asistencia</span>
+                          <span>95%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Calificación</span>
+                          <span>5/5</span>
+                      </div>
+                      <div class="flex text-orange-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Student Card 3 -->
+          <div class="bg-orange-50 rounded-xl p-6 hover-scale student-card">
+              <div class="flex justify-between mb-4">
+                  <div class="flex items-center">
+                      <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold mr-3">CR</div>
+                      <div>
+                          <p class="font-medium">Carlos Ruiz</p>
+                          <p class="text-xs text-gray-500">2 cursos completados</p>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+              </div>
+              <div class="space-y-3">
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Progreso total</span>
+                          <span>100%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-orange-500 h-2.5 rounded-full" style="width: 100%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Asistencia</span>
+                          <span>100%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Calificación</span>
+                          <span>4.9/5</span>
+                      </div>
+                      <div class="flex text-orange-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Student Card 4 -->
+          <div class="bg-orange-50 rounded-xl p-6 hover-scale student-card">
+              <div class="flex justify-between mb-4">
+                  <div class="flex items-center">
+                      <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold mr-3">AL</div>
+                      <div>
+                          <p class="font-medium">Ana López</p>
+                          <p class="text-xs text-gray-500">4 cursos completados</p>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+              </div>
+              <div class="space-y-3">
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Progreso total</span>
+                          <span>60%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-orange-500 h-2.5 rounded-full" style="width: 60%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Asistencia</span>
+                          <span>85%</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div class="bg-green-500 h-2.5 rounded-full" style="width: 85%"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="flex justify-between text-sm mb-1">
+                          <span>Calificación</span>
+                          <span>4.5/5</span>
+                      </div>
+                      <div class="flex text-orange-400 text-sm">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star-half-alt"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Student Activity -->
+  <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <div class="flex justify-between items-center mb-6">
+          <h3 class="font-semibold">Actividad Reciente de Estudiantes</h3>
+          <button class="text-orange-600 text-sm font-medium">Ver todo</button>
+      </div>
+
+      <div class="space-y-4">
+          <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+              <div class="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                  <i class="fas fa-user-graduate"></i>
+              </div>
+              <div class="flex-1">
+                  <p class="font-medium">Curso completado</p>
+                  <p class="text-sm text-gray-500">Carlos Ruiz completó "Programación en Python"</p>
+                  <p class="text-xs text-gray-400 mt-1">Hace 3 horas</p>
+              </div>
+              <span class="text-sm font-medium text-green-600">100%</span>
+          </div>
+
+          <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+              <div class="p-2 bg-orange-100 text-orange-600 rounded-lg">
+                  <i class="fas fa-shopping-cart"></i>
+              </div>
+              <div class="flex-1">
+                  <p class="font-medium">Nueva inscripción</p>
+                  <p class="text-sm text-gray-500">María González se inscribió en "Diseño UX/UI Profesional"</p>
+                  <p class="text-xs text-gray-400 mt-1">Hace 5 horas</p>
+              </div>
+              <span class="text-sm font-medium text-orange-600">$49.99</span>
+          </div>
+
+          <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+              <div class="p-2 bg-purple-100 text-purple-600 rounded-lg">
+                  <i class="fas fa-comment"></i>
+              </div>
+              <div class="flex-1">
+                  <p class="font-medium">Nuevo comentario</p>
+                  <p class="text-sm text-gray-500">Ana López dejó un comentario en "Diseño UX/UI"</p>
+                  <p class="text-xs text-gray-400 mt-1">Hace 8 horas</p>
+              </div>
+          </div>
+
+          <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+              <div class="p-2 bg-yellow-100 text-yellow-600 rounded-lg">
+                  <i class="fas fa-star"></i>
+              </div>
+              <div class="flex-1">
+                  <p class="font-medium">Nueva valoración</p>
+                  <p class="text-sm text-gray-500">Juan Pérez valoró "Marketing Digital Avanzado" con 5 estrellas</p>
+                  <p class="text-xs text-gray-400 mt-1">Hace 1 día</p>
+              </div>
+              <div class="flex text-orange-400 text-sm">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+          </div>
+
+          <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+              <div class="p-2 bg-green-100 text-green-600 rounded-lg">
+                  <i class="fas fa-certificate"></i>
+              </div>
+              <div class="flex-1">
+                  <p class="font-medium">Certificado emitido</p>
+                  <p class="text-sm text-gray-500">Luis Martínez recibió certificado de "Finanzas Personales"</p>
+                  <p class="text-xs text-gray-400 mt-1">Hace 2 días</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

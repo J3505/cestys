@@ -1,1 +1,61 @@
-<p>sidebar works!</p>
+<!-- Sidebar -->
+<div class="p-4 flex items-center justify-center gradient-orange">
+  <h1 class="text-white text-2xl font-bold">INSITECSA</h1>
+</div>
+<div class="p-4">
+  <div class="flex items-center space-x-3 p-3 bg-orange-100 rounded-lg mb-4">
+      <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">AD</div>
+      <div>
+          <p class="font-semibold">Admin User</p>
+          <p class="text-xs text-gray-500">Administrador</p>
+      </div>
+  </div>
+
+  <nav class="mt-6">
+      <div>
+          <p class="text-xs uppercase text-gray-500 font-semibold pl-3">Principal</p>
+
+          <a routerLink="dashboard"
+          routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center space-x-3 p-3 mt-2  rounded-lg">
+              <i class="fas fa-tachometer-alt w-5 text-center"></i>
+              <span>Dashboard</span>
+          </a>
+          <a routerLink="cursos"
+          routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center space-x-3 p-3 mt-2  rounded-lg">
+              <i class="fas fa-book w-5 text-center"></i>
+              <span>Cursos</span>
+          </a>
+          <a routerLink="estudiantes"
+          routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center space-x-3 p-3 mt-2  rounded-lg">
+              <i class="fas fa-users w-5 text-center"></i>
+              <span>Estudiantes</span>
+          </a>
+          <a routerLink="ventas"
+          routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center space-x-3 p-3 mt-2  rounded-lg">
+              <i class="fas fa-chart-line w-5 text-center"></i>
+              <span>Ventas</span>
+          </a>
+
+      </div>
+
+      <div class="mt-8">
+          <p class="text-xs uppercase text-gray-500 font-semibold pl-3">Configuración</p>
+          <a href="#" class="flex items-center space-x-3 p-3 mt-2 hover:bg-orange-50 rounded-lg">
+              <i class="fas fa-cog w-5 text-center"></i>
+              <span>Ajustes</span>
+          </a>
+          <a href="#" class="flex items-center space-x-3 p-3 mt-2 hover:bg-orange-50 rounded-lg">
+              <i class="fas fa-bell w-5 text-center"></i>
+              <span>Notificaciones</span>
+          </a>
+      </div>
+  </nav>
+</div>
