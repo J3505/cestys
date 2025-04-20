@@ -14,8 +14,10 @@
                 type="text"
                 placeholder="Buscar"
                 class="pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+              <button
+                class="absolute right-3 top-1/2 transform -translate-y-1/2"
               >
-              <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
                 <span class="icon-[lucide--search] bg-gray-400"></span>
               </button>
             </div>
@@ -31,154 +33,111 @@
         <!-- Course Cards -->
         <div class="space-y-6">
           <!-- Course 1 -->
-          <div class="bg-white hover:border-orange-500 hover:border-2 rounded-lg shadow-sm overflow-hidden">
-              <a [routerLink]="['/cursos',1]"  >
-              <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/3">
-                  <img
-                    src="https://i.pinimg.com/736x/11/e8/e6/11e8e68479e1e9987667c9f4253e8e4b.jpg"
-                    alt="Course Image"
-                    class="h-full w-full object-cover"
-                  >
-                </div>
-                <div class="p-6 md:w-2/3">
-                  <h2 class="text-xl font-semibold text-orange-500 mb-2">
-                    AUTOCAD 2D Y 3D: Diseño y Modelado Avanzado
-                  </h2>
-                  <div class="flex items-center text-sm text-gray-500 mb-3">
-                    <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">1 mes • 40 horas</span>
+          @for (curso of cursos; track $index) {
+          <div class="course-card bg-white border border-gray-200 rounded-xl overflow-hidden w-full h-auto md:h-[500px]">
+            <a [routerLink]="['/cursos', curso.id]" class="block group h-full">
+              <div class="flex-container">
+                <!-- Imagen del curso -->
+                <div class="image-section relative">
+                  <div class="course-image-container">
+                    <img
+                      [src]="curso.imagen"
+                      [alt]="curso.nombre"
+                      class="course-image w-full h-60 object-cover"
+                    />
                   </div>
-                  <p class="text-gray-600">
-                    <li>Interfaz AutoCad 2024.</li>
-                    <li>Dibujo de Piezas con Comandos: Líneas / Polilíneas / Círculos / Arcos.</li>
-                    <li>Edición de Objetos: Rotar / Mover / Copiar.</li>
-                    <li>Array / Explode / Mirror / etc.</li>
-                    <li>Configuración de Unidades / Estados de Ayuda Utilitarios de Dibujo / etc.</li>
-                  </p>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div class="absolute top-4 left-4">
+                    <span
+                      class="inline-flex items-center bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full"
+                    >
+                      <i class="fas fa-fire mr-1"></i> Popular
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Contenido del curso -->
+                <div class="content-section p-6 flex flex-col h-full">
+                  <div class="flex justify-between items-start mb-2">
+                    <h2
+                      class="text-2xl font-bold text-gray-800 group-hover:text-orange-500 transition-colors"
+                    >
+                      {{ curso.nombre }}
+                    </h2>
+                    <span class="flex items-center text-orange-500">
+                      <i class="fas fa-star mr-1"></i> 4.9
+                    </span>
+                  </div>
+
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="inline-flex items-center bg-orange-100 text-orange-600 text-sm font-medium px-3 py-1 rounded-full"
+                    >
+                      <i class="far fa-clock mr-1"></i>
+                      {{ curso.horas || "1 mes" }}
+                    </span>
+                    <span
+                      class="inline-flex items-center bg-blue-100 text-blue-600 text-sm font-medium px-3 py-1 rounded-full"
+                    >
+                      <i class="fas fa-chalkboard-teacher mr-1"></i>
+                      {{ curso.horas }} horas
+                    </span>
+                    <span
+                      class="inline-flex items-center bg-green-100 text-green-600 text-sm font-medium px-3 py-1 rounded-full"
+                    >
+                      <i class="fas fa-certificate mr-1"></i> Certificado
+                    </span>
+                  </div>
+
+                  <ul class="feature-list text-gray-700 mb-6 space-y-2">
+                    <li *ngFor="let tema of curso.modulos[0]?.temas?.slice(0, 5); let index = index">
+                      {{ tema }}
+                    </li>
+                  </ul>
+
+                  <div
+                    class="flex flex-wrap items-center justify-between pt-4 border-t border-gray-100 mt-auto"
+                  >
+                    <div class="flex items-center">
+                      <img
+                        [src]="curso.instructor.imagen"
+                        alt="Instructor"
+                        class="w-8 h-8 rounded-full mr-2"
+                      />
+                      <span class="text-sm font-medium text-gray-700">
+                        {{ curso.instructor.nombre }}
+                        {{ curso.instructor.apellido }}
+                      </span>
+                    </div>
+
+                    <div class="mt-3 sm:mt-0">
+                      <span class="text-xl font-bold text-orange-500"
+                        >S/ {{ curso.precio }}</span
+                      >
+                      <span class="text-sm text-gray-500 line-through ml-2"
+                        >S/ {{ curso.precio }}</span
+                      >
+                      <!-- * 1.33 | number : "1.0-0"  -->
+                      <span
+                        class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded ml-2"
+                        >25% OFF</span
+                      >
+                    </div>
+                  </div>
+
+                  <button
+                    class="mt-6 w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                  >
+                    <i class="fas fa-shopping-cart mr-2"></i> Inscribirse ahora
+                  </button>
                 </div>
               </div>
             </a>
           </div>
 
-          <!-- Course 2 -->
-          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/3">
-                <img
-                  src="assets/01.jpg"
-                  alt="Course 2 Image"
-                  class="h-full w-full object-cover"
-                >
-              </div>
-              <div class="p-6 md:w-2/3">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2024</span>
-                </div>
-                <p class="text-gray-600">
-                  Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Course 3 -->
-          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/3">
-                <img
-                  src="assets/01.jpg"
-                  alt="Course 3 Image"
-                  class="h-full w-full object-cover"
-                >
-              </div>
-              <div class="p-6 md:w-2/3">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2023</span>
-                </div>
-                <p class="text-gray-600">
-                  Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Course 4 -->
-          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/3">
-                <img
-                  src="https://via.placeholder.com/300x200?text=Course4"
-                  alt="Course 4 Image"
-                  class="h-full w-full object-cover"
-                >
-              </div>
-              <div class="p-6 md:w-2/3">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2023</span>
-                </div>
-                <p class="text-gray-600">
-                  Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Course 5 -->
-          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/3">
-                <img
-                  src="https://via.placeholder.com/300x200?text=Course5"
-                  alt="Course 5 Image"
-                  class="h-full w-full object-cover"
-                >
-              </div>
-              <div class="p-6 md:w-2/3">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2023</span>
-                </div>
-                <p class="text-gray-600">
-                  Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Course 6 -->
-          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/3">
-                <img
-                  src="https://via.placeholder.com/300x200?text=Course6"
-                  alt="Course 6 Image"
-                  class="h-full w-full object-cover"
-                >
-              </div>
-              <div class="p-6 md:w-2/3">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span class="inline-block bg-orange-100 text-orange-500 px-2 py-1 rounded-md">Jan 24, 2023</span>
-                </div>
-                <p class="text-gray-600">
-                  Looking for an amazing & well-functional LearnPress WordPress Theme? Online education...
-                </p>
-              </div>
-            </div>
-          </div>
+          }
         </div>
 
         <!-- Paginación -->
@@ -186,17 +145,39 @@
           <nav class="flex items-center space-x-1">
             <button class="p-2 rounded-md hover:bg-gray-100">
               <span class="sr-only">Previous</span>
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </button>
-            <button class="px-4 py-2 rounded-md bg-gray-900 text-white">1</button>
+            <button class="px-4 py-2 rounded-md bg-gray-900 text-white">
+              1
+            </button>
             <button class="px-4 py-2 rounded-md hover:bg-gray-100">2</button>
             <button class="px-4 py-2 rounded-md hover:bg-gray-100">3</button>
             <button class="p-2 rounded-md hover:bg-gray-100">
               <span class="sr-only">Next</span>
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
           </nav>
@@ -208,29 +189,59 @@
         <!-- Categories -->
         <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Categoria</h2>
-          <ul class="space-y-3">
-            <li class="flex justify-between items-center">
-              <span class="text-gray-700">Administración y Gestión Empresarial</span>
-              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">15</span>
+          <li
+            class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
+          >
+            <span>Cursos de especializacion</span>
+            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
+              >15</span
+            >
+          </li>
+          <ul class="space-y-3 text-gray-700">
+            <li
+              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
+            >
+              <span>Administración y Gestión Empresarial</span>
+              <span
+                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
+                >15</span
+              >
             </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-700">Contable y Financiera</span>
-              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">04</span>
+            <li
+              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
+            >
+              <span>Contable y Financiera</span>
+              <span
+                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
+                >04</span
+              >
             </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-700">Tecnología e Informática</span>
-              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">15</span>
+            <li
+              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
+            >
+              <span>Tecnología e Informática</span>
+              <span
+                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
+                >15</span
+              >
             </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-700">Construcción y Topografía</span>
-              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">15</span>
+            <li
+              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
+            >
+              <span>Construcción y Topografía</span>
+              <span
+                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
+                >15</span
+              >
             </li>
           </ul>
         </div>
 
         <!-- Recent Publications -->
         <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">Publicaciones Recientes</h2>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Publicaciones Recientes
+          </h2>
           <ul class="space-y-4">
             <li class="flex space-x-3">
               <div class="flex-shrink-0">
@@ -238,7 +249,7 @@
                   src="assets/01.jpg"
                   alt="Recent post 1"
                   class="rounded-md w-8 h-8"
-                >
+                />
               </div>
               <div>
                 <h3 class="text-sm font-medium text-gray-800">
@@ -252,7 +263,7 @@
                   src="https://via.placeholder.com/60x60?text=2"
                   alt="Recent post 2"
                   class="rounded-md"
-                >
+                />
               </div>
               <div>
                 <h3 class="text-sm font-medium text-gray-800">
@@ -266,7 +277,7 @@
                   src="https://via.placeholder.com/60x60?text=3"
                   alt="Recent post 3"
                   class="rounded-md"
-                >
+                />
               </div>
               <div>
                 <h3 class="text-sm font-medium text-gray-800">
@@ -281,10 +292,18 @@
         <div class="bg-white rounded-lg shadow-sm p-6">
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Tags</h2>
           <div class="flex flex-wrap gap-2">
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">WordPress</span>
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">Education</span>
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">LMS</span>
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">Courses</span>
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
+              >WordPress</span
+            >
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
+              >Education</span
+            >
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
+              >LMS</span
+            >
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
+              >Courses</span
+            >
           </div>
         </div>
       </div>
