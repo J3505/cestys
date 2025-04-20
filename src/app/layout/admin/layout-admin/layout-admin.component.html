@@ -1,100 +1,13 @@
-
-<body class="bg-gray-100 font-sans">
+<div class="bg-gray-100 font-sans">
   <div class="flex h-screen overflow-hidden">
-
-    <!-- Inicio Sidebar -->
-    <div class="sidebar w-64 bg-white shadow-lg">
-      <app-sidebar></app-sidebar>
+    <!-- Header - Fixed at top -->
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+    <!-- Sidebar - Fixed on desktop, slidable on mobile -->
+    <app-sidebar [active]="isSidebarActive"></app-sidebar>
+    <!-- Main Content with proper spacing -->
+    <div class="content-container flex-1 overflow-auto w-full">
+      <!-- Content -->
+      <router-outlet></router-outlet>
     </div>
-    <!-- Fin Sidebar -->
-
-      <!-- Main Content -->
-      <div class="flex-1 overflow-auto">
-          <!-- Inicio Header -->
-          <app-header></app-header>
-          <!-- Fin Header -->
-
-          <!-- Content rutas :v-->
-           <router-outlet></router-outlet>
-          <!-- Fin Content rutas :v-->
-
-      </div>
   </div>
-
-  <script>
-      // Toggle sidebar on mobile
-      document.getElementById('sidebarToggle').addEventListener('click', function() {
-          document.querySelector('.sidebar').classList.toggle('active');
-      });
-
-      // Sales Chart
-      const salesCtx = document.getElementById('salesChart').getContext('2d');
-      const salesChart = new Chart(salesCtx, {
-          type: 'line',
-          data: {
-              labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-              datasets: [{
-                  label: 'Ventas',
-                  data: [3200, 4100, 3800, 5200, 6100, 7500],
-                  backgroundColor: 'rgba(249, 115, 22, 0.1)',
-                  borderColor: 'rgba(249, 115, 22, 1)',
-                  borderWidth: 2,
-                  tension: 0.3,
-                  fill: true
-              }]
-          },
-          options: {
-              responsive: true,
-              plugins: {
-                  legend: {
-                      display: false
-                  }
-              },
-              scales: {
-                  y: {
-                      beginAtZero: true,
-                      grid: {
-                          drawBorder: false
-                      }
-                  },
-                  x: {
-                      grid: {
-                          display: false
-                      }
-                  }
-              }
-          }
-      });
-
-      // Courses Chart
-      const coursesCtx = document.getElementById('coursesChart').getContext('2d');
-      const coursesChart = new Chart(coursesCtx, {
-          type: 'doughnut',
-          data: {
-              labels: ['Marketing', 'Programación', 'Diseño', 'Data Science', 'Negocios'],
-              datasets: [{
-                  data: [35, 25, 20, 15, 5],
-                  backgroundColor: [
-                      'rgba(249, 115, 22, 0.8)',
-                      'rgba(249, 115, 22, 0.6)',
-                      'rgba(249, 115, 22, 0.4)',
-                      'rgba(249, 115, 22, 0.3)',
-                      'rgba(249, 115, 22, 0.2)'
-                  ],
-                  borderWidth: 0
-              }]
-          },
-          options: {
-              responsive: true,
-              plugins: {
-                  legend: {
-                      position: 'right',
-                  }
-              },
-              cutout: '70%'
-          }
-      });
-  </script>
-</body>
-
-
+</div>

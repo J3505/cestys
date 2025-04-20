@@ -1,22 +1,12 @@
-.sidebar {
-  transition: all 0.3s ease;
-}
 @media (max-width: 768px) {
-  .sidebar {
-      transform: translateX(-100%);
-      position: absolute;
-      z-index: 50;
-  }
-  .sidebar.active {
-      transform: translateX(0);
+  .content-container {
+    margin-top: 72px;
   }
 }
 
-
-
-.hover-scale {
-  transition: transform 0.2s ease;
-}
-.hover-scale:hover {
-  transform: scale(1.02);
+@media (min-width: 769px) {
+  .content-container {
+    margin-top: 72px;
+    margin-left: 16rem; // equivalente a w-64 en Tailwind
+  }
 }
