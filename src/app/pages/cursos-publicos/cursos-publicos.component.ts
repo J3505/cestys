@@ -4,21 +4,70 @@ import { RouterLink } from '@angular/router';
 import { Curso } from '../../core/curso';
 import { ServicesService } from '../../core/services.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-cursos-publicos',
-  imports: [NavbarLandingComponent, RouterLink, CommonModule],
+  imports: [NavbarLandingComponent, RouterLink, CommonModule, FormsModule],
   templateUrl: './cursos-publicos.component.html',
   styleUrl: './cursos-publicos.component.scss',
 })
 export default class CursosPublicosComponent implements OnInit {
+  paginaActual = 1;
+  cursosPorPagina = 7; // Cambiado a 7 para mostrar 7 cursos por página
+  paginasTotales = 1;
   cursos: Curso[] = [];
+  cursosFiltrados: Curso[] = [];
+  cursosPaginados: Curso[] = []; // Nueva propiedad para los cursos de la página actual
+  filtroNombre: string = '';
+  filtroCategoria: string = '';
+  filtroInstructor: string = '';
+
   constructor(private servicesService: ServicesService) {}
 
   ngOnInit(): void {
     this.servicesService.obtenerCursos().subscribe((data) => {
       this.cursos = data;
+      this.aplicarFiltros(); // Inicializa los filtros y la paginación
     });
   }
-}
 
+  aplicarFiltros(): void {
+    const filtrados = this.cursos.filter((curso) => {
+      const coincideNombre = curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase());
+      const coincideCategoria = this.filtroCategoria ? curso.categoria === this.filtroCategoria : true;
+      const coincideInstructor = (curso.instructor.nombre + ' ' + curso.instructor.apellido)
+        .toLowerCase()
+        .includes(this.filtroInstructor.toLowerCase());
+
+      return coincideNombre && coincideCategoria && coincideInstructor;
+    });
+
+    this.cursosFiltrados = filtrados; // Almacena la lista completa filtrada
+    this.paginasTotales = Math.ceil(filtrados.length / this.cursosPorPagina);
+    this.paginaActual = 1; // Reinicia a la primera página solo al aplicar filtros
+    this.actualizarCursosPaginados(); // Actualiza los cursos paginados
+  }
+
+  actualizarCursosPaginados(): void {
+    const inicio = (this.paginaActual - 1) * this.cursosPorPagina;
+    const fin = inicio + this.cursosPorPagina;
+    this.cursosPaginados = this.cursosFiltrados.slice(inicio, fin); // Usa cursosPaginados en lugar de cursosFiltrados
+  }
+
+  cambiarPagina(nuevaPagina: number): void {
+    if (nuevaPagina >= 1 && nuevaPagina <= this.paginasTotales) {
+      this.paginaActual = nuevaPagina;
+      this.actualizarCursosPaginados(); // Actualiza los cursos de la página actual
+    }
+  }
+
+  limpiarFiltros(): void {
+    this.filtroNombre = '';
+    this.filtroCategoria = '';
+    this.filtroInstructor = '';
+    this.aplicarFiltros(); // Vuelve a aplicar los filtros para restaurar la lista completa
+  }
+}
