@@ -231,7 +231,9 @@
                   <button
                     class="mt-6 w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
                   >
-                    <i class="fas fa-shopping-cart mr-2"></i> Inscribirse ahora
+                  <span class="icon-[hugeicons--folder-details] mr-1 h-6 w-6" ></span>
+                  ver más detalles
+                    <!-- <i class="fas fa-shopping-cart mr-2"></i> -->
                   </button>
                 </div>
               </div>
@@ -304,129 +306,70 @@
         </div>
       </div>
 
+
       <!-- Sidebar -->
-      <div class="w-full md:w-1/3">
-        <!-- Categories -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">Categoria</h2>
-          <li
-            class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-          >
-            <span>Cursos de especializacion</span>
-            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-              >15</span
-            >
-          </li>
-          <ul class="space-y-3 text-gray-700">
-            <li
-              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-            >
-              <span>Administración y Gestión Empresarial</span>
-              <span
-                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-                >15</span
-              >
-            </li>
-            <li
-              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-            >
-              <span>Contable y Financiera</span>
-              <span
-                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-                >04</span
-              >
-            </li>
-            <li
-              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-            >
-              <span>Tecnología e Informática</span>
-              <span
-                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-                >15</span
-              >
-            </li>
-            <li
-              class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-            >
-              <span>Construcción y Topografía</span>
-              <span
-                class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-                >15</span
-              >
-            </li>
-          </ul>
-        </div>
 
-        <!-- Recent Publications -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">
-            Publicaciones Recientes
-          </h2>
-          <ul class="space-y-4">
-            <li class="flex space-x-3">
-              <div class="flex-shrink-0">
-                <img
-                  src="assets/01.jpg"
-                  alt="Recent post 1"
-                  class="rounded-md w-8 h-8"
-                />
-              </div>
-              <div>
-                <h3 class="text-sm font-medium text-gray-800">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h3>
-              </div>
-            </li>
-            <li class="flex space-x-3">
-              <div class="flex-shrink-0">
-                <img
-                  src="https://via.placeholder.com/60x60?text=2"
-                  alt="Recent post 2"
-                  class="rounded-md"
-                />
-              </div>
-              <div>
-                <h3 class="text-sm font-medium text-gray-800">
-                  Best LearnPress WordPress Theme Collection For 2023
-                </h3>
-              </div>
-            </li>
-            <li class="flex space-x-3">
-              <div class="flex-shrink-0">
-                <img
-                  src="https://via.placeholder.com/60x60?text=3"
-                  alt="Recent post 3"
-                  class="rounded-md"
-                />
-              </div>
-              <div>
-                <h3 class="text-sm font-medium text-gray-800">
-                  Best LearnPress WordPress Theme Collection For 2025
-                </h3>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Tags -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">Tags</h2>
-          <div class="flex flex-wrap gap-2">
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
-              >WordPress</span
-            >
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
-              >Education</span
-            >
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
-              >LMS</span
-            >
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
-              >Courses</span
-            >
+      <div class="w-full md:w-1/3 space-y-6">
+        <!-- {/* Categories - STICKY */} -->
+        <div class="sticky top-24  z-10">
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Categoria</h2>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
+                <span>Cursos de especializacion</span>
+                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">15</span>
+              </li>
+              <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
+                <span>Administración y Gestión Empresarial</span>
+                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">15</span>
+              </li>
+              <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
+                <span>Contable y Financiera</span>
+                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">04</span>
+              </li>
+            </ul>
           </div>
         </div>
+
+        <!-- {/* Recent Publications - STICKY */} -->
+        <div class="sticky top-96 z-10 ">
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Publicaciones Recientes</h2>
+            <ul class="space-y-4">
+              <li class="flex space-x-3">
+                <div class="flex-shrink-0">
+                  <img src="/placeholder.svg?height=32&width=32" alt="Recent post 1" class="rounded-md w-8 h-8" />
+                </div>
+                <div>
+                  <h3 class="text-sm font-medium text-gray-800">Primeros Auxilios en la Farmacia.</h3>
+                </div>
+              </li>
+              <li class="flex space-x-3">
+                <div class="flex-shrink-0">
+                  <img src="/placeholder.svg?height=32&width=32" alt="Recent post 2" class="rounded-md w-8 h-8" />
+                </div>
+                <div>
+                  <h3 class="text-sm font-medium text-gray-800">Atención Farmacéutica al Paciente Crónico</h3>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- {/* Tags - STICKY */} -->
+        <!-- <div class="sticky top-[34rem] z-10">
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Etiquetas</h2>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">WordPress</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">Education</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">LMS</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">Courses</span>
+            </div>
+          </div>
+        </div> -->
       </div>
+
     </div>
   </div>
 </main>
