@@ -47,14 +47,14 @@ export default class DashboardComponent implements OnInit{
               datasets: [
                   {
                       label: 'First Dataset',
-                      data: [65, 59, 80, 81, 56, 55, 40],
+                      data: [65, 59, 80, 81, 56, 55, 40, 100, 120, 10, 140, 150],
                       fill: false,
                       borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
                       tension: 0.4
                   },
                   {
                       label: 'Second Dataset',
-                      data: [28, 48, 40, 19, 86, 27, 90],
+                      data: [28, 48, 40, 19, 86, 27, 90, 100, 110, 120, 130, 140],
                       fill: false,
                       borderColor: documentStyle.getPropertyValue('--p-orange-500'),
                       tension: 0.4

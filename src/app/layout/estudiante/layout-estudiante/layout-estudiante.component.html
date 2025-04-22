@@ -1,0 +1,14 @@
+<div class="bg-gray-100 font-sans">
+  <div class="flex h-screen overflow-hidden">
+    <!-- Header - Fixed at top -->
+     <app-header-estudiante (toggleSidebar)="toggleSidebar()"></app-header-estudiante>
+    <!-- Sidebar - Fixed on desktop, slidable on mobile -->
+
+     <app-sidebar-estudiante [active]="isSidebarActive" ></app-sidebar-estudiante>
+    <!-- Main Content with proper spacing -->
+    <div class="content-container flex-1 overflow-auto w-full">
+      <!-- Content -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

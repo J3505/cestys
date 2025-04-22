@@ -1,0 +1,33 @@
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+.sidebar {
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+.content-container {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+@media (min-width: 768px) {
+  .content-container {
+      margin-left: 16rem;
+  }
+}
+.course-card {
+  transition: all 0.3s ease;
+}
+.course-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.lesson-item.active {
+  background-color: #fff7ed;
+  border-left: 3px solid #f97316;
+}
+.tab-active {
+  color: #f97316;
+  border-bottom: 2px solid #f97316;
+}

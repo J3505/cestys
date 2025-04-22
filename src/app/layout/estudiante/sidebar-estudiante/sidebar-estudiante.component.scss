@@ -1,0 +1,19 @@
+.sidebar {
+  transition: all 0.3s ease;
+  height: calc(100vh - 72px);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    top: 72px;
+    left: 0;
+    z-index: 50;
+    height: calc(100vh - 72px);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
