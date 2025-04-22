@@ -66,7 +66,10 @@
                   <option>Todo</option>
               </select>
           </div>
-          <canvas id="salesChart" height="250"></canvas>
+          <!-- <canvas id="salesChart" height="250"></canvas> -->
+          <div class="card">
+            <p-chart type="line" [data]="data" [options]="options" class="h-[30rem]" />
+        </div>
       </div>
 
       <div class="bg-white p-6 rounded-xl shadow-sm">
@@ -78,7 +81,8 @@
                   <option>Todo</option>
               </select>
           </div>
-          <canvas id="coursesChart" height="250"></canvas>
+          <!-- <canvas id="coursesChart" height="250"></canvas> -->
+          <p-chart type="line" [data]="data" [options]="options" class="h-[30rem]" />
       </div>
   </div>
 
