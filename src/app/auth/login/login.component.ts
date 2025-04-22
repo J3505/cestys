@@ -11,17 +11,22 @@ import { Router } from '@angular/router';
 export default class LoginComponent {
   constructor(private router: Router) {}
 
+  login(rol: string) {
+    // Simula un login con rol enviado
+    const user = { rol };
 
-
-  login() {
-    const user = { rol: 'ADMIN' }; // este valor vendría del backend
-
-    if (user.rol === 'ADMIN') {
-      this.router.navigate(['/admin']);
-    } else if (user.rol === 'PROFESOR') {
-      this.router.navigate(['/profesor']);
-    } else if (user.rol === 'ESTUDIANTE') {
-      this.router.navigate(['/estudiante']);
+    switch (user.rol) {
+      case 'ADMIN':
+        this.router.navigate(['/admin']);
+        break;
+      case 'PROFESOR':
+        this.router.navigate(['/profesor']);
+        break;
+      case 'ESTUDIANTE':
+        this.router.navigate(['/estudiante']);
+        break;
+      default:
+        alert('Rol no reconocido');
     }
   }
 

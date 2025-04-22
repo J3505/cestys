@@ -1,1 +1,57 @@
-<p>sidebar-profesor works!</p>
+<!-- Sidebar - Fixed on desktop, slidable on mobile -->
+<div   [ngClass]="{ 'active': active }" class="sidebar w-64 bg-white shadow-lg fixed left-0 top-[72px] md:block">
+
+  <div class="p-4">
+      <div class="flex items-center space-x-3 p-3 bg-orange-100 rounded-lg mb-4">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold">
+            <img class=" ring-orange-600 ring-1 rounded-full" src="https://res.cloudinary.com/dsadfgmfn/image/upload/v1745129247/descarga_cqtwkw.jpg" alt="alon">
+          </div>
+          <div>
+              <p class="font-semibold">Jesus A.</p>
+              <p class="text-xs text-gray-500">Estudiate</p>
+          </div>
+      </div>
+
+      <nav class="mt-6">
+          <div>
+              <p class="text-xs uppercase text-gray-500 font-semibold pl-3">Principal</p>
+
+              <a routerLink="dashboard"
+              routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+              [routerLinkActiveOptions]="{ exact: true }" class="flex items-center space-x-3 p-3 mt-2 bg-orange-100 text-orange-600 rounded-lg">
+              <span class="icon-[carbon--dashboard-reference] w-5 text-center" style="width: 1.2em; height: 1.2em;"></span>
+                  <span>Dashboard</span>
+              </a>
+
+              <a routerLink="clases"
+              routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+              [routerLinkActiveOptions]="{ exact: true }" class="flex items-center space-x-3 p-3 mt-2 hover:bg-orange-50 rounded-lg">
+              <span class="icon-[wpf--books] w-5 text-center" style="width: 1.2em; height: 1.2em;"></span>
+
+                  <span>Clases</span>
+              </a>
+
+              <a routerLink="perfil"
+              routerLinkActive="bg-orange-100 text-orange-600 font-semibold"
+              [routerLinkActiveOptions]="{ exact: true }" class="flex items-center space-x-3 p-3 mt-2 hover:bg-orange-50 rounded-lg">
+              <span class="icon-[flowbite--users-group-solid] w-5 text-center" style="width: 1.2em; height: 1.2em;"></span>
+
+                  <span>Perfil</span>
+              </a>
+          </div>
+
+          <div class="mt-8">
+              <p class="text-xs uppercase text-gray-500 font-semibold pl-3">Configuración</p>
+              <a href="#" class="flex items-center space-x-3 p-3 mt-2 hover:bg-orange-50 rounded-lg">
+                  <i class="fas fa-cog w-5 text-center"></i>
+                  <span>Ajustes</span>
+              </a>
+              <a href="#" class="flex items-center space-x-3 p-3 mt-2 hover:bg-orange-50 rounded-lg">
+                  <i class="fas fa-bell w-5 text-center"></i>
+                  <span>Notificaciones</span>
+              </a>
+          </div>
+      </nav>
+  </div>
+</div>
+

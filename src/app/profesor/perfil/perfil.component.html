@@ -1,1 +1,759 @@
-<p>perfil works!</p>
+<!-- Content -->
+<main class="p-4">
+  <!-- Profile Header -->
+  <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+      <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-32 md:h-48 relative">
+          <button class="absolute right-4 top-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-2">
+              <i class="fas fa-camera"></i>
+          </button>
+      </div>
+      <div class="px-6 pb-6 relative">
+          <div class="flex flex-col md:flex-row items-start md:items-end -mt-16 md:-mt-20 mb-4 md:mb-6">
+              <div class="relative">
+                  <img src="https://res.cloudinary.com/dsadfgmfn/image/upload/v1745129247/descarga_cqtwkw.jpg" alt="Jesús Pérez" class="w-32 h-32 rounded-full border-4 border-white shadow-md">
+                  <button class="absolute bottom-2 right-2 bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2 shadow-md">
+                      <i class="fas fa-camera"></i>
+                  </button>
+              </div>
+              <div class="mt-4 md:mt-0 md:ml-6">
+                  <h1 class="text-2xl font-bold text-white">Jesús Vilca</h1>
+                  <p class="text-gray-600">Estudiante</p>
+                  <div class="flex items-center mt-2">
+                      <i class="fas fa-map-marker-alt text-gray-500 mr-2"></i>
+                      <span class="text-gray-500">Ayacucho, Perú</span>
+                  </div>
+              </div>
+              <div class="mt-4 md:mt-0 md:ml-auto">
+                  <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                      <i class="fas fa-edit"></i>
+                      <span>Editar perfil</span>
+                  </button>
+              </div>
+          </div>
+
+          <!-- Profile Navigation Tabs -->
+          <div class="border-b">
+              <div class="flex overflow-x-auto space-x-8">
+                  <button class="profile-tab py-4 px-1 font-medium tab-active" data-tab="info">Información</button>
+                  <button class="profile-tab py-4 px-1 font-medium text-gray-500" data-tab="stats">Estadísticas</button>
+                  <button class="profile-tab py-4 px-1 font-medium text-gray-500" data-tab="certificates">Certificados</button>
+                  <button class="profile-tab py-4 px-1 font-medium text-gray-500" data-tab="activity">Actividad</button>
+                  <button class="profile-tab py-4 px-1 font-medium text-gray-500" data-tab="settings">Configuración</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Profile Content Sections -->
+
+  <!-- Information Tab Content -->
+  <div id="info-tab" class="profile-tab-content active">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Personal Information -->
+          <div class="md:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-6">
+                  <h3 class="text-xl font-semibold">Información Personal</h3>
+                  <button class="text-orange-500 hover:text-orange-600">
+                      <i class="fas fa-edit"></i>
+                  </button>
+              </div>
+
+              <div class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Nombre completo</label>
+                          <p class="font-medium">Jesús Vilca Tumbalobos</p>
+                      </div>
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Nombre de usuario</label>
+                          <p class="font-medium">jesus.Vt</p>
+                      </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                          <p class="font-medium">jesus.perezxexample.com</p>
+                      </div>
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Teléfono</label>
+                          <p class="font-medium">+51 965 852 123</p>
+                      </div>
+                  </div>
+
+                  <div>
+                      <label class="block text-sm font-medium text-gray-500 mb-1">Dirección</label>
+                      <p class="font-medium">Calle Gran Vía 123, 28013 Ayacucho, Perú</p>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Fecha de nacimiento</label>
+                          <p class="font-medium">15/04/2003</p>
+                      </div>
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Género</label>
+                          <p class="font-medium">Masculino</p>
+                      </div>
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Idioma</label>
+                          <p class="font-medium">Español</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="mt-8">
+                  <h4 class="font-medium mb-4">Sobre mí</h4>
+                  <p class="text-gray-600">
+                      Profesional del marketing con más de 5 años de experiencia en el sector digital.
+                      Actualmente ampliando conocimientos en programación web y análisis de datos para
+                      complementar mi perfil profesional. Apasionado por el aprendizaje continuo y las
+                      nuevas tecnologías.
+                  </p>
+              </div>
+          </div>
+
+          <!-- Account Information -->
+          <div class="space-y-6">
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                  <h3 class="font-semibold mb-4">Información de la cuenta</h3>
+
+                  <div class="space-y-4">
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Miembro desde</label>
+                          <p class="font-medium">Enero 2025</p>
+                      </div>
+                      <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Último acceso</label>
+                          <p class="font-medium">Hoy, 10:45 AM</p>
+                      </div>
+                      <!-- <div>
+                          <label class="block text-sm font-medium text-gray-500 mb-1">Plan actual</label>
+                          <p class="font-medium">Premium</p>
+                      </div> -->
+                  </div>
+
+                  <div class="mt-4 pt-4 border-t">
+                      <button class="text-orange-500 hover:text-orange-600 font-medium text-sm">
+                          Cambiar contraseña
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Social Profiles -->
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                  <div class="flex justify-between items-center mb-4">
+                      <h3 class="font-semibold">Perfiles sociales</h3>
+                      <button class="text-orange-500 hover:text-orange-600">
+                          <i class="fas fa-edit"></i>
+                      </button>
+                  </div>
+
+                  <div class="space-y-4">
+                      <div class="flex items-center">
+                          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
+                              <i class="fab fa-linkedin-in"></i>
+                          </div>
+                          <div>
+                              <p class="font-medium">LinkedIn</p>
+                              <a href="#" class="text-sm text-blue-600">linkedin.com/in/jesusperez</a>
+                          </div>
+                      </div>
+
+                      <div class="flex items-center">
+                          <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mr-3">
+                              <i class="fab fa-github"></i>
+                          </div>
+                          <div>
+                              <p class="font-medium">GitHub</p>
+                              <a href="#" class="text-sm text-blue-600">github.com/jesusperez</a>
+                          </div>
+                      </div>
+
+                      <div class="flex items-center">
+                          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
+                              <i class="fab fa-twitter"></i>
+                          </div>
+                          <div>
+                              <p class="font-medium">Twitter</p>
+                              <a href="#" class="text-sm text-blue-600">twitter.com/jesusperez</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+
+  <!-- Statistics Tab Content -->
+  <div id="stats-tab" class="profile-tab-content">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <!-- Learning Stats Card -->
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Tiempo total de aprendizaje</p>
+                      <h3 class="text-2xl font-bold mt-2">48h 30m</h3>
+                      <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% este mes</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                      <i class="fas fa-clock text-xl"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Courses Stats Card -->
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Cursos completados</p>
+                      <h3 class="text-2xl font-bold mt-2">3 de 5</h3>
+                      <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 1 este mes</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-green-100 text-green-600">
+                      <i class="fas fa-graduation-cap text-xl"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Certificates Stats Card -->
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Certificados obtenidos</p>
+                      <h3 class="text-2xl font-bold mt-2">3</h3>
+                      <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 1 este mes</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-blue-100 text-blue-600">
+                      <i class="fas fa-certificate text-xl"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Learning Progress Chart -->
+      <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+          <h3 class="text-xl font-semibold mb-6">Progreso de aprendizaje</h3>
+          <div class="h-80">
+              <canvas id="learningProgressChart"></canvas>
+          </div>
+      </div>
+
+      <!-- Skills Progress -->
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+          <h3 class="text-xl font-semibold mb-6">Progreso por habilidades</h3>
+
+          <div class="space-y-6">
+              <div>
+                  <div class="flex justify-between text-sm mb-1">
+                      <span class="font-medium">Marketing Digital</span>
+                      <span>85%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                      <div class="bg-orange-500 h-2.5 rounded-full" style="width: 85%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="flex justify-between text-sm mb-1">
+                      <span class="font-medium">Programación Web</span>
+                      <span>45%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                      <div class="bg-orange-500 h-2.5 rounded-full" style="width: 45%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="flex justify-between text-sm mb-1">
+                      <span class="font-medium">Diseño UX/UI</span>
+                      <span>70%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                      <div class="bg-orange-500 h-2.5 rounded-full" style="width: 70%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="flex justify-between text-sm mb-1">
+                      <span class="font-medium">Data Science</span>
+                      <span>25%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                      <div class="bg-orange-500 h-2.5 rounded-full" style="width: 25%"></div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="flex justify-between text-sm mb-1">
+                      <span class="font-medium">Excel Avanzado</span>
+                      <span>60%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                      <div class="bg-orange-500 h-2.5 rounded-full" style="width: 60%"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Certificates Tab Content -->
+  <div id="certificates-tab" class="profile-tab-content">
+      <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+          <div class="flex justify-between items-center mb-6">
+              <h3 class="text-xl font-semibold">Mis Certificados</h3>
+              <div class="relative">
+                  <input type="text" placeholder="Buscar certificado..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+              </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Certificate 1 -->
+              <div class="border rounded-xl overflow-hidden hover-scale">
+                  <div class="relative">
+                      <img src="https://via.placeholder.com/600x300" alt="Certificado" class="w-full h-40 object-cover">
+                      <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                          Completado
+                      </div>
+                  </div>
+                  <div class="p-4">
+                      <h4 class="font-semibold mb-2">Introducción al Diseño UX/UI</h4>
+                      <p class="text-sm text-gray-500 mb-3">Completado el 15 de marzo de 2023</p>
+                      <div class="flex justify-between items-center">
+                          <div class="flex items-center">
+                              <img src="https://via.placeholder.com/40" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                              <span class="text-xs text-gray-600">Prof. Laura Martínez</span>
+                          </div>
+                          <div class="flex space-x-2">
+                              <button class="text-orange-500 hover:text-orange-600">
+                                  <i class="fas fa-download"></i>
+                              </button>
+                              <button class="text-orange-500 hover:text-orange-600">
+                                  <i class="fas fa-share-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Certificate 2 -->
+              <div class="border rounded-xl overflow-hidden hover-scale">
+                  <div class="relative">
+                      <img src="https://via.placeholder.com/600x300" alt="Certificado" class="w-full h-40 object-cover">
+                      <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                          Completado
+                      </div>
+                  </div>
+                  <div class="p-4">
+                      <h4 class="font-semibold mb-2">Estrategias de Redes Sociales</h4>
+                      <p class="text-sm text-gray-500 mb-3">Completado el 5 de febrero de 2023</p>
+                      <div class="flex justify-between items-center">
+                          <div class="flex items-center">
+                              <img src="https://via.placeholder.com/40" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                              <span class="text-xs text-gray-600">Prof. Ana García</span>
+                          </div>
+                          <div class="flex space-x-2">
+                              <button class="text-orange-500 hover:text-orange-600">
+                                  <i class="fas fa-download"></i>
+                              </button>
+                              <button class="text-orange-500 hover:text-orange-600">
+                                  <i class="fas fa-share-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Certificate 3 -->
+              <div class="border rounded-xl overflow-hidden hover-scale">
+                  <div class="relative">
+                      <img src="https://via.placeholder.com/600x300" alt="Certificado" class="w-full h-40 object-cover">
+                      <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                          Completado
+                      </div>
+                  </div>
+                  <div class="p-4">
+                      <h4 class="font-semibold mb-2">SEO Avanzado</h4>
+                      <p class="text-sm text-gray-500 mb-3">Completado el 20 de enero de 2023</p>
+                      <div class="flex justify-between items-center">
+                          <div class="flex items-center">
+                              <img src="https://via.placeholder.com/40" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                              <span class="text-xs text-gray-600">Prof. Carlos Ruiz</span>
+                          </div>
+                          <div class="flex space-x-2">
+                              <button class="text-orange-500 hover:text-orange-600">
+                                  <i class="fas fa-download"></i>
+                              </button>
+                              <button class="text-orange-500 hover:text-orange-600">
+                                  <i class="fas fa-share-alt"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Activity Tab Content -->
+  <div id="activity-tab" class="profile-tab-content">
+      <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+          <div class="flex justify-between items-center mb-6">
+              <h3 class="text-xl font-semibold">Actividad reciente</h3>
+              <select class="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                  <option>Todas las actividades</option>
+                  <option>Cursos</option>
+                  <option>Lecciones</option>
+                  <option>Certificados</option>
+                  <option>Comentarios</option>
+              </select>
+          </div>
+
+          <div class="space-y-6">
+              <!-- Activity Item 1 -->
+              <div class="flex items-start space-x-4 p-4 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-green-100 text-green-600 rounded-lg">
+                      <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Lección completada</p>
+                      <p class="text-sm text-gray-500">Has completado "Introducción a SEO" en Marketing Digital</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 2 horas</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-gray-600">
+                      <i class="fas fa-ellipsis-v"></i>
+                  </button>
+              </div>
+
+              <!-- Activity Item 2 -->
+              <div class="flex items-start space-x-4 p-4 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                      <i class="fas fa-comment"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Nuevo comentario</p>
+                      <p class="text-sm text-gray-500">Has comentado en la lección "JavaScript Avanzado"</p>
+                      <div class="mt-2 p-3 bg-gray-50 rounded-lg text-sm">
+                          Excelente explicación sobre closures y scope. Me ha ayudado mucho a entender estos conceptos.
+                      </div>
+                      <p class="text-xs text-gray-400 mt-1">Hace 5 horas</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-gray-600">
+                      <i class="fas fa-ellipsis-v"></i>
+                  </button>
+              </div>
+
+              <!-- Activity Item 3 -->
+              <div class="flex items-start space-x-4 p-4 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-orange-100 text-orange-600 rounded-lg">
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Puntos ganados</p>
+                      <p class="text-sm text-gray-500">Has ganado 50 puntos por completar el quiz de "HTML y CSS"</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 2 días</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-gray-600">
+                      <i class="fas fa-ellipsis-v"></i>
+                  </button>
+              </div>
+
+              <!-- Activity Item 4 -->
+              <div class="flex items-start space-x-4 p-4 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-purple-100 text-purple-600 rounded-lg">
+                      <i class="fas fa-certificate"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Certificado obtenido</p>
+                      <p class="text-sm text-gray-500">Has obtenido el certificado de "Introducción al Diseño UX/UI"</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 1 semana</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-gray-600">
+                      <i class="fas fa-ellipsis-v"></i>
+                  </button>
+              </div>
+
+              <!-- Activity Item 5 -->
+              <div class="flex items-start space-x-4 p-4 hover:bg-orange-50 rounded-lg transition">
+                  <div class="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                      <i class="fas fa-book"></i>
+                  </div>
+                  <div class="flex-1">
+                      <p class="font-medium">Curso iniciado</p>
+                      <p class="text-sm text-gray-500">Has comenzado el curso "Excel Avanzado para Negocios"</p>
+                      <p class="text-xs text-gray-400 mt-1">Hace 2 semanas</p>
+                  </div>
+                  <button class="text-gray-400 hover:text-gray-600">
+                      <i class="fas fa-ellipsis-v"></i>
+                  </button>
+              </div>
+          </div>
+
+          <div class="mt-6 text-center">
+              <button class="text-orange-500 hover:text-orange-600 font-medium">
+                  Cargar más actividad
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Settings Tab Content -->
+  <div id="settings-tab" class="profile-tab-content">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Account Settings -->
+          <div class="md:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+              <h3 class="text-xl font-semibold mb-6">Configuración de la cuenta</h3>
+
+              <form>
+                  <div class="space-y-6">
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                              <input type="text" value="Jesús" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                          </div>
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Apellidos</label>
+                              <input type="text" value="Pérez García" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                          </div>
+                      </div>
+
+                      <div>
+                          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                          <input type="email" value="jesus.perez@example.com" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                      </div>
+
+                      <div>
+                          <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                          <input type="tel" value="+34 612 345 678" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                      </div>
+
+                      <div>
+                          <label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
+                          <input type="text" value="Calle Gran Vía 123, 28013 Madrid, España" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                      </div>
+
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento</label>
+                              <input type="date" value="1992-04-15" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                          </div>
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Género</label>
+                              <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                                  <option>Masculino</option>
+                                  <option>Femenino</option>
+                                  <option>Otro</option>
+                                  <option>Prefiero no decirlo</option>
+                              </select>
+                          </div>
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Idioma</label>
+                              <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                                  <option>Español</option>
+                                  <option>Inglés</option>
+                                  <option>Francés</option>
+                                  <option>Alemán</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div>
+                          <label class="block text-sm font-medium text-gray-700 mb-1">Sobre mí</label>
+                          <textarea rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">Profesional del marketing con más de 5 años de experiencia en el sector digital. Actualmente ampliando conocimientos en programación web y análisis de datos para complementar mi perfil profesional. Apasionado por el aprendizaje continuo y las nuevas tecnologías.</textarea>
+                      </div>
+
+                      <div class="pt-4">
+                          <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">
+                              Guardar cambios
+                          </button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+
+          <!-- Other Settings -->
+          <div class="space-y-6">
+              <!-- Password Settings -->
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                  <h3 class="font-semibold mb-6">Cambiar contraseña</h3>
+
+                  <form>
+                      <div class="space-y-4">
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña actual</label>
+                              <input type="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                          </div>
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Nueva contraseña</label>
+                              <input type="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                          </div>
+                          <div>
+                              <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar contraseña</label>
+                              <input type="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300">
+                          </div>
+                          <div class="pt-2">
+                              <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">
+                                  Actualizar contraseña
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+
+              <!-- Notification Settings -->
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                  <h3 class="font-semibold mb-6">Notificaciones</h3>
+
+                  <div class="space-y-4">
+                      <div class="flex items-center justify-between">
+                          <div>
+                              <p class="font-medium">Notificaciones por email</p>
+                              <p class="text-sm text-gray-500">Recibir actualizaciones por email</p>
+                          </div>
+                          <label class="relative inline-flex items-center cursor-pointer">
+                              <input type="checkbox" checked class="sr-only peer">
+                              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                          </label>
+                      </div>
+
+                      <div class="flex items-center justify-between">
+                          <div>
+                              <p class="font-medium">Notificaciones push</p>
+                              <p class="text-sm text-gray-500">Recibir notificaciones en el navegador</p>
+                          </div>
+                          <label class="relative inline-flex items-center cursor-pointer">
+                              <input type="checkbox" checked class="sr-only peer">
+                              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                          </label>
+                      </div>
+
+                      <div class="flex items-center justify-between">
+                          <div>
+                              <p class="font-medium">Recordatorios de cursos</p>
+                              <p class="text-sm text-gray-500">Recibir recordatorios de cursos en progreso</p>
+                          </div>
+                          <label class="relative inline-flex items-center cursor-pointer">
+                              <input type="checkbox" checked class="sr-only peer">
+                              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                          </label>
+                      </div>
+
+                      <div class="flex items-center justify-between">
+                          <div>
+                              <p class="font-medium">Boletín informativo</p>
+                              <p class="text-sm text-gray-500">Recibir noticias y ofertas</p>
+                          </div>
+                          <label class="relative inline-flex items-center cursor-pointer">
+                              <input type="checkbox" class="sr-only peer">
+                              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Privacy Settings -->
+              <div class="bg-white p-6 rounded-xl shadow-sm">
+                  <h3 class="font-semibold mb-6">Privacidad</h3>
+
+                  <div class="space-y-4">
+                      <div class="flex items-center justify-between">
+                          <div>
+                              <p class="font-medium">Perfil público</p>
+                              <p class="text-sm text-gray-500">Hacer visible mi perfil a otros estudiantes</p>
+                          </div>
+                          <label class="relative inline-flex items-center cursor-pointer">
+                              <input type="checkbox" checked class="sr-only peer">
+                              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                          </label>
+                      </div>
+
+                      <div class="flex items-center justify-between">
+                          <div>
+                              <p class="font-medium">Mostrar progreso</p>
+                              <p class="text-sm text-gray-500">Mostrar mi progreso en cursos a otros</p>
+                          </div>
+                          <label class="relative inline-flex items-center cursor-pointer">
+                              <input type="checkbox" class="sr-only peer">
+                              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+<script>
+  // Toggle sidebar on mobile
+  document.getElementById('sidebarToggle').addEventListener('click', function() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('-translate-x-full');
+  });
+
+  // Tab switching
+  document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.profile-tab');
+      const tabContents = document.querySelectorAll('.profile-tab-content');
+
+      tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+              // Remove active class from all tabs
+              tabs.forEach(t => t.classList.remove('tab-active'));
+              tabs.forEach(t => t.classList.add('text-gray-500'));
+
+              // Add active class to clicked tab
+              this.classList.add('tab-active');
+              this.classList.remove('text-gray-500');
+
+              // Hide all tab contents
+              tabContents.forEach(content => content.classList.remove('active'));
+
+              // Show the corresponding tab content
+              const tabId = this.getAttribute('data-tab');
+              document.getElementById(tabId + '-tab').classList.add('active');
+          });
+      });
+
+      // Initialize learning progress chart
+      const ctx = document.getElementById('learningProgressChart');
+      if (ctx) {
+          new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                  datasets: [{
+                      label: 'Horas de estudio',
+                      data: [5, 8, 12, 10, 15, 20],
+                      borderColor: '#f97316',
+                      backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                      tension: 0.3,
+                      fill: true
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                      y: {
+                          beginAtZero: true,
+                          title: {
+                              display: true,
+                              text: 'Horas'
+                          }
+                      },
+                      x: {
+                          title: {
+                              display: true,
+                              text: 'Mes'
+                          }
+                      }
+                  }
+              }
+          });
+      }
+  });
+</script>
+

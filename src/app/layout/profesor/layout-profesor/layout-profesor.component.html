@@ -1,1 +1,16 @@
-<p>layout-profesor works!</p>
+<div class="bg-gray-100 font-sans">
+  <div class="flex h-screen overflow-hidden">
+    <!-- Header - Fixed at top -->
+
+     <app-header-profesor (toggleSidebar)="toggleSidebar()"></app-header-profesor>
+    <!-- Sidebar - Fixed on desktop, slidable on mobile -->
+
+
+     <app-sidebar-profesor [active]="isSidebarActive" ></app-sidebar-profesor>
+    <!-- Main Content with proper spacing -->
+    <div class="content-container flex-1 overflow-auto w-full">
+      <!-- Content -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

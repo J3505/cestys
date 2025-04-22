@@ -1,1 +1,536 @@
-<p>dashboard works!</p>
+
+  <!-- Content -->
+  <main class="p-4">
+      <!-- Welcome Banner -->
+      <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white mb-6">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+              <div>
+                  <h2 class="text-2xl font-bold">¡Bienvenida, Ana!</h2>
+                  <p class="mt-2">Tienes 5 mensajes sin leer y 3 tareas pendientes por revisar.</p>
+              </div>
+              <div class="flex space-x-3 mt-4 md:mt-0">
+                  <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50">
+                      <i class="fas fa-plus mr-2"></i> Nuevo curso
+                  </button>
+                  <button class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-400 border border-white/30">
+                      <i class="fas fa-bullhorn mr-2"></i> Anuncio
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Cursos Activos</p>
+                      <h3 class="text-2xl font-bold mt-2">4</h3>
+                      <p class="text-sm text-blue-500 mt-1">En progreso</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-blue-100 text-blue-600">
+                      <i class="fas fa-book text-xl"></i>
+                  </div>
+              </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Estudiantes</p>
+                      <h3 class="text-2xl font-bold mt-2">128</h3>
+                      <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12 esta semana</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-green-100 text-green-600">
+                      <i class="fas fa-users text-xl"></i>
+                  </div>
+              </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Tareas Pendientes</p>
+                      <h3 class="text-2xl font-bold mt-2">23</h3>
+                      <p class="text-sm text-orange-500 mt-1">Por revisar</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-orange-100 text-orange-600">
+                      <i class="fas fa-tasks text-xl"></i>
+                  </div>
+              </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
+              <div class="flex justify-between items-start">
+                  <div>
+                      <p class="text-gray-500">Próxima Clase</p>
+                      <h3 class="text-2xl font-bold mt-2">Hoy</h3>
+                      <p class="text-sm text-gray-500 mt-1">15:30 - Marketing Digital</p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-purple-100 text-purple-600">
+                      <i class="fas fa-clock text-xl"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Course Performance and Student Activity -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          <!-- Course Performance -->
+          <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-6">
+                  <h3 class="text-xl font-semibold">Rendimiento de Cursos</h3>
+                  <select class="border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
+                      <option>Último mes</option>
+                      <option>Últimos 3 meses</option>
+                      <option>Último año</option>
+                  </select>
+              </div>
+              <div class="h-80">
+                  <canvas id="coursePerformanceChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Student Activity -->
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-semibold">Actividad de Estudiantes</h3>
+                  <a href="#" class="text-orange-600 text-sm font-medium">Ver todo</a>
+              </div>
+
+              <div class="space-y-4">
+                  <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                      <div class="flex-1">
+                          <p class="font-medium">Carlos Rodríguez</p>
+                          <p class="text-sm text-gray-500">Completó la lección "Introducción a SEO"</p>
+                          <p class="text-xs text-gray-400 mt-1">Hace 2 horas</p>
+                      </div>
+                  </div>
+
+                  <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                      <div class="flex-1">
+                          <p class="font-medium">Laura Martínez</p>
+                          <p class="text-sm text-gray-500">Envió la tarea "Análisis de Competencia"</p>
+                          <p class="text-xs text-gray-400 mt-1">Hace 3 horas</p>
+                      </div>
+                  </div>
+
+                  <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                      <div class="flex-1">
+                          <p class="font-medium">Miguel Torres</p>
+                          <p class="text-sm text-gray-500">Hizo una pregunta en "Estrategias de Redes Sociales"</p>
+                          <p class="text-xs text-gray-400 mt-1">Hace 5 horas</p>
+                      </div>
+                  </div>
+
+                  <div class="flex items-start space-x-4 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                      <div class="flex-1">
+                          <p class="font-medium">Sofía López</p>
+                          <p class="text-sm text-gray-500">Se inscribió en "Marketing Digital Avanzado"</p>
+                          <p class="text-xs text-gray-400 mt-1">Hace 1 día</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- My Courses and Tasks -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- My Courses -->
+          <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-6">
+                  <h3 class="text-xl font-semibold">Mis Cursos</h3>
+                  <a href="#" class="text-orange-600 text-sm font-medium">Ver todos</a>
+              </div>
+
+              <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-gray-200">
+                      <thead class="bg-gray-50">
+                          <tr>
+                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Curso</th>
+                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiantes</th>
+                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progreso</th>
+                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acción</th>
+                          </tr>
+                      </thead>
+                      <tbody class="bg-white divide-y divide-gray-200">
+                          <tr>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                      <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                          <i class="fas fa-bullhorn"></i>
+                                      </div>
+                                      <div class="ml-4">
+                                          <div class="text-sm font-medium text-gray-900">Marketing Digital Avanzado</div>
+                                          <div class="text-sm text-gray-500">Nivel Avanzado</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-900">42</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="w-full bg-gray-200 rounded-full h-2.5 w-32">
+                                      <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                                  </div>
+                                  <div class="text-xs text-gray-500 mt-1">75% completado</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                      Activo
+                                  </span>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
+                                  <a href="#" class="text-blue-600 hover:text-blue-900">Ver</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                      <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                                          <i class="fas fa-chart-line"></i>
+                                      </div>
+                                      <div class="ml-4">
+                                          <div class="text-sm font-medium text-gray-900">Análisis de Métricas</div>
+                                          <div class="text-sm text-gray-500">Nivel Intermedio</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-900">28</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="w-full bg-gray-200 rounded-full h-2.5 w-32">
+                                      <div class="bg-blue-600 h-2.5 rounded-full" style="width: 50%"></div>
+                                  </div>
+                                  <div class="text-xs text-gray-500 mt-1">50% completado</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                      Activo
+                                  </span>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
+                                  <a href="#" class="text-blue-600 hover:text-blue-900">Ver</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                      <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600">
+                                          <i class="fas fa-hashtag"></i>
+                                      </div>
+                                      <div class="ml-4">
+                                          <div class="text-sm font-medium text-gray-900">Estrategias de Redes Sociales</div>
+                                          <div class="text-sm text-gray-500">Nivel Básico</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-900">36</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="w-full bg-gray-200 rounded-full h-2.5 w-32">
+                                      <div class="bg-blue-600 h-2.5 rounded-full" style="width: 90%"></div>
+                                  </div>
+                                  <div class="text-xs text-gray-500 mt-1">90% completado</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                      Activo
+                                  </span>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
+                                  <a href="#" class="text-blue-600 hover:text-blue-900">Ver</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                      <div class="flex-shrink-0 h-10 w-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600">
+                                          <i class="fas fa-search"></i>
+                                      </div>
+                                      <div class="ml-4">
+                                          <div class="text-sm font-medium text-gray-900">SEO Avanzado</div>
+                                          <div class="text-sm text-gray-500">Nivel Avanzado</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-900">22</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="w-full bg-gray-200 rounded-full h-2.5 w-32">
+                                      <div class="bg-blue-600 h-2.5 rounded-full" style="width: 30%"></div>
+                                  </div>
+                                  <div class="text-xs text-gray-500 mt-1">30% completado</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                      Borrador
+                                  </span>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Editar</a>
+                                  <a href="#" class="text-blue-600 hover:text-blue-900">Ver</a>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+          <!-- Pending Tasks -->
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-semibold">Tareas Pendientes</h3>
+                  <a href="#" class="text-orange-600 text-sm font-medium">Ver todas</a>
+              </div>
+
+              <div class="space-y-4">
+                  <div class="border-l-4 border-orange-500 pl-4 py-2 hover:bg-orange-50 rounded-r-lg transition">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <p class="font-medium">Revisar tareas (12)</p>
+                              <p class="text-sm text-gray-500">Marketing Digital Avanzado</p>
+                          </div>
+                          <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">Urgente</span>
+                      </div>
+                      <div class="flex items-center mt-2 text-xs text-gray-500">
+                          <i class="fas fa-calendar-day mr-2"></i>
+                          <span>Vence hoy</span>
+                      </div>
+                  </div>
+
+                  <div class="border-l-4 border-blue-500 pl-4 py-2 hover:bg-orange-50 rounded-r-lg transition">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <p class="font-medium">Preparar material</p>
+                              <p class="text-sm text-gray-500">Análisis de Métricas</p>
+                          </div>
+                          <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Normal</span>
+                      </div>
+                      <div class="flex items-center mt-2 text-xs text-gray-500">
+                          <i class="fas fa-calendar-day mr-2"></i>
+                          <span>Vence en 2 días</span>
+                      </div>
+                  </div>
+
+                  <div class="border-l-4 border-green-500 pl-4 py-2 hover:bg-orange-50 rounded-r-lg transition">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <p class="font-medium">Responder preguntas (8)</p>
+                              <p class="text-sm text-gray-500">Estrategias de Redes Sociales</p>
+                          </div>
+                          <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Baja</span>
+                      </div>
+                      <div class="flex items-center mt-2 text-xs text-gray-500">
+                          <i class="fas fa-calendar-day mr-2"></i>
+                          <span>Vence en 3 días</span>
+                      </div>
+                  </div>
+
+                  <div class="border-l-4 border-orange-500 pl-4 py-2 hover:bg-orange-50 rounded-r-lg transition">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <p class="font-medium">Actualizar contenido</p>
+                              <p class="text-sm text-gray-500">SEO Avanzado</p>
+                          </div>
+                          <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">Urgente</span>
+                      </div>
+                      <div class="flex items-center mt-2 text-xs text-gray-500">
+                          <i class="fas fa-calendar-day mr-2"></i>
+                          <span>Vence en 1 día</span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="mt-6">
+                  <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium">
+                      <i class="fas fa-plus mr-2"></i> Nueva tarea
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <!-- Upcoming Classes and Messages -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          <!-- Upcoming Classes -->
+          <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-6">
+                  <h3 class="text-xl font-semibold">Próximas Clases</h3>
+                  <a href="#" class="text-orange-600 text-sm font-medium">Ver calendario</a>
+              </div>
+
+              <div class="space-y-4">
+                  <div class="flex items-center p-4 border rounded-lg hover:bg-orange-50 transition">
+                      <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-4">
+                          <i class="fas fa-video"></i>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between items-start">
+                              <div>
+                                  <p class="font-medium">Marketing Digital Avanzado</p>
+                                  <p class="text-sm text-gray-500">Estrategias de Redes Sociales</p>
+                              </div>
+                              <div class="text-right">
+                                  <p class="font-medium">Hoy, 15:30 - 17:00</p>
+                                  <p class="text-sm text-gray-500">42 estudiantes</p>
+                              </div>
+                          </div>
+                          <div class="flex mt-2 space-x-2">
+                              <button class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full">
+                                  Iniciar clase
+                              </button>
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Editar
+                              </button>
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Enviar recordatorio
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="flex items-center p-4 border rounded-lg hover:bg-orange-50 transition">
+                      <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mr-4">
+                          <i class="fas fa-video"></i>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between items-start">
+                              <div>
+                                  <p class="font-medium">Análisis de Métricas</p>
+                                  <p class="text-sm text-gray-500">Google Analytics Avanzado</p>
+                              </div>
+                              <div class="text-right">
+                                  <p class="font-medium">Mañana, 10:00 - 12:00</p>
+                                  <p class="text-sm text-gray-500">28 estudiantes</p>
+                              </div>
+                          </div>
+                          <div class="flex mt-2 space-x-2">
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Preparar clase
+                              </button>
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Editar
+                              </button>
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Enviar recordatorio
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="flex items-center p-4 border rounded-lg hover:bg-orange-50 transition">
+                      <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mr-4">
+                          <i class="fas fa-video"></i>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between items-start">
+                              <div>
+                                  <p class="font-medium">Estrategias de Redes Sociales</p>
+                                  <p class="text-sm text-gray-500">Publicidad en Instagram</p>
+                              </div>
+                              <div class="text-right">
+                                  <p class="font-medium">Jueves, 14:00 - 15:30</p>
+                                  <p class="text-sm text-gray-500">36 estudiantes</p>
+                              </div>
+                          </div>
+                          <div class="flex mt-2 space-x-2">
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Preparar clase
+                              </button>
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Editar
+                              </button>
+                              <button class="text-xs bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                                  Enviar recordatorio
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Messages -->
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+              <div class="flex justify-between items-center mb-6">
+                  <h3 class="font-semibold">Mensajes Recientes</h3>
+                  <a href="#" class="text-orange-600 text-sm font-medium">Ver todos</a>
+              </div>
+
+              <div class="space-y-4">
+                  <div class="flex items-start space-x-3 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <div class="relative">
+                          <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                          <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Carlos Rodríguez</p>
+                              <p class="text-xs text-gray-500">10:45 AM</p>
+                          </div>
+                          <p class="text-sm text-gray-600 mt-1">Tengo una duda sobre la tarea de análisis de competencia...</p>
+                      </div>
+                  </div>
+
+                  <div class="flex items-start space-x-3 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <div class="relative">
+                          <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                          <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-300 rounded-full border-2 border-white"></span>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Laura Martínez</p>
+                              <p class="text-xs text-gray-500">Ayer</p>
+                          </div>
+                          <p class="text-sm text-gray-600 mt-1">Gracias por la retroalimentación sobre mi proyecto...</p>
+                      </div>
+                  </div>
+
+                  <div class="flex items-start space-x-3 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <div class="relative">
+                          <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                          <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-300 rounded-full border-2 border-white"></span>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Miguel Torres</p>
+                              <p class="text-xs text-gray-500">Ayer</p>
+                          </div>
+                          <p class="text-sm text-gray-600 mt-1">¿Podríamos agendar una tutoría para revisar mi proyecto?</p>
+                      </div>
+                  </div>
+
+                  <div class="flex items-start space-x-3 p-3 hover:bg-orange-50 rounded-lg transition">
+                      <div class="relative">
+                          <img src="https://via.placeholder.com/40" alt="Estudiante" class="w-10 h-10 rounded-full">
+                          <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                      </div>
+                      <div class="flex-1">
+                          <div class="flex justify-between">
+                              <p class="font-medium">Sofía López</p>
+                              <p class="text-xs text-gray-500">Lun</p>
+                          </div>
+                          <p class="text-sm text-gray-600 mt-1">Acabo de inscribirme en su curso, estoy muy emocionada...</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="mt-6">
+                  <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium">
+                      <i class="fas fa-comment-alt mr-2"></i> Nuevo mensaje
+                  </button>
+              </div>
+          </div>
+      </div>
+  </main>
+

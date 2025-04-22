@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+  .content-container {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 769px) {
+  .content-container {
+    margin-top: 72px;
+    margin-left: 16rem; // equivalente a w-64 en Tailwind
+  }
+}
