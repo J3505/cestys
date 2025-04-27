@@ -1,48 +1,59 @@
-<div class="p-8"></div>
-<!-- Hero Section -->
-<section class="bg-blue-400 min-h-[450px] relative overflow-hidden px-7">
-  <!-- inicio -->
-  <div
-    class="container mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center"
-  >
-    <!-- Text Content -->
-    <div class="w-full md:w-1/2 text-left mb-8 md:mb-0 pr-0 md:pr-8">
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-Roboto ">
-        Impulsa tu Carrera en Ingeniería, Salud y Negocios con Nuestros Cursos
-        Especializados.
-      </h1>
-      <p class="text-white mb-8 max-w-md">
-        Adquiere las habilidades técnicas, clínicas y de gestión más demandadas
-        y destaca en tu sector.
-      </p>
-      <a
-        routerLink="/cursos"
-        class="boton-home"
-      >
-        Explorar Nuestros Cursos
-      </a>
+<div class="p-10"></div>
+<!-- Home -->
+<section class="bg-linear-to-r from-blue-500 via-cyan-500 to-teal-500" data-aos="fade-up"  >
+  <!-- Hero -->
+  <div class=" max-w-[85rem] h-[680px] mx-auto p-10 pb-0 sm:px-6 lg:px-8 " >
+    <!-- Grid -->
+    <div class="grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-12 lg:items-center">
+      <div class="lg:col-span-3">
+        <h1
+          class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-Roboto scale-up-center "
+        >
+          Impulsa tu Carrera Ingeniería, Salud  y   Gestión publica con Nuestros Cursos
+          Especializados.
+        </h1>
+        <p class="mt-3 text-lg text-white scale-up-center">
+          Adquiere las habilidades técnicas, clínicas y de gestión más demandadas
+          y destaca en tu sector.
+        </p>
+  
+        <div
+          class="mt-5 lg:mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-3"
+        >
+          <a 
+          routerLink="cursos"
+          class="boton-home scale-up-center" > Explorar nuevos cursos </a>
+        </div>
+      </div>
+      <!-- End Col -->
+  
+      <div class="lg:col-span-4 mt-10 lg:mt-0">
+        <img
+          class="w-full rounded-xl scale-up-center"
+          src="https://res.cloudinary.com/dsadfgmfn/image/upload/v1745778205/student-min_r1ronj.jpg"
+          alt="Image"
+        />
+      </div>
+      <!-- End Col -->
     </div>
-
-    <!-- Image Section -->
-    <div class="w-full md:w-1/2">
-      <img
-        src="https://i.pinimg.com/736x/ba/44/41/ba444134b7f485c78ca331dc4350673a.jpg"
-        class="w-full rounded-lg"
-        alt="Estudiantes de INSITECSA"
-      />
-    </div>
+    <!-- End Grid -->
   </div>
+  <!-- End Hero -->
+
 </section>
 
+
 <!-- Cursos Populares Section -->
-<section class="py-16 bg-white">
+<section class="py-16 bg-gray-50" data-aos="fade-up" >
   <div class="container mx-auto px-6">
-    <!-- Section Title -->
-    <!-- <h2 class="text-4xl font-bold text-center text-orange-500 mb-12">Cursos Populares:</h2> -->
-    <!-- Título con animación y decoración -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration">
-        <span class="underline-animation uppercase">Cursos Populares</span>
+
+    <div class="text-center mb-16" >
+      <h2
+        class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration"
+      >
+        <span class="uppercase italic"
+          >Cursos Populares</span
+        >
       </h2>
       <p class="text-gray-600 mt-8 max-w-2xl mx-auto">
         Descubre nuestros cursos más demandados y lleva tus habilidades al
@@ -50,11 +61,10 @@
       </p>
     </div>
     <!--  Cards de curso -->
-      <app-cards-populares></app-cards-populares>
-
+    <app-cards-populares ></app-cards-populares>
 
     <!-- Sección de Estadísticas -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16" data-aos="fade-up">
       <!-- Stat Card 1 -->
       <div class="border border-gray-200 rounded-lg p-6 text-center">
         <h3 class="text-3xl font-bold text-orange-500 mb-2">25K+</h3>
@@ -83,49 +93,55 @@
 </section>
 
 <!-- Categoría De Cursos Section -->
-<section class="py-16 bg-gray-50">
+<section class="py-16 bg-gray-50" data-aos="fade-up">
   <div class="container mx-auto px-6">
     <!-- Section Title -->
-    <h2 class="text-4xl font-bold text-center text-orange-500 mb-4">
-      Categoría De Cursos
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration">
+      <span class="uppercase italic " > Categoría De Cursos</span>
     </h2>
-    <div class="w-32 h-1 bg-orange-500 mx-auto mb-8"></div>
+    <!-- <div class="w-32 h-1 bg-orange-500 mx-auto mb-8"></div> -->
 
     <!-- Section Description -->
-    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-      Explora nuestra amplia gama de cursos organizados por temas para que encuentres fácilmente el contenido que necesitas para crecer profesional y personalmente.
+    <p class="text-gray-600 mt-8 max-w-2xl mx-auto">
+      Explora nuestra amplia gama de cursos organizados por temas para que
+      encuentres fácilmente el contenido que necesitas para crecer profesional y
+      personalmente.
     </p>
+    <p class="p-8"></p>
 
     <!-- Category Cards -->
-      <app-cards></app-cards>
+    <app-cards data-aos="fade-up"></app-cards>
     <!-- </div> -->
   </div>
 </section>
 
 <!-- Comentarios De Los Estudiantes Section -->
-<section class="py-16 bg-white">
-  <div class="container mx-auto px-6">
+<section class="py-16 bg-gray-50" data-aos="fade-up">
+  <div class="container mx-auto px-6" >
     <!-- Section Title -->
-    <h2 class="text-4xl font-bold text-center text-orange-500 mb-4">
-      Comentarios De Los Estudiantes
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration" data-aos="fade-up">
+      <span class="uppercase italic" > Comentarios De Los Estudiantes</span>
     </h2>
 
     <!-- Section Description -->
-    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-      Lo que dicen los estudiantes sobre nosotros. Sus experiencias y opiniones son
-      valiosas para nosotros y nos ayudan a mejorar continuamente nuestros
+    <p class="text-gray-600 mt-8 max-w-2xl mx-auto" data-aos="fade-up">
+      Lo que dicen los estudiantes sobre nosotros. Sus experiencias y opiniones
+      son valiosas para nosotros y nos ayudan a mejorar continuamente nuestros
     </p>
+    <p class="p-8"></p>
 
     <!-- Testimonial Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Testimonial Card 1 -->
-      <div class="border border-gray-200 rounded-lg p-6 bg-white">
+      <div class="border border-gray-200 rounded-lg p-6 bg-white" data-aos="fade-up">
         <!-- Quote Mark -->
         <div class="text-gray-200 text-6xl font-serif mb-4">"</div>
 
         <!-- Testimonial Text -->
         <p class="text-gray-600 text-sm mb-6">
-          El curso de AutoCAD fue excelente. El instructor explicó los conceptos de manera clara y las prácticas fueron muy útiles. Ahora me siento mucho más seguro para crear mis propios planos.
+          El curso de AutoCAD fue excelente. El instructor explicó los conceptos
+          de manera clara y las prácticas fueron muy útiles. Ahora me siento
+          mucho más seguro para crear mis propios planos.
         </p>
 
         <!-- Student Info -->
@@ -141,13 +157,15 @@
       </div>
 
       <!-- Testimonial Card 2 -->
-      <div class="border border-gray-200 rounded-lg p-6 bg-white">
+      <div class="border border-gray-200 rounded-lg p-6 bg-white" data-aos="fade-up">
         <!-- Quote Mark -->
         <div class="text-gray-200 text-6xl font-serif mb-4">"</div>
 
         <!-- Testimonial Text -->
         <p class="text-gray-600 text-sm mb-6">
-          El profesor tenía mucha experiencia y se notaba. Nos enseñó trucos y técnicas profesionales que no encontré en tutoriales online. ¡Un curso muy práctico!
+          El profesor tenía mucha experiencia y se notaba. Nos enseñó trucos y
+          técnicas profesionales que no encontré en tutoriales online. ¡Un curso
+          muy práctico!
         </p>
 
         <!-- Student Info -->
@@ -157,19 +175,23 @@
           </div>
           <div>
             <h4 class="font-semibold">Carlos Gutiérrez</h4>
-            <p class="text-gray-500 text-sm">EDICIÓN Y POSTPRODUCCIÓN DE VIDEOS</p>
+            <p class="text-gray-500 text-sm">
+              EDICIÓN Y POSTPRODUCCIÓN DE VIDEOS
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Testimonial Card 3 -->
-      <div class="border border-gray-200 rounded-lg p-6 bg-white">
+      <div class="border border-gray-200 rounded-lg p-6 bg-white" data-aos="fade-up">
         <!-- Quote Mark -->
         <div class="text-gray-200 text-6xl font-serif mb-4">"</div>
 
         <!-- Testimonial Text -->
         <p class="text-gray-600 text-sm mb-6">
-          El curso cubrió temas avanzados de Excel que no conocía. ¡Las funciones y fórmulas que aprendí me han ahorrado mucho tiempo en mis tareas diarias!
+          El curso cubrió temas avanzados de Excel que no conocía. ¡Las
+          funciones y fórmulas que aprendí me han ahorrado mucho tiempo en mis
+          tareas diarias!
         </p>
 
         <!-- Student Info -->
@@ -185,13 +207,15 @@
       </div>
 
       <!-- Testimonial Card 4 -->
-      <div class="border border-gray-200 rounded-lg p-6 bg-white">
+      <div class="border border-gray-200 rounded-lg p-6 bg-white" data-aos="fade-up">
         <!-- Quote Mark -->
         <div class="text-gray-200 text-6xl font-serif mb-4">"</div>
 
         <!-- Testimonial Text -->
         <p class="text-gray-600 text-sm mb-6">
-          El curso de topografía fue muy interesante. Aprendí sobre instrumentos de medición, levantamientos y cómo interpretar planos topográficos. ¡Las prácticas de campo fueron geniales!
+          El curso de topografía fue muy interesante. Aprendí sobre instrumentos
+          de medición, levantamientos y cómo interpretar planos topográficos.
+          ¡Las prácticas de campo fueron geniales!
         </p>
 
         <!-- Student Info -->
@@ -210,14 +234,19 @@
 </section>
 
 <!-- Ubicanos Section -->
-<section class="py-16 bg-gray-50">
+<section class="py-16 bg-gray-50" data-aos="fade-up">
   <div class="container mx-auto px-6">
     <div class="flex flex-col md:flex-row">
       <!-- Contact Info -->
       <div class="w-full md:w-1/3 mb-8 md:mb-0">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">¿Listo para visitarnos?</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          ¿Listo para visitarnos?
+        </h2>
         <p class="text-gray-600 mb-8">
-          Ubica nuestra dirección precisa en este mapa interactivo de Google Maps. Haz clic para ampliarlo y ver la ruta más conveniente. ¡Te esperamos! El mapa se carga de forma eficiente para que encuentres el camino sin demoras.
+          Ubica nuestra dirección precisa en este mapa interactivo de Google
+          Maps. Haz clic para ampliarlo y ver la ruta más conveniente. ¡Te
+          esperamos! El mapa se carga de forma eficiente para que encuentres el
+          camino sin demoras.
         </p>
 
         <!-- Phone -->
@@ -225,8 +254,7 @@
           <div
             class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-4"
           >
-          <span class="icon-[line-md--phone] h-5 w-5 text-white"></span>
-
+            <span class="icon-[line-md--phone] h-5 w-5 text-white"></span>
           </div>
           <div>
             <p class="text-gray-500 text-sm">Teléfono</p>
@@ -234,14 +262,14 @@
           </div>
         </div>
 
-
         <!-- Email -->
         <div class="flex items-center">
           <div
             class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-4"
           >
-
-          <span class="icon-[material-symbols--mail-outline-rounded] h-5 w-5 text-white"></span>
+            <span
+              class="icon-[material-symbols--mail-outline-rounded] h-5 w-5 text-white"
+            ></span>
           </div>
           <div>
             <p class="text-gray-500 text-sm">Correo</p>
@@ -252,17 +280,24 @@
 
       <!-- Map -->
       <div class="w-full md:w-2/3">
-        <iframe class="w-full h-64 object-cover rounded-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d485.64335493856527!2d-74.22390878107615!3d-13.153136218651447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91127df0b3565317%3A0x198c91f820d01a58!2sIndependencia%20241%2C%20Ayacucho%2005001!5e0!3m2!1ses!2spe!4v1745259196384!5m2!1ses!2spe"style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+        <iframe
+          class="w-full h-64 object-cover rounded-lg"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d485.64335493856527!2d-74.22390878107615!3d-13.153136218651447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91127df0b3565317%3A0x198c91f820d01a58!2sIndependencia%20241%2C%20Ayacucho%2005001!5e0!3m2!1ses!2spe!4v1745259196384!5m2!1ses!2spe"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   </div>
 </section>
 
-
 <!-- Botón flotante de WhatsApp -->
-<a href="https://api.whatsapp.com/send?phone=965835151&text=%C2%A1Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n."
-target="_blank"
-class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
-  <span class="icon-[fa--whatsapp]  bg-white text-2xl"></span>
+<a
+  href="https://api.whatsapp.com/send?phone=965835151&text=%C2%A1Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n."
+  target="_blank"
+  class="animationx fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition"
+>
+  <span class="icon-[fa--whatsapp] bg-white text-2xl"></span>
 </a>
