@@ -8,3 +8,12 @@
 @theme {
   --font-Roboto: "Roboto", sans-serif;
 }
+
+@layer components {
+  .boton-home{
+    @apply inline-block hover:cursor-pointer bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition
+  }
+  .boton-card-cursoP{
+    @apply bg-orange-500 text-white text-sm px-4 py-2 rounded-md hover:bg-orange-600  transition
+  }
+}
