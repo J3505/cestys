@@ -5,32 +5,33 @@
     <article *ngIf="curso" class="course-card rounded-xl p-8 mb-8">
       <!-- Header -->
       <div
-        class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6"
+        class="flex  flex-col  md:flex-row justify-between items-start md:items-center mb-6"
       >
         <h1 class="text-4xl font-bold mb-4 text-gray-800 leading-tight">
           <span
-            class="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-700"
+            class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-500"
           >
             {{ curso.nombre }}
           </span>
           <br />
-          <span class="text-2xl text-gray-600">{{ curso.descripcion }}</span>
+          <span class="text-2xl text-gray-600">{{ curso.descripcion }}</span>          
         </h1>
-        <div
-          class="flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full"
-        >
-          <span class="text-orange-600 font-semibold">
-            <i class="fas fa-star mr-1"></i> Curso Destacado
-          </span>
-        </div>
       </div>
 
       <!-- Tags -->
       <div class="flex flex-wrap items-center text-sm text-gray-500 mb-8 gap-4">
+
+        <div class="flex items-center bg-orange-100 px-4 py-2 rounded-full">
+          <span class="text-orange-600 font-semibold" >
+            <i class="fas fa-star mr-2 text-orange-500"></i><span class="text-sm"> Curso Destacado</span> 
+          </span>
+      </div>
+
         <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
           <i class="fas fa-user mr-2 text-orange-500"></i>
           {{ curso.instructor.nombre }} {{ curso.instructor.apellido }}
         </span>
+
         <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
           <i class="fas fa-calendar-alt mr-2 text-orange-500"></i>
           {{ curso.fechaInicio | date : "longDate" }}

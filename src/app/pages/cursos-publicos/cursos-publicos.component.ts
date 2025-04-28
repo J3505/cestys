@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export default class CursosPublicosComponent implements OnInit {
   paginaActual = 1;
-  cursosPorPagina = 7; // Cambiado a 7 para mostrar 7 cursos por página
+  cursosPorPagina = 5; // Cambiado a 7 para mostrar 7 cursos por página
   paginasTotales = 1;
   cursos: Curso[] = [];
   cursosFiltrados: Curso[] = [];
