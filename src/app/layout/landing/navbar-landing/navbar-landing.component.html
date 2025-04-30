@@ -2,21 +2,16 @@
 <header class="navbar fixed top-0 left-0 w-full bg-white z-50 py-4">
   <div class="container mx-auto px-4 flex justify-between items-center">
     <div class="logo">
-      <img src="https://res.cloudinary.com/dsadfgmfn/image/upload/v1745124774/cestys_jusqdw.png" alt="Logo" class="h-12" />
+      <img src="https://res.cloudinary.com/dsadfgmfn/image/upload/v1746050723/incitecsa_ury1pa.png" alt="Logo" class="h-12" />
     </div>
     <nav class="hidden md:flex items-center space-x-8">
-      <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
-        >Inicio</a
-      >
-      <a routerLink="/cursos" class="nav-link text-gray-700 hover:text-blue-600"
-        >Cursos</a
-      >
-      <a routerLink="/nosotros" class="nav-link text-gray-700 hover:text-blue-600"
-        >Nosotros</a
-      >
-      <a routerLink="/" class="nav-link text-gray-700 hover:text-blue-600"
-        >Blog</a
-      >
+      @for ( link of rutasHome; track link.label) {
+        <a 
+        [routerLink]="link.path"
+        routerLinkActive="nav-link"
+        [routerLinkActiveOptions]="{ exact: true}" 
+        class="nav-link text-gray-700 hover:text-blue-600">{{link.label}}</a>
+       }
     </nav>
     <div class="hidden md:flex items-center space-x-4">
       <a routerLink="auth/login"
@@ -66,26 +61,13 @@
     </button>
   </div>
   <nav class="flex flex-col space-y-6">
-    <a routerLink="/"
-    (click)="cerrarMenu()"
-    class="text-gray-700 hover:text-blue-600 text-lg"
-      >Inicio</a
-    >
-    <a routerLink="/cursos"
-    (click)="cerrarMenu()"
-    class="text-gray-700 hover:text-blue-600 text-lg"
-      >Cursos</a
-    >
-    <a routerLink="/nosotros"
-    (click)="cerrarMenu()"
-    class="text-gray-700 hover:text-blue-600 text-lg"
-      >Nosotros</a
-    >
-    <a
-    routerLink="/"
-    (click)="cerrarMenu()"
-    class="text-gray-700 hover:text-blue-600 text-lg">Blog</a>
-
+    @for (link of rutasHome; track link.label) {
+      <a 
+      [routerLink]="link.path"
+      (click)="cerrarMenu()"
+      class="text-gray-700 hover:text-blue-600 text-lg"
+      >{{link.label}}</a>
+    }
     <div class="pt-6 flex flex-col space-y-4">
       <a routerLink="auth/login" class="btn-secondary text-center px-6 py-2 rounded-full"
         >Iniciar sesión</a
