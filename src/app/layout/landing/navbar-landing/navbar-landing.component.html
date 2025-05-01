@@ -8,7 +8,7 @@
       @for ( link of rutasHome; track link.label) {
         <a 
         [routerLink]="link.path"
-        routerLinkActive="nav-link"
+        routerLinkActive="hover:text-blue-600"
         [routerLinkActiveOptions]="{ exact: true}" 
         class="nav-link text-gray-700 hover:text-blue-600">{{link.label}}</a>
        }

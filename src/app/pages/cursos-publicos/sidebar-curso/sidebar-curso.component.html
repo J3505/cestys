@@ -2,66 +2,34 @@
 
 <!-- Categories -->
 <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
-  <h3 class="text-xl mb-4">Categoria</h3>
+  <h3 class="text-xl mb-4">Categoría</h3>
 
   <ul class="space-y-3 text-gray-700">
-
-    <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
-      <span>Cursos de especializacion</span>
-      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-        >15</span
-      >
-    </li>
-    
-    <li
-      class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-    >
-      <span>Administración y Gestión Empresarial</span>
-      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-        >15</span
-      >
-    </li>
-    <li
-      class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-    >
-      <span>Contable y Financiera</span>
-      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-        >04</span
-      >
-    </li>
-    <li
-      class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-    >
-      <span>Tecnología e Informática</span>
-      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-        >15</span
-      >
-    </li>
-    <li
-      class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer"
-    >
-      <span>Construcción y Topografía</span>
-      <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
-        >15</span
-      >
-    </li>
+    @for (link of cursoCategoria ; track link.label) {
+      <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
+        <span>{{link.label}}</span>
+        <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm"
+          >{{link.cantidad}}</span
+        >
+      </li>
+    }
   </ul>
 </div>
 
 <!-- Recent Posts -->
 <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
-  <h3 class="text-xl font-bold mb-4">Recent Posts</h3>
+  <h3 class="text-xl font-bold mb-4">Próximos cursos:</h3>
 
   <!-- Post 1 -->
   <div class="flex mb-4 pb-4 border-b border-gray-100">
     <img
-      src="/placeholder.svg?height=80&width=80"
+      src="https://i.pinimg.com/736x/21/eb/a8/21eba803e015c69a52f310b532a69da8.jpg"
       alt="Post thumbnail"
       class="w-20 h-20 object-cover rounded-md mr-4"
     />
     <div>
       <h4 class="font-medium text-sm mb-1">
-        Best LearnPress WordPress Theme Collection For 2023
+        Primeros Auxilios en la Farmacia.
       </h4>
     </div>
   </div>
@@ -69,30 +37,17 @@
   <!-- Post 2 -->
   <div class="flex mb-4 pb-4 border-b border-gray-100">
     <img
-      src="/placeholder.svg?height=80&width=80"
+      src="https://i.pinimg.com/736x/21/eb/a8/21eba803e015c69a52f310b532a69da8.jpg"
       alt="Post thumbnail"
       class="w-20 h-20 object-cover rounded-md mr-4"
     />
     <div>
       <h4 class="font-medium text-sm mb-1">
-        Best LearnPress WordPress Theme Collection For 2023
+        Atención Farmacéutica al Paciente Crónico
       </h4>
     </div>
   </div>
 
-  <!-- Post 3 -->
-  <div class="flex">
-    <img
-      src="/placeholder.svg?height=80&width=80"
-      alt="Post thumbnail"
-      class="w-20 h-20 object-cover rounded-md mr-4"
-    />
-    <div>
-      <h4 class="font-medium text-sm mb-1">
-        Best LearnPress WordPress Theme Collection For 2023
-      </h4>
-    </div>
-  </div>
 </div>
 
 <!-- Payment -->

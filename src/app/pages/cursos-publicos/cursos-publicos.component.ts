@@ -5,6 +5,7 @@ import { Curso } from '../../core/curso';
 import { ServicesService } from '../../core/services.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SidebarCursoComponent } from "./sidebar-curso/sidebar-curso.component";
 
 
 
@@ -15,8 +16,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './cursos-publicos.component.scss',
 })
 export default class CursosPublicosComponent implements OnInit {
+  cursoCategoria =[
+    { label : "Cursos de especialización", cantidad: "10" },
+    { label : "Administración y Gestión Empresarial", cantidad: "10" },
+    { label : "Contable y Financiera", cantidad: "10" },
+    { label : "Tecnología e Informática", cantidad: "10" },
+    { label : "Construcción y Topografía", cantidad: "10" },
+  ]
+
+  cursosRecientes = [
+    { name: "Primeros Auxilios en la Farmacia.", 
+      imagen:"https://i.pinimg.com/736x/21/eb/a8/21eba803e015c69a52f310b532a69da8.jpg", 
+      alt:"aloja"
+    },
+    { name: "Atención Farmacéutica al Paciente Crónico.", 
+      imagen:"https://i.pinimg.com/736x/21/eb/a8/21eba803e015c69a52f310b532a69da8.jpg", 
+      alt:"aloja"
+    }
+  ]
+
+
   paginaActual = 1;
-  cursosPorPagina = 5; // Cambiado a 7 para mostrar 7 cursos por página
+  cursosPorPagina = 5; // Cambiado a 5 para mostrar 7 cursos por página
   paginasTotales = 1;
   cursos: Curso[] = [];
   cursosFiltrados: Curso[] = [];
