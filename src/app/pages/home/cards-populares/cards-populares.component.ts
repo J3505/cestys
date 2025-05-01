@@ -17,6 +17,7 @@ export interface Curso {
   styleUrl: './cards-populares.component.scss'
 })
 export class CardsPopularesComponent {
+  
   cursos : Curso[]=[
     {
       titulo: 'OFIMÁTICA: Potencia tus Habilidades Digitales',

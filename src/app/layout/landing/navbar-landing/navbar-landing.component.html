@@ -8,9 +8,10 @@
       @for ( link of rutasHome; track link.label) {
         <a 
         [routerLink]="link.path"
-        routerLinkActive="hover:text-blue-600"
-        [routerLinkActiveOptions]="{ exact: true}" 
-        class="nav-link text-gray-700 hover:text-blue-600">{{link.label}}</a>
+        class="nav-link text-gray-700 hover:text-blue-600">
+        <span class="{{link.icon}} mr-1"></span>
+            {{link.label}}
+        </a>
        }
     </nav>
     <div class="hidden md:flex items-center space-x-4">
@@ -69,12 +70,12 @@
       >{{link.label}}</a>
     }
     <div class="pt-6 flex flex-col space-y-4">
-      <a routerLink="auth/login" class="btn-secondary text-center px-6 py-2 rounded-full"
+      <a routerLink="auth/login" 
+         class="btn-secondary text-center px-6 py-2 rounded-full"
         >Iniciar sesión</a
       >
-      <a
-        routerLink="auth/register"
-        class="btn-primary text-white text-center px-6 py-2 rounded-full"
+      <a routerLink="auth/register"
+         class="btn-primary text-white text-center px-6 py-2 rounded-full"
         >Registrarse</a
       >
     </div>

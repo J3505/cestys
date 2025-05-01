@@ -12,7 +12,7 @@
           Impulsa tu Carrera Ingeniería, Salud  y   Gestión publica con Nuestros Cursos
           Especializados.
         </h1>
-        <p class="mt-3 text-lg text-white scale-up-center">
+        <p class="mt-3 text-lg text-white scale-up-center font-Logik">
           Adquiere las habilidades técnicas, clínicas y de gestión más demandadas
           y destaca en tu sector.
         </p>
@@ -233,7 +233,7 @@
   </div>
 </section>
 
-<!-- Ubicanos Section -->
+<!-- Sección de Ubicación  -->
 <section class="py-16 bg-gray-50" data-aos="fade-up">
   <div class="container mx-auto px-6">
     <div class="flex flex-col md:flex-row">
@@ -273,7 +273,7 @@
           </div>
           <div>
             <p class="text-gray-500 text-sm">Correo</p>
-            <p class="font-medium">rectlyxedu.pe</p>
+            <p class="font-medium">{{correo}}</p>
           </div>
         </div>
       </div>
@@ -295,9 +295,12 @@
 
 <!-- Botón flotante de WhatsApp -->
 <a
-  href="https://api.whatsapp.com/send?phone=965835151&text=%C2%A1Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n."
+  href="https://api.whatsapp.com/send?phone={{telefono}}&text=%C2%A1Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n."
   target="_blank"
-  class="animationx fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition"
+  class="animationx fixed bottom-6 right-6 
+  bg-green-500 text-white w-14 h-14 rounded-full flex 
+  items-center justify-center shadow-lg
+hover:bg-green-600 transition"
 >
   <span class="icon-[fa--whatsapp] bg-white text-2xl"></span>
 </a>

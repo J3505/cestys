@@ -14,6 +14,10 @@ import * as AOS from 'aos';
 })
 
 export default class HomeComponent  implements OnInit {
+
+  telefono: string = "965835151";
+  correo: string = "incitecsa@edu.com" 
+
   ngOnInit(): void { 
     AOS.init()
   }

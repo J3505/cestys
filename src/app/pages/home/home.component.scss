@@ -18,6 +18,9 @@
 // .underline-animation:hover::after {
 //   width: 100%;
 // }
+html {
+  scroll-behavior: smooth;
+}
 
 .title-decoration {
   position: relative;
