@@ -1,26 +1,4 @@
-// .underline-animation {
-//   position: relative;
-//   display: inline-block;
-// }
 
-// .underline-animation::after {
-//   content: "";
-//   position: absolute;
-//   width: 0;
-//   height: 4px;
-//   bottom: -8px;
-//   left: 0;
-//   background-color: #f97316;
-//   transition: width 0.3s ease-in-out;
-//   border-radius: 2px;
-// }
-
-// .underline-animation:hover::after {
-//   width: 100%;
-// }
-html {
-  scroll-behavior: smooth;
-}
 
 .title-decoration {
   position: relative;

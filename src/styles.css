@@ -1,13 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+@plugin "@midudev/tailwind-animations";
 @plugin "@iconify/tailwind4";
 @import "primeicons/primeicons.css";
 
 
-@theme {
-  --font-Roboto: "Roboto", sans-serif;
+@font-face {
+  font-family: 'Logik-ExtendedBold';
+  src: url("./assets/font/Logik-ExtendedBold.woff2") format("woff2"); 
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
 }
+
+@font-face {
+  font-family: 'Logik-ExtendedSemiBoldOblique';
+  src: url("./assets/font/Logik-ExtendedSemiBoldOblique.woff2") format("woff2"); 
+  font-style: oblique;
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-Roboto: "Roboto", "sans-serif";
+  --font-Logik: "Logik-ExtendedBold", "Logik-ExtendedSemiBoldOblique", "sans-serif";
+}
+
 
 @layer components {
   .boton-home{
