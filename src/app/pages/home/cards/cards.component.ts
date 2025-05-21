@@ -8,7 +8,7 @@ import { Categoria } from '../../../core/models/categoria';
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss'
 })
-export class CardsComponent implements OnInit{
+export  class CardsComponent implements OnInit{
 
   
   categorias: Categoria[]=[]
@@ -16,7 +16,7 @@ export class CardsComponent implements OnInit{
     private categoriaService: CategoriaService 
   ) { }
 
-  OnInit(){
+  ngOnInit(){
     this.getCategorias();
   }
 
