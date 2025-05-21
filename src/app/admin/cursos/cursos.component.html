@@ -411,7 +411,7 @@
                    </div>
                    <div class="p-4">
                        <div class="flex justify-between items-start mb-2">
-                           <span class="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-600">{{ curso.categoria?.nombre}}</span>
+                           <span class="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-600">{{ curso.categoria.nombre}}</span>
                            <div class="flex items-center">
                                <i class="fas fa-star text-orange-400 text-xs"></i>
                                <span class="text-xs ml-1">4.8</span>
@@ -446,7 +446,7 @@
 
         @for(categoria of categorias; track categoria.id){
          <div class="p-4 rounded-xl flex flex-col items-center transition cursor-pointer"
-                [ngClass]="['bg-' + categoria.color + '-50','hover:bg-' + categoriax.color + '-100']" >
+                [ngClass]="['bg-' + categoria.color + '-50','hover:bg-' + categoria.color + '-100']" >
 
              <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3"
                 [ngClass]="['bg-' + categoria.color + '-100', 'text-' + categoria.color + '-600']" >
@@ -458,28 +458,6 @@
          </div>
         }
         
-
-  @for(categoriax of categoriasx; track categoriax.id) {
-    <div 
-      class="p-4 rounded-xl flex flex-col items-center transition cursor-pointer"
-      [ngClass]="[
-        'bg-' + categoriax.color + '-50',
-        'hover:bg-' + categoriax.color + '-100'
-      ]"
-    >
-      <div 
-        class="w-12 h-12 rounded-full flex items-center justify-center mb-3"
-        [ngClass]="[
-          'bg-' + categoriax.color + '-100',
-          'text-' + categoriax.color + '-600'
-        ]"
-      >
-        <i class="fas text-xl" [ngClass]="categoriax.icono"></i>
-      </div>
-      <h4 class="font-medium">{{ categoriax.nombre }}</h4>
-      <p class="text-sm text-gray-500 text-center mt-1">{{ categoriax.cursos }} cursos</p>
-    </div>
-  }
 
 
 

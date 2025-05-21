@@ -5,9 +5,10 @@ import { ComentariosEstudiantesComponent } from '../comentarios-estudiantes/come
 
 import { CommonModule } from '@angular/common';
 import { CursoService } from '../../../core/services/curso.service';
-import { Curso } from '../interface/curso';
+
 import { ModuloService } from '../../../core/services/modulo.service';
-import { Tema } from '../interface/tema';
+import { Curso } from '../../../core/models/curso';
+
 
 
 @Component({
@@ -34,7 +35,7 @@ export default class CursoDetalleComponent implements OnInit {
   ngOnInit(): void {
     const id =this.route.snapshot.paramMap.get('id');
     if(id){
-      this.cursoService.getCurso(id).subscribe((curso) => {
+      this.cursoService.getCurso(id).subscribe((curso:Curso) => {
         if (curso) {
           this.curso = curso;
         }

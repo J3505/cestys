@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoriaService } from '../../core/services/categoria.service';
-import { Curso } from './interface/curso';
 import { CursoService } from '../../core/services/curso.service';
 import { ModuloService } from '../../core/services/modulo.service';
-import { Modulo, Tema } from './interface/tema';
 import { TemaService } from '../../core/services/tema.service';
+import { Modulo } from '../../core/models/modulo';
+import { Tema } from '../../core/models/tema';
+import { Curso } from '../../core/models/curso';
 
 
 
@@ -43,7 +44,7 @@ export default class CursosPublicosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cursoService.getCursos().subscribe((data) => {
+    this.cursoService.getCursos().subscribe((data:Curso[]) => {
       this.cursos = data;
       this.getCategorias(); // Obtiene las categorías al iniciar
       this.getModulos(); // Obtiene los modulos al iniciar
@@ -52,7 +53,7 @@ export default class CursosPublicosComponent implements OnInit {
     });
   }
   getCursos() {
-    this.cursoService.getCursos().subscribe((data) => {
+    this.cursoService.getCursos().subscribe((data:Curso[]) => {
       this.cursos = data;
       
     });

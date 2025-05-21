@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Curso } from '../models/curso';
 import { Observable } from 'rxjs';
-import { Curso } from '../../pages/cursos-publicos/interface/curso';
-
 
 
 @Injectable({

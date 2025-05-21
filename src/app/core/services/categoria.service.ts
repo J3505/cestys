@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { CategoriaCurso } from '../../pages/cursos-publicos/interface/curso';
+import { Categoria } from '../models/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +14,13 @@ export class CategoriaService {
 
   constructor( private http: HttpClient ) { }
 
-  getCursos(): Observable<CategoriaCurso[]> {
-    return this.http.get<CategoriaCurso[]>(this.apiUrl);
+  getCursos(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(this.apiUrl);
   }
 
   // Método para obtener categorías (necesario para el formulario)
-  getCategorias(): Observable<{ id: number; nombre: string }[]> {
-    return this.http.get<{ id: number; nombre: string }[]>(
+  getCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(
       `${environment.apiUrl}/categoria`,
       // { withCredentials: true }
     );
@@ -34,19 +34,19 @@ export class CategoriaService {
     );
   }
 
-  getCurso(id: string): Observable<CategoriaCurso> {
-    return this.http.get<CategoriaCurso>(`${this.apiUrl}/${id}`);
-  }
+  // getCurso(id: string): Observable<CategoriaCurso> {
+  //   return this.http.get<CategoriaCurso>(`${this.apiUrl}/${id}`);
+  // }
 
-  createCurso(curso: CategoriaCurso): Observable<CategoriaCurso> {
-    return this.http.post<CategoriaCurso>(this.apiUrl, curso);
-  }
+  // createCurso(curso: CategoriaCurso): Observable<CategoriaCurso> {
+  //   return this.http.post<CategoriaCurso>(this.apiUrl, curso);
+  // }
 
-  updateCurso(id: string, curso: CategoriaCurso): Observable<CategoriaCurso> {
-    return this.http.put<CategoriaCurso>(`${this.apiUrl}/${id}`, curso);
-  }
+  // updateCurso(id: string, curso: CategoriaCurso): Observable<CategoriaCurso> {
+  //   return this.http.put<CategoriaCurso>(`${this.apiUrl}/${id}`, curso);
+  // }
 
-  deleteCurso(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
+  // deleteCurso(id: string): Observable<void> {
+  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  // }
 }

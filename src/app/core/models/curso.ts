@@ -1,6 +1,8 @@
-import { Modulo } from "../curso";
+
 import { Categoria } from "./categoria";
-import { Usuario } from "./Usuario";
+import { Modulo } from "./modulo";
+import { Usuario } from "./usuario";
+
 
 export interface Curso {
   id: string;
