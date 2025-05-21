@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarLandingComponent } from '../../layout/landing/navbar-landing/navbar-landing.component';
 import { RouterLink } from '@angular/router';
-import { Curso } from '../../core/curso';
-import { ServicesService } from '../../core/services.service';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SidebarCursoComponent } from "./sidebar-curso/sidebar-curso.component";
+import { CategoriaService } from '../../core/services/categoria.service';
+import { Curso } from './interface/curso';
+import { CursoService } from '../../core/services/curso.service';
+import { ModuloService } from '../../core/services/modulo.service';
+import { Modulo, Tema } from './interface/tema';
+import { TemaService } from '../../core/services/tema.service';
 
 
 
@@ -16,25 +20,10 @@ import { SidebarCursoComponent } from "./sidebar-curso/sidebar-curso.component";
   styleUrl: './cursos-publicos.component.scss',
 })
 export default class CursosPublicosComponent implements OnInit {
-  cursoCategoria =[
-    { label : "Administración y gestión empresarial", cantidad: "10" },
-    { label : "Ciencias de la salud", cantidad: "10" },
-    { label : "Gestión pública", cantidad: "10" },
-    { label : "Ingeniería y Arquitectura", cantidad: "10" },
-    { label : "Tecnología e Informática", cantidad: "10" },
-  ]
 
-  cursosRecientes = [
-    { name: "Primeros Auxilios en la Farmacia.", 
-      imagen:"https://i.pinimg.com/736x/21/eb/a8/21eba803e015c69a52f310b532a69da8.jpg", 
-      alt:"aloja"
-    },
-    { name: "Atención Farmacéutica al Paciente Crónico.", 
-      imagen:"https://i.pinimg.com/736x/21/eb/a8/21eba803e015c69a52f310b532a69da8.jpg", 
-      alt:"aloja"
-    }
-  ]
-
+  categorias: { id: string; name: string }[] = [];
+  modulos: Modulo[] = [];
+  temas: Tema[] = [];
 
   paginaActual = 1;
   cursosPorPagina = 5; // Cambiado a 5 para mostrar 7 cursos por página
@@ -46,31 +35,65 @@ export default class CursosPublicosComponent implements OnInit {
   filtroCategoria: string = '';
   filtroInstructor: string = '';
 
-  constructor(private servicesService: ServicesService) {}
+  constructor(
+    private CategoriaService: CategoriaService,
+    private cursoService: CursoService,
+    private moduloservice: ModuloService,
+    private temasService: TemaService,
+  ) {}
 
   ngOnInit(): void {
-    this.servicesService.obtenerCursos().subscribe((data) => {
+    this.cursoService.getCursos().subscribe((data) => {
       this.cursos = data;
-      this.aplicarFiltros(); // Inicializa los filtros y la paginación
+      this.getCategorias(); // Obtiene las categorías al iniciar
+      this.getModulos(); // Obtiene los modulos al iniciar
+      console.log(data);
+      
+    });
+  }
+  getCursos() {
+    this.cursoService.getCursos().subscribe((data) => {
+      this.cursos = data;
+      
+    });
+  }
+ 
+  getCategorias() {
+    this.CategoriaService.getCategorias().subscribe((data) => {
+      this.categorias = data.map((categoria) => ({
+        id: categoria.id.toString(),
+        name: categoria.nombre,
+      }));
     });
   }
 
-  aplicarFiltros(): void {
-    const filtrados = this.cursos.filter((curso) => {
-      const coincideNombre = curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase());
-      const coincideCategoria = this.filtroCategoria ? curso.categoria === this.filtroCategoria : true;
-      const coincideInstructor = (curso.instructor.nombre + ' ' + curso.instructor.apellido)
-        .toLowerCase()
-        .includes(this.filtroInstructor.toLowerCase());
-
-      return coincideNombre && coincideCategoria && coincideInstructor;
+  getModulos(){
+    this.moduloservice.getModulos().subscribe((data)=>{
+      this.modulos = data
     });
-
-    this.cursosFiltrados = filtrados; // Almacena la lista completa filtrada
-    this.paginasTotales = Math.ceil(filtrados.length / this.cursosPorPagina);
-    this.paginaActual = 1; // Reinicia a la primera página solo al aplicar filtros
-    this.actualizarCursosPaginados(); // Actualiza los cursos paginados
   }
+
+  getTemas(id: number) {
+    this.temasService.getTema(id).subscribe((data) => {
+      this.temas = [data];
+    });
+  }
+  // aplicarFiltros(): void {
+  //   const filtrados = this.cursos.filter((curso) => {
+  //     const coincideNombre = curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase());
+  //     const coincideCategoria = this.filtroCategoria ? this.categorias.some(cat => cat.id === curso.categoria) : true;
+  //     const coincideInstructor = (curso.instructor.nombre + ' ' + curso.instructor.apellido)
+  //       .toLowerCase()
+  //       .includes(this.filtroInstructor.toLowerCase());
+
+  //     return coincideNombre && coincideCategoria && coincideInstructor;
+  //   });
+
+  //   this.cursosFiltrados = filtrados; // Almacena la lista completa filtrada
+  //   this.paginasTotales = Math.ceil(filtrados.length / this.cursosPorPagina);
+  //   this.paginaActual = 1; // Reinicia a la primera página solo al aplicar filtros
+  //   this.actualizarCursosPaginados(); // Actualiza los cursos paginados
+  // }
 
   actualizarCursosPaginados(): void {
     const inicio = (this.paginaActual - 1) * this.cursosPorPagina;
@@ -88,7 +111,6 @@ export default class CursosPublicosComponent implements OnInit {
   limpiarFiltros(): void {
     this.filtroNombre = '';
     this.filtroCategoria = '';
-    this.filtroInstructor = '';
-    this.aplicarFiltros(); // Vuelve a aplicar los filtros para restaurar la lista completa
+    this.filtroInstructor = ''; // Vuelve a aplicar los filtros para restaurar la lista completa
   }
 }

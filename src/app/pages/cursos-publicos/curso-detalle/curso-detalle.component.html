@@ -2,132 +2,135 @@
 <main class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
   <!-- Article Section -->
   <div class="w-full md:w-2/3 md:pr-8">
-    <article *ngIf="curso" class="course-card rounded-xl p-8 mb-8">
-      <!-- Header -->
-      <div
-        class="flex  flex-col  md:flex-row justify-between items-start md:items-center mb-6"
-      >
-        <h1 class="text-4xl font-bold mb-4 text-gray-800 leading-tight">
-          <span
-            class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-500"
-          >
-            {{ curso.nombre }}
-          </span>
-          <br />
-          <span class="text-2xl text-gray-600">{{ curso.descripcion }}</span>          
-        </h1>
-      </div>
-
-      <!-- Tags -->
-      <div class="flex flex-wrap items-center text-sm text-gray-500 mb-8 gap-4">
-
-        <div class="flex items-center bg-orange-100 px-4 py-2 rounded-full">
-          <span class="text-orange-600 font-semibold" >
-            <i class="fas fa-star mr-2 text-orange-500"></i><span class="text-sm"> Curso Destacado</span> 
-          </span>
-      </div>
-
-        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-          <i class="fas fa-user mr-2 text-orange-500"></i>
-          {{ curso.instructor.nombre }} {{ curso.instructor.apellido }}
-        </span>
-
-        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-          <i class="fas fa-calendar-alt mr-2 text-orange-500"></i>
-          {{ curso.fechaInicio | date : "longDate" }}
-        </span>
-        <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-          <i class="fas fa-envelope mr-2 text-orange-500"></i>
-          {{ curso.instructor.email }}
-        </span>
-      </div>
-
-      <!-- Imagen -->
-      <div class="relative rounded-xl overflow-hidden mb-10 group">
-        <img
-          [src]="curso.imagen"
-          [alt]="curso.nombre"
-          class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6"
-        >
-          <div>
+    @if (curso) {
+      <article  class="course-card rounded-xl p-8 mb-8">
+        <!-- Header -->
+        <div class="flex  flex-col  md:flex-row justify-between items-start md:items-center mb-6">
+          <h1 class="text-4xl font-bold mb-4 text-gray-800 leading-tight">
             <span
-              class="feature-badge inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-2"
+              class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-500"
             >
-              <i class="fas fa-bolt mr-1"></i> INSCRIPCIONES ABIERTAS
+              {{ curso.nombre }}
             </span>
-            <h3 class="text-white text-xl font-bold">
-              Domina los módulos del curso en {{ curso.horas }} horas
-            </h3>
-          </div>
+            <br />
+            <span class="text-2xl text-gray-600">{{ curso.descripcion }}</span>          
+          </h1>
         </div>
-      </div>
-
-      <!-- Detalles -->
-      <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-        <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
-          <i class="fas fa-info-circle text-orange-500 mr-3"></i>
-          Detalles del Curso
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="flex items-start">
-            <div class="bg-orange-100 p-2 rounded-lg mr-3">
-              <i class="fas fa-clock text-orange-500"></i>
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-700">Duración</h4>
-              <p class="text-gray-600">{{ curso.horas }} horas</p>
-            </div>
-          </div>
-          <div class="flex items-start">
-            <div class="bg-orange-100 p-2 rounded-lg mr-3">
-              <i class="fas fa-dollar-sign text-orange-500"></i>
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-700">Precio</h4>
-              <p class="text-gray-600">S/ {{ curso.precio }}</p>
-            </div>
-          </div>
+  
+        <!-- Tags -->
+        <div class="flex flex-wrap items-center text-sm text-gray-500 mb-8 gap-4">
+  
+          <div class="flex items-center bg-orange-100 px-4 py-2 rounded-full">
+            <span class="text-orange-600 font-semibold" >
+              <i class="fas fa-star mr-2 text-orange-500"></i><span class="text-sm"> Curso Destacado</span> 
+            </span>
         </div>
-      </div>
-
-      <!-- Temario -->
-      <div class="mt-10">
-        <h2
-          class="text-3xl font-bold mb-6 text-gray-800 border-b pb-4 flex items-center"
-        >
-          <i class="fas fa-list-ol text-orange-500 mr-3"></i> Temario del Curso
-        </h2>
-
-        <div
-          *ngFor="let modulo of curso.modulos"
-          class="mb-8 bg-white rounded-xl p-6 border border-gray-200 hover:border-orange-300 transition-colors"
-        >
-          <h3 class="text-2xl font-bold mb-4 text-orange-600 flex items-center">
-            <i class="fas fa-layer-group mr-2"></i> {{ modulo.nombre }}
-          </h3>
-          <ul class="space-y-3 pl-6">
-            <li *ngFor="let tema of modulo.temas" class="flex items-start">
+  
+          <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+            <i class="fas fa-user mr-2 text-orange-500"></i>
+            {{ curso.instructor?.nombre }} {{ curso.instructor?.apellido }}
+          </span>
+  
+          <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+            <i class="fas fa-calendar-alt mr-2 text-orange-500"></i>
+            {{ curso.fechaInicio | date : "longDate" }}
+          </span>
+          <span class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+            <i class="fas fa-envelope mr-2 text-orange-500"></i>
+            {{ curso.instructor?.email }}
+          </span>
+        </div>
+  
+        <!-- Imagen -->
+        <div class="relative rounded-xl overflow-hidden mb-10 group">
+          <img
+            [src]="curso.imagen"
+            [alt]="curso.nombre"
+            class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6"
+          >
+            <div>
               <span
-                class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1"
+                class="feature-badge inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-2"
               >
-                <i class="fas fa-check text-xs"></i>
+                <i class="fas fa-bolt mr-1"></i> INSCRIPCIONES ABIERTAS
               </span>
-              <span>{{ tema }}</span>
-            </li>
-          </ul>
+              <h3 class="text-white text-xl font-bold">
+                Domina los módulos del curso en {{ curso.horas }} horas
+              </h3>
+            </div>
+          </div>
         </div>
-      </div>
+  
+        <!-- Detalles -->
+        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+          <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
+            <i class="fas fa-info-circle text-orange-500 mr-3"></i>
+            Detalles del Curso
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                <i class="fas fa-clock text-orange-500"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700">Duración</h4>
+                <p class="text-gray-600">{{ curso.horas }} horas</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                <i class="fas fa-dollar-sign text-orange-500"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700">Precio</h4>
+                <p class="text-gray-600">S/ {{ curso.precio }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Temario -->
+        <div class="mt-10">
+          <h2
+            class="text-3xl font-bold mb-6 text-gray-800 border-b pb-4 flex items-center"
+          >
+            <i class="fas fa-list-ol text-orange-500 mr-3"></i> Temario del Curso
+          </h2>
+          @for (modulo of curso.modulos; track modulo.nombre) {
+            <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200 hover:border-orange-300 transition-colors" >
+              <h3 class="text-2xl font-bold mb-4 text-orange-600 flex items-center">
+                <i class="fas fa-layer-group mr-2"></i> {{ modulo.nombre }}
+              </h3>
+              <ul class="space-y-3 pl-6">
 
-      <!-- Comentarios -->
-      @if (estudiante) {
-      <div class="mt-12">
-        <app-comentarios-estudiantes></app-comentarios-estudiantes>
-      </div>
-      }
-    </article>
+                @for (tema of modulo.temas; track tema.id) {
+                  <li  class="flex items-start">
+                    <span
+                      class="bg-orange-100 text-orange-600 p-1 rounded-full mr-3 mt-1"
+                    >
+                      <i class="fas fa-check text-xs"></i>
+                    </span>
+                      <span> {{tema.nombre }}</span>
+                    </li>
+                  }
+
+              </ul>
+            </div>
+          }
+
+        </div>
+  
+        <!-- Comentarios -->
+        @if (estudiante) {
+        <div class="mt-12">
+          <app-comentarios-estudiantes></app-comentarios-estudiantes>
+        </div>
+        }
+      </article>
+    }
 
     <!-- op -->
   </div>

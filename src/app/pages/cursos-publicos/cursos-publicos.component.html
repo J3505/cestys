@@ -26,7 +26,7 @@
                   <input
                       type="text"
                       [(ngModel)]="filtroNombre"
-                      (input)="aplicarFiltros()"
+                    
                       placeholder="Buscar por nombre"
                       class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
                   />
@@ -38,7 +38,7 @@
                   </div>
                   <select
                       [(ngModel)]="filtroCategoria"
-                      (change)="aplicarFiltros()"
+                      
                       class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 appearance-none transition-all"
                   >
                       <option value="">Todas las categorías</option>
@@ -57,7 +57,7 @@
                   <input
                       type="text"
                       [(ngModel)]="filtroInstructor"
-                      (input)="aplicarFiltros()"
+                      
                       placeholder="Buscar por instructor"
                       class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
                   />
@@ -75,6 +75,8 @@
               </button>
           </div>
       </div>
+
+      
 
         <!-- <div class="p-6 bg-white rounded-xl shadow mb-6 space-y-4">
           <h1 class="text-2xl font-bold text-gray-800">Todos Los Cursos</h1>
@@ -127,9 +129,8 @@
         <!-- Course Cards -->
         <div class="space-y-6">
           <!-- Course 1 -->
-          @for (curso of cursosPaginados; track $index) {
-          <div
-            class="course-card bg-white border border-gray-200 rounded-xl overflow-hidden w-full h-auto md:h-[500px]"
+          @for (curso of cursos; track curso.id) {
+          <div class="course-card bg-white border border-gray-200 rounded-xl overflow-hidden w-full h-auto md:h-[500px]"
           >
             <a [routerLink]="['/cursos', curso.id]" class="block group h-full">
               <div class="flex-container">
@@ -172,7 +173,7 @@
                       class="inline-flex items-center bg-orange-100 text-orange-600 text-sm font-medium px-3 py-1 rounded-full"
                     >
                       <i class="far fa-clock mr-1"></i>
-                      {{ curso.horas || "1 mes" }}
+                      {{ curso.horas || "4 mes" }}
                     </span>
                     <span
                       class="inline-flex items-center bg-blue-100 text-blue-600 text-sm font-medium px-3 py-1 rounded-full"
@@ -188,29 +189,32 @@
                   </div>
 
                   <ul class="feature-list text-gray-700 mb-6 space-y-2">
-                    <li
-                      *ngFor="
-                        let tema of curso.modulos[0]?.temas?.slice(0, 5);
-                        let index = index
-                      "
-                    >
-                      {{ tema }}
-                    </li>
+                    
+                      @for (modulo of curso.modulos; track modulo.nombre) {
+                        <li class="font-semibold text-orange-600">{{ modulo.nombre }}</li>
+                        <ul class="pl-4 list-disc">
+                        @for (tema of modulo.temas; track tema.id) {
+                          <li>{{ tema.nombre  }}</li>
+                        }
+                        </ul>
+                      }
+                  
                   </ul>
 
                   <div
                     class="flex flex-wrap items-center justify-between pt-4 border-t border-gray-100 mt-auto"
                   >
                     <div class="flex items-center">
-                      <img
-                        [src]="curso.instructor.imagen"
+                      <span><span class="icon-[logos--whatsapp-icon]  size-8"></span></span>
+                      <!-- <img
+                        [src]="curso.instructor?.avatar"
                         alt="Instructor"
                         class="w-8 h-8 rounded-full mr-2"
                       />
                       <span class="text-sm font-medium text-gray-700">
-                        {{ curso.instructor.nombre }}
-                        {{ curso.instructor.apellido }}
-                      </span>
+                        {{ curso.instructor?.nombre }}
+                        {{ curso.instructor?.apellido }}
+                      </span> -->
                     </div>
 
                     <div class="mt-3 sm:mt-0">
@@ -315,10 +319,11 @@
           <div class="bg-white rounded-t-lg shadow-sm p-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Categorías</h2>
             <ul class="space-y-3 text-gray-700">
-              @for (link of cursoCategoria ; track link.label) {
+              <!--  -->
+              @for (categoria of categorias  ; track categoria.id) {
                 <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
-                  <span>{{ link.label }}</span>
-                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">{{link.cantidad}}</span>
+                  <span>{{ categoria.name }}</span>
+                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">{{categoria.name}}</span>
                 </li>
               }
             </ul>
@@ -348,22 +353,7 @@
           </div>
         </div> -->
         
-        <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
-          <h2 class="text-xl font-semibold text-gray-800 mb-6">Publicaciones Recientes</h2>
-          <ul class="space-y-3 text-gray-700">
-            @for (post of cursosRecientes; track post.name) {
-              <li class="flex space-x-3">
-                <div class="flex-shrink-0">
-                  <img [src]="post.imagen" 
-                  [alt]="post.alt" class="w-20 h-20 object-cover rounded-md mr-4" />
-                </div>
-                <div>
-                  <h3 class="text-sm font-medium text-gray-600">{{post.name}}</h3>
-                </div>
-              </li>
-            }
-          </ul>
-        </div>
+      
         <!-- {/* Tags - STICKY */} -->
         <!-- <div class="sticky top-[34rem] z-10">
           <div class="bg-white rounded-lg shadow-sm p-6">

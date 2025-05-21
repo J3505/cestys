@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SidebarCursoComponent } from '../sidebar-curso/sidebar-curso.component';
 import { ComentariosEstudiantesComponent } from '../comentarios-estudiantes/comentarios-estudiantes.component';
-import { ServicesService } from '../../../core/services.service';
-import { Curso } from '../../../core/curso';
+
 import { CommonModule } from '@angular/common';
+import { CursoService } from '../../../core/services/curso.service';
+import { Curso } from '../interface/curso';
+import { ModuloService } from '../../../core/services/modulo.service';
+import { Tema } from '../interface/tema';
+
 
 @Component({
   selector: 'app-curso-detalle',
@@ -13,15 +17,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './curso-detalle.component.scss',
 })
 export default class CursoDetalleComponent implements OnInit {
-  // estudiante: 'estudiante' | string = '';
-  // cursoId: string | null = null;
-  curso!: Curso; // Definimos la variable curso como un objeto de tipo Curso
-  estudiante = true; // por ejemplo para mostrar sección de comentarios
 
+  curso?: Curso; // Definimos la variable curso como un objeto de tipo Curso
+  estudiante = true; // por ejemplo para mostrar sección de comentarios
+ 
 
   constructor(
     private route: ActivatedRoute,
-    private servicesService: ServicesService
+    private cursoService: CursoService,
   ) {}
     // this.cursoId = this.route.snapshot.paramMap.get('id')
   //   this.route.paramMap.subscribe((params) => {
@@ -29,11 +32,17 @@ export default class CursoDetalleComponent implements OnInit {
   //   });
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.servicesService.obtenerCursoPorId(id).subscribe((curso) =>{
-      if (curso){
-        this.curso = curso;
-      }
-    })
+    const id =this.route.snapshot.paramMap.get('id');
+    if(id){
+      this.cursoService.getCurso(id).subscribe((curso) => {
+        if (curso) {
+          this.curso = curso;
+        }
+      })
+      console.log(id);
+    }
+    
   }
+
+  
 }

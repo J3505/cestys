@@ -20,6 +20,9 @@ export class CursoService {
   }
 
 
+  getCurso(id: string): Observable<Curso> {
+    return this.http.get<Curso>(`${this.apiUrl}/${id}`);
+  }
 
   // Método para obtener instructores (necesario para el formulario)
   getInstructores(): Observable<{ id: string; nombre: string; email: string }[]> {
@@ -29,9 +32,6 @@ export class CursoService {
     );
   }
 
-  getCurso(id: string): Observable<Curso> {
-    return this.http.get<Curso>(`${this.apiUrl}/${id}`);
-  }
 
   createCurso(curso: Curso): Observable<Curso> {
     return this.http.post<Curso>(this.apiUrl, curso);

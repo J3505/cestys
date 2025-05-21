@@ -11,7 +11,6 @@ export const CURSOS: Curso [] = [
     fechaFin: new Date('2026-05-01'),
     horas: 80,
     precio: 150,
-    // imagen: 'https://i.pinimg.com/736x/6e/23/da/6e23da6f2ccc967f58495d4ea1c05780.jpg',
     imagen: 'https://i.pinimg.com/736x/45/b6/12/45b6126ff7ae10fb50ddb6ed2851b8ab.jpg',
     categoria: CategoriaCurso.CarreraTecnica,
     estado: 'Activo',
@@ -26,15 +25,34 @@ export const CURSOS: Curso [] = [
     modulos: [
       {
         nombre: 'Módulo I',
-        temas: ['Ofimática', 'Documentación Mercantil', 'Contabilidad Comercial', 'Digitación']
+        temas: [
+          'Ofimática',
+          'Documentación Mercantil',
+          'Contabilidad Comercial',
+          'Digitación'
+        ]
       },
       {
         nombre: 'Módulo II',
-        temas: ['Legislación Laboral', 'Marketing Secretarial', 'Técnica Secretarial', 'Etiqueta Secretarial', 'Atención y Servicio al Cliente']
+        temas: [
+          'Legislación Laboral',
+          'Marketing Secretarial',
+          'Técnica Secretarial',
+          'Etiqueta Secretarial',
+          'Atención y Servicio al Cliente'
+        ]
       },
       {
         nombre: 'Módulo III',
-        temas: ['Mecanografía', 'Ortografía', 'Redacción General', 'Trámite Documentario', 'Organización de Oficinas', 'Oratoria y Liderazgo', 'Taquigrafía']
+        temas: [
+          'Mecanografía',
+          'Ortografía',
+          'Redacción General',
+          'Trámite Documentario',
+          'Organización de Oficinas',
+          'Oratoria y Liderazgo',
+          'Taquigrafía'
+        ]
       }
     ]
   },
