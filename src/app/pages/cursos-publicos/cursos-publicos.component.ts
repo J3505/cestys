@@ -11,6 +11,7 @@ import { TemaService } from '../../core/services/tema.service';
 import { Modulo } from '../../core/models/modulo';
 import { Tema } from '../../core/models/tema';
 import { Curso } from '../../core/models/curso';
+import { Categoria } from '../../core/models/categoria';
 
 
 
@@ -22,7 +23,7 @@ import { Curso } from '../../core/models/curso';
 })
 export default class CursosPublicosComponent implements OnInit {
 
-  categorias: { id: string; name: string }[] = [];
+  categorias:Categoria[]= [];
   modulos: Modulo[] = [];
   temas: Tema[] = [];
 
@@ -37,7 +38,7 @@ export default class CursosPublicosComponent implements OnInit {
   filtroInstructor: string = '';
 
   constructor(
-    private CategoriaService: CategoriaService,
+    private categoriaService: CategoriaService,
     private cursoService: CursoService,
     private moduloservice: ModuloService,
     private temasService: TemaService,
@@ -60,11 +61,8 @@ export default class CursosPublicosComponent implements OnInit {
   }
  
   getCategorias() {
-    this.CategoriaService.getCategorias().subscribe((data) => {
-      this.categorias = data.map((categoria) => ({
-        id: categoria.id.toString(),
-        name: categoria.nombre,
-      }));
+    this.categoriaService.getCategorias().subscribe((data) => {
+      this.categorias = data;
     });
   }
 

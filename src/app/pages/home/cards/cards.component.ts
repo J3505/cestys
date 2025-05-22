@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../../../core/services/categoria.service';
 import { Categoria } from '../../../core/models/categoria';
+import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cards',
-  imports: [],
+  imports: [NgClass,RouterLink],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss'
 })
