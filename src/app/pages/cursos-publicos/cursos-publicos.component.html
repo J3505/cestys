@@ -144,13 +144,14 @@
           </div>
 
           }
-        </div>
-
-        <!-- Paginación -->
+          <!-- Paginación -->
         <p-paginator [rows]="rows"
                      [first]="first"
                      [totalRecords]="cursosFiltrados.length"
                      (onPageChange)="onPageChange($event)"/>
+        </div>
+
+        
         <!-- <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[5, 10, 15]" /> -->
       </div>
 
