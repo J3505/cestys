@@ -6,130 +6,29 @@
     <div class="flex flex-col md:flex-row gap-8">
       <!-- Courses Section -->
       <div class="w-full md:w-2/3">
-        <div class="p-6 bg-white rounded-xl shadow-md mb-6 space-y-6 border border-gray-100">
-          <div class="flex items-center justify-between">
-              <h1 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                  <i class="fas fa-graduation-cap text-primary-500"></i>
-                  Todos Los Cursos
-              </h1>
-              <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2.5 py-1 rounded-full">
-                  <i class="fas fa-info-circle mr-1"></i>
-                  Filtros activos
-              </span>
-          </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i class="fas fa-search text-gray-400"></i>
-                  </div>
-                  <input
-                      type="text"
-                      [(ngModel)]="filtroNombre"
-                    
-                      placeholder="Buscar por nombre"
-                      class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
-                  />
-              </div>
-
-              <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i class="fas fa-tag text-gray-400"></i>
-                  </div>
-                  <select
-                      [(ngModel)]="filtroCategoria"
-                      
-                      class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 appearance-none transition-all"
-                  >
-                      <option value="">Todas las categorías</option>
-                      <option value="Carrera Técnica">Carrera Técnica</option>
-                      <option value="Especialización Profesional">Especialización Profesional</option>
-                  </select>
-                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                      <i class="fas fa-chevron-down text-gray-400"></i>
-                  </div>
-              </div>
-
-              <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i class="fas fa-user-tie text-gray-400"></i>
-                  </div>
-                  <input
-                      type="text"
-                      [(ngModel)]="filtroInstructor"
-                      
-                      placeholder="Buscar por instructor"
-                      class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
-                  />
-              </div>
-          </div>
-
-          <div class="flex justify-end">
-              <button
-                  (click)="limpiarFiltros()"
-                  class="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-all"
-                  title="Limpiar filtros"
-              >
-                  <i class="fas fa-times-circle text-primary-500"></i>
-                  <span>Limpiar filtros</span>
-              </button>
-          </div>
-      </div>
+        <div class="flex gap-4 mb-6">
+  <input
+    [(ngModel)]="filtroNombre"
+    (ngModelChange)="filtrarCursos()"
+    placeholder="Buscar por nombre del curso"
+    class="p-2 border border-gray-300 rounded w-full"
+    type="text"
+  />
+  <input
+    [(ngModel)]="filtroInstructor"
+    (ngModelChange)="filtrarCursos()"
+    placeholder="Buscar por instructor"
+    class="p-2 border border-gray-300 rounded w-full"
+    type="text"
+  />
+</div>
 
       
-
-        <!-- <div class="p-6 bg-white rounded-xl shadow mb-6 space-y-4">
-          <h1 class="text-2xl font-bold text-gray-800">Todos Los Cursos</h1>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="relative">
-              <input
-                type="text"
-                [(ngModel)]="filtroNombre"
-                (input)="aplicarFiltros()"
-                placeholder="Buscar por nombre"
-                class="pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
-              />
-              <button
-                class="absolute right-3 top-1/2 transform -translate-y-1/2"
-              >
-                <span class="icon-[lucide--search] bg-gray-400"></span>
-              </button>
-            </div>
-            <select
-              [(ngModel)]="filtroCategoria"
-              (change)="aplicarFiltros()"
-              class="w-full p-3 border rounded-lg"
-            >
-              <option value="">Todas las categorías</option>
-              <option value="Carrera Técnica">Carrera Técnica</option>
-              <option value="Especialización Profesional">
-                Especialización Profesional
-              </option>
-            </select>
-
-            <input
-              type="text"
-              [(ngModel)]="filtroInstructor"
-              (input)="aplicarFiltros()"
-              placeholder="Buscar por instructor"
-              class="w-full p-3 border rounded-lg"
-            />
-          </div>
-
-          <div class="text-right">
-            <button
-              (click)="limpiarFiltros()"
-              class="text-sm text-orange-600 hover:underline"
-              title="Limpiar filtros"
-            ><span class="icon-[pajamas--remove] hover:cursor-pointer"></span>
-            </button>
-          </div>
-        </div> -->
-
         <!-- Course Cards -->
         <div class="space-y-6">
           <!-- Course 1 -->
-          @for (curso of cursos; track curso.id) {
+          @for (curso of cursosPaginados; track curso.id) {
           <div class="course-card bg-white border border-gray-200 rounded-xl overflow-hidden w-full h-auto md:h-[500px]"
           >
             <a [routerLink]="['/cursos', curso.id]" class="block group h-full">
@@ -248,66 +147,11 @@
         </div>
 
         <!-- Paginación -->
-        <!-- Paginación -->
-        <div class="flex justify-center mt-8" *ngIf="paginasTotales > 1">
-          <nav class="flex items-center space-x-1">
-            <!-- Anterior -->
-            <button
-              class="p-2 rounded-md hover:bg-gray-100"
-              [disabled]="paginaActual === 1"
-              (click)="cambiarPagina(paginaActual - 1)"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-
-            <!-- Botones de páginas -->
-            <button
-              *ngFor="let page of [].constructor(paginasTotales); let i = index"
-              class="px-4 py-2 rounded-md"
-              [ngClass]="
-                paginaActual === i + 1
-                  ? 'bg-orange-600 text-white'
-                  : 'hover:bg-gray-100'
-              "
-              (click)="cambiarPagina(i + 1)"
-            >
-              {{ i + 1 }}
-            </button>
-
-            <!-- Siguiente -->
-            <button
-              class="p-2 rounded-md hover:bg-gray-100"
-              [disabled]="paginaActual === paginasTotales"
-              (click)="cambiarPagina(paginaActual + 1)"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </nav>
-        </div>
+        <p-paginator [rows]="rows"
+                     [first]="first"
+                     [totalRecords]="cursosFiltrados.length"
+                     (onPageChange)="onPageChange($event)"/>
+        <!-- <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[5, 10, 15]" /> -->
       </div>
 
 
@@ -320,52 +164,20 @@
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Categorías</h2>
             <ul class="space-y-3 text-gray-700">
               <!--  -->
-              @for (categoria of categorias  ; track categoria.id) {
-                <li class="flex justify-between items-center hover:bg-orange-500 hover:text-white p-2 rounded-md cursor-pointer">
+              @for (categoria of categorias  ; track categoria) {
+                <li
+                (click)="filtrarPorCategoria(categoria.nombre)" 
+                 [ngClass]="{ 'bg-orange-500 text-white': filtroCategoria === categoria.nombre,
+                  'hover:bg-orange-100 cursor-pointer': filtroCategoria !== categoria.nombre
+                  }"
+                class="flex justify-between items-center p-2 rounded-md transition-colors">
                   <span>{{ categoria.nombre }}</span>
-                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">{{categoria.nombre}}</span>
+                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-sm">dd</span>
                 </li>
               }
             </ul>
           </div>
         </div>
-
-        
-
-        <!-- {/* Recent Publications - STICKY */} -->
-        <!-- <div class="sticky top-96 z-10 ">
-          <div class="bg-white rounded-lg shadow-sm p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Publicaciones Recientes</h2>
-            <ul class="space-y-4">
-              @for (post of cursosRecientes; track post.name) {
-                <li class="flex space-x-3">
-
-                  <div class="flex-shrink-0">
-                    <img [src]="post.imagen" 
-                    [alt]="post.alt" class="rounded-md w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 class="text-sm font-medium text-gray-800">{{post.name}}</h3>
-                  </div>
-                </li>
-              }
-            </ul>
-          </div>
-        </div> -->
-        
-      
-        <!-- {/* Tags - STICKY */} -->
-        <!-- <div class="sticky top-[34rem] z-10">
-          <div class="bg-white rounded-lg shadow-sm p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Etiquetas</h2>
-            <div class="flex flex-wrap gap-2">
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">WordPress</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">Education</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">LMS</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm">Courses</span>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>

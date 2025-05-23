@@ -17,54 +17,12 @@
               <i class="fas fa-filter absolute left-3 top-2.5 text-gray-400"></i>
           </div>
           <p-button (click)="showDialog()" icon="pi pi-plus-circle" label="Nuevo Curso" />
+          <app-modal-curso></app-modal-curso>
 
       </div>
   </div>
 
-  <!-- Modal de productos -->
-  <div class="card flex justify-center">
-    <p-dialog header="Crear nuevo curso." class="items-center" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-
-      <div class=" items-center gap-4 mb-4 hidden">
-          <input pInputText id="id" class="flex-auto" />
-      </div>
-
-      <div class="flex items-center gap-4 mb-4">
-        <label for="categoria" class="font-semibold w-24">Categoria</label>
-        <p-select [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a City" class="flex-auto"  />
-      </div>
-
-      <div class="flex items-center gap-4 mb-4">
-        <label for="username" class="font-semibold w-24">Nombre</label>
-        <input pInputText id="username" class="flex-auto" autocomplete="off" />
-      </div>
-
-      <div class="flex items-center gap-4 mb-4" >
-        <label for="descripcion" class="font-semibold w-24">Descripcion</label>
-        <textarea rows="5" cols="30" pTextarea  class="flex-auto"  [(ngModel)]="value"></textarea>
-      </div>
-<!--
-      <div class="card flex justify-center">
-        <p-toast />
-        <p-fileupload mode="basic" name="demo[]" chooseIcon="pi pi-upload" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse" />
-    </div> -->
-
-
-
-
-        <div class="flex items-center gap-4 mb-8">
-            <label for="email" class="font-semibold w-24">Email</label>
-            <input pInputText id="email" class="flex-auto" autocomplete="off" />
-        </div>
-
-
-        <div class="flex justify-end gap-2">
-            <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-            <p-button label="Guardar" (click)="visible = false" />
-        </div>
-    </p-dialog>
-  </div>
-
+ 
   <!-- Stats Cards -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
       <div class="bg-white p-6 rounded-xl shadow-sm hover-scale">
@@ -120,266 +78,7 @@
       </div>
   </div>
 
-  <!-- Courses Table -->
-  <div class="bg-white rounded-xl shadow-sm mb-6 overflow-hidden">
-      <div class="p-6 border-b">
-          <h3 class="font-semibold">Listado de Cursos</h3>
-      </div>
-      <div class="overflow-x-auto">
-          <table class="w-full">
-              <thead class="bg-gray-50 text-left">
-                  <tr>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Curso</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Instructor</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiantes</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Valoración</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
-                      <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
-                  </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-200">
-                  <tr class="hover:bg-orange-50">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <img src="https://via.placeholder.com/60" alt="Curso" class="w-10 h-10 rounded-lg object-cover mr-3">
-                              <div>
-                                  <p class="font-medium">Marketing Digital Avanzado</p>
-                                  <p class="text-xs text-gray-500">Actualizado: 12/04/2023</p>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-600">Marketing</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold mr-2">JP</div>
-                              <span>Juan Pérez</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap font-medium">$59.99</td>
-                      <td class="px-6 py-4 whitespace-nowrap">128</td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="flex text-orange-400 text-sm">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star-half-alt"></i>
-                              </div>
-                              <span class="ml-1 text-sm">4.5</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Publicado</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm">
-                          <div class="flex space-x-2">
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr class="hover:bg-orange-50">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <img src="https://via.placeholder.com/60" alt="Curso" class="w-10 h-10 rounded-lg object-cover mr-3">
-                              <div>
-                                  <p class="font-medium">Programación Web Full Stack</p>
-                                  <p class="text-xs text-gray-500">Actualizado: 05/03/2023</p>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-600">Programación</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="w-7 h-7 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-bold mr-2">MR</div>
-                              <span>María Rodríguez</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap font-medium">$79.99</td>
-                      <td class="px-6 py-4 whitespace-nowrap">96</td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="flex text-orange-400 text-sm">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="far fa-star"></i>
-                              </div>
-                              <span class="ml-1 text-sm">4.0</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Publicado</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm">
-                          <div class="flex space-x-2">
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr class="hover:bg-orange-50">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <img src="https://via.placeholder.com/60" alt="Curso" class="w-10 h-10 rounded-lg object-cover mr-3">
-                              <div>
-                                  <p class="font-medium">Diseño UX/UI Profesional</p>
-                                  <p class="text-xs text-gray-500">Actualizado: 18/05/2023</p>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-pink-100 text-pink-600">Diseño</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="w-7 h-7 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold mr-2">AL</div>
-                              <span>Ana López</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap font-medium">$49.99</td>
-                      <td class="px-6 py-4 whitespace-nowrap">75</td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="flex text-orange-400 text-sm">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                              </div>
-                              <span class="ml-1 text-sm">5.0</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Publicado</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm">
-                          <div class="flex space-x-2">
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr class="hover:bg-orange-50">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <img src="https://via.placeholder.com/60" alt="Curso" class="w-10 h-10 rounded-lg object-cover mr-3">
-                              <div>
-                                  <p class="font-medium">Data Science y Machine Learning</p>
-                                  <p class="text-xs text-gray-500">Actualizado: 22/06/2023</p>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-600">Data Science</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs font-bold mr-2">CR</div>
-                              <span>Carlos Ruiz</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap font-medium">$89.99</td>
-                      <td class="px-6 py-4 whitespace-nowrap">64</td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="flex text-orange-400 text-sm">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star-half-alt"></i>
-                              </div>
-                              <span class="ml-1 text-sm">4.5</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Publicado</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm">
-                          <div class="flex space-x-2">
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr class="hover:bg-orange-50">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <img src="https://via.placeholder.com/60" alt="Curso" class="w-10 h-10 rounded-lg object-cover mr-3">
-                              <div>
-                                  <p class="font-medium">Finanzas Personales</p>
-                                  <p class="text-xs text-gray-500">Actualizado: 10/07/2023</p>
-                              </div>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Negocios</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold mr-2">LM</div>
-                              <span>Laura Martínez</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap font-medium">$39.99</td>
-                      <td class="px-6 py-4 whitespace-nowrap">112</td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                              <div class="flex text-orange-400 text-sm">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="far fa-star"></i>
-                              </div>
-                              <span class="ml-1 text-sm">4.2</span>
-                          </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-600">Borrador</span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm">
-                          <div class="flex space-x-2">
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-edit"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-orange-600"><i class="fas fa-eye"></i></button>
-                              <button class="p-1 text-gray-500 hover:text-red-600"><i class="fas fa-trash"></i></button>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-      <div class="p-4 border-t flex justify-between items-center">
-          <p class="text-sm text-gray-500">Mostrando 5 de 124 cursos</p>
-          <div class="flex space-x-1">
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">
-                  <i class="fas fa-chevron-left text-sm text-gray-500"></i>
-              </button>
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-orange-500 text-white">1</button>
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">2</button>
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">3</button>
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">...</button>
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">25</button>
-              <button class="w-8 h-8 flex items-center justify-center rounded-lg border hover:bg-orange-50">
-                  <i class="fas fa-chevron-right text-sm text-gray-500"></i>
-              </button>
-          </div>
-      </div>
-  </div>
+  <app-tabla-curso></app-tabla-curso>
 
   <!-- Recent Courses Grid -->
   <div class="mb-6">
@@ -439,7 +138,11 @@
   <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
       <div class="flex justify-between items-center mb-6">
           <h3 class="font-semibold">Categorías de Cursos</h3>
-          <button class="text-orange-600 text-sm font-medium">Administrar categorías</button>
+          <!-- <button class="text-orange-600 text-sm font-medium">Administrar categorías</button> class="text-orange-600 text-sm font-medium" -->
+          <!-- boton a qui -->
+           <p-button (click)="showDialog()" label="Añadir categorías" icon="pi pi-plus-circle"  />
+           <app-modal-categoria></app-modal-categoria>
+
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -461,6 +164,68 @@
         
       </div>
   </div>
+
+  <p-button label="Nueva categoría" icon="pi pi-plus" (click)="cancelar()" styleClass="mb-3" />
+
+<!-- 🟦 Tabla con categorías -->
+<p-table [value]="categorias" [loading]="loading" [paginator]="true" [rows]="5">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Color</th>
+      <th>Icono</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cat>
+    <tr>
+      <td>{{ cat.nombre }}</td>
+      <td>{{ cat.descripcion }}</td>
+      <td>
+        <div [style.background]="cat.color" style="width: 20px; height: 20px; border-radius: 50%"></div>
+      </td>
+      <td><i [class]="'pi pi-' + cat.icono"></i> {{ cat.icono }}</td>
+      <td>
+        <p-button icon="pi pi-pencil" (click)="editar(cat)" styleClass="p-button-sm p-button-rounded mr-2" />
+        <!-- <p-button icon="pi pi-trash" (click)="eliminar(cat.id)" severity="danger" styleClass="p-button-sm p-button-rounded" /> -->
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- 🟩 Diálogo de edición/creación -->
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <form [formGroup]="form()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="nombre">Nombre</label>
+        <input pInputText id="nombre" formControlName="nombre" />
+      </div>
+
+      <div class="p-field">
+        <label for="descripcion">Descripción</label>
+        <input pInputText id="descripcion" formControlName="descripcion" />
+      </div>
+
+      <div class="p-field">
+        <label for="color">Color</label>
+        <p-colorPicker id="color" formControlName="color" format="hex" />
+      </div>
+
+      <div class="p-field">
+        <label for="icono">Icono</label>
+        <input pInputText id="icono" formControlName="icono" placeholder="ej: star, heart, tag" />
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <!-- <p-button label="Guardar" icon="pi pi-check" (click)="guardar()" [disabled]="!formValido()" /> -->
+    <p-button label="Cancelar" icon="pi pi-times" (click)="cancelar()" severity="secondary" />
+  </ng-template>
+</p-dialog>
+
 
   
 </main>

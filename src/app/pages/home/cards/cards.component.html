@@ -8,6 +8,7 @@
               w-20 h-20 rounded-full flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
               [ngClass]="['bg-' + categoria.color + '-50 text-' + categoria.color + '-600']"   
               >
+              <!-- [ngClass]="[colorMap[categoria.color]?.bg || 'bg-gray-50',  colorMap[categoria.color]?.text || 'text-gray-600']"    -->
              <span [ngClass]="categoria.icono" class="size-10 bg-sky-50"></span>
              
            </div>
