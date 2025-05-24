@@ -25,8 +25,8 @@ export const MyPreset = definePreset(Aura, {
           activeColor: '{orange.800}',
         },
         highlight: {
-          background: '{zinc.950}',
-          focusBackground: '{zinc.700}',
+          background: '{orange.500}',
+          focusBackground: '{orange.700}',
           color: '#ffffff',
           focusColor: '#ffffff',
         },

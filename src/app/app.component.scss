@@ -1,7 +1,9 @@
 :host{
-  ::ng-deep .p-paginator-page-selected{
+
+  ::ng-deep .p-paginator-page-selected {
     background-color: var(--p-custom-background);
 
   }
 }
 
+// p-ripple p-paginator-page p-paginator-page-selected

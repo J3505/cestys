@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarLandingComponent } from '../../layout/landing/navbar-landing/navbar-landing.component';
 import { RouterLink } from '@angular/router';
 
-
-
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 
 import { CommonModule } from '@angular/common';
@@ -37,7 +35,7 @@ export default class CursosPublicosComponent implements OnInit {
   cursos: Curso[] = [];
   // Variables para el filtrado
   cursosFiltrados: Curso[] = [];
-  cursosPaginados: Curso[] = []; 
+  cursosPaginados: Curso[] = [];
 
   // Paginación
   first: number = 0;
@@ -83,7 +81,6 @@ export default class CursosPublicosComponent implements OnInit {
     });
   }
 
-
   getCategorias() {
     this.categoriaService.getCategorias().subscribe((data) => {
       this.categorias = data;
@@ -103,21 +100,30 @@ export default class CursosPublicosComponent implements OnInit {
   }
 
   filtrarPorCategoria(nombreCategoria: string) {
-  if (this.filtroCategoria === nombreCategoria) {
-    this.filtroCategoria = ''; // Quita el filtro si se hace clic otra vez
-  } else {
-    this.filtroCategoria = nombreCategoria;
+    if (this.filtroCategoria === nombreCategoria) {
+      this.filtroCategoria = ''; // Quita el filtro si se hace clic otra vez
+    } else {
+      this.filtroCategoria = nombreCategoria;
+    }
+
+    this.filtrarCursos();
   }
 
-  this.filtrarCursos();
-}
-
-
   filtrarCursos() {
-     this.cursosFiltrados = this.cursos.filter((curso) => {
-      const coincideNombre = curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase());
-      const coincideInstructor = curso.instructor?.nombre.toLowerCase().includes(this.filtroInstructor.toLowerCase()) || false;
-      const coincideCategoria = this.filtroCategoria ? curso.categoriaId === Number(this.filtroCategoria) : true;
+    this.cursosFiltrados = this.cursos.filter((curso) => {
+      const coincideNombre = curso.nombre
+        .toLowerCase()
+        .includes(this.filtroNombre.toLowerCase());
+
+      const coincideInstructor =
+        curso.instructor?.nombre
+          .toLowerCase()
+          .includes(this.filtroInstructor.toLowerCase()) || false;
+
+      const coincideCategoria = this.filtroCategoria
+        ? curso.categoriaId === Number(this.filtroCategoria)
+        : true;
+        
       return coincideNombre && coincideInstructor && coincideCategoria;
     });
     this.actualizarCursosPaginados();

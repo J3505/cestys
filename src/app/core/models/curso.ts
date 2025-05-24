@@ -8,8 +8,8 @@ export interface Curso {
   id: string;
   nombre: string;
   descripcion: string;
-  fechaInicio: string;
-  fechaFin: string;
+  fechaInicio: string | Date;
+  fechaFin: string | Date;
   horas: number;
   precio?: number;
   descuento?: number;

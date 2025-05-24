@@ -10,31 +10,34 @@ import { TreeSelect } from 'primeng/treeselect';
 import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-modal-curso',
-  imports: [Dialog, ButtonModule, InputTextModule, FormsModule, TreeSelect, TextareaModule],
-templateUrl: './modal-curso.component.html',
+  imports: [
+    Dialog,
+    ButtonModule,
+    InputTextModule,
+    FormsModule,
+    TreeSelect,
+    TextareaModule,
+  ],
+  templateUrl: './modal-curso.component.html',
   styleUrl: './modal-curso.component.scss',
-  providers: [NodeService] 
-
+  providers: [NodeService],
 })
 export class ModalCursoComponent {
-
   value!: string;
 
   visible: boolean = false;
 
-    showDialog() {
-        this.visible = true;
-    }
+  showDialog() {
+    this.visible = true;
+  }
 
   nodes!: any[];
 
-    selectedNodes: any;
+  selectedNodes: any;
 
-    constructor(private nodeService: NodeService) {
-        this.nodeService.getFiles().then((files) => (this.nodes = files));
-    }
-
+  constructor(private nodeService: NodeService) {
+    this.nodeService.getFiles().then((files) => (this.nodes = files));
+  }
 }

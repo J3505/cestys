@@ -69,12 +69,12 @@ interface City {
   styleUrl: './cursos.component.scss',
   providers: [MessageService],
 })
-export default class CursosComponent  {
+export default class CursosComponent implements OnInit {
 // implements OnInit
   cursos: Curso[] = [];
   // textare
   value!: string;
-  // categorias: Categoria[] = [];
+  categorias: Categoria[] = [];
 
   cities: City[] | undefined;
   selectedCity: City | undefined;
@@ -111,9 +111,9 @@ export default class CursosComponent  {
     });
    }
 
-    get categorias() {
-    return this.categoriaService.categorias();
-  }
+  //   get categorias() {
+  //   return this.categoriaService.categorias();
+  // }
 
   get loading() {
     return this.categoriaService.loading();
@@ -152,22 +152,23 @@ export default class CursosComponent  {
   showDialog() {
     this.visible = true;
   }
-  // ngOnInit() {
-  //   this.getCursos();
-    // this.getCategorias();
-  // }
 
-  // getCursos() {
-  //   this.cursoService.getCursos().subscribe((data) => {
-  //     this.cursos = data;
-  //   });
-  // }
+  ngOnInit() {
+    this.getCursos();
+    this.getCategorias();
+  }
 
-  // getCategorias() {
-  //   this.categoriaService.getCategorias().subscribe((data) => {      
-  //     this.categorias = data;
-  //   });
-  // }
+  getCursos() {
+    this.cursoService.getCursos().subscribe((data) => {
+      this.cursos = data;
+    });
+  }
+
+  getCategorias() {
+    this.categoriaService.getCategorias().subscribe((data) => {      
+      this.categorias = data;
+    });
+  }
 
 
 }
