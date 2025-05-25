@@ -49,7 +49,7 @@ export default class CursosPublicosComponent implements OnInit {
   filtroCategoria: string = '';
   filtroInstructor: string = '';
   // CONTACTO
-  telefono: string = "904436204";
+  telefono: string = '904436204';
   constructor(
     private categoriaService: CategoriaService,
     private cursoService: CursoService,
@@ -61,7 +61,6 @@ export default class CursosPublicosComponent implements OnInit {
     this.getCategorias();
     this.getModulos();
     this.getCursos();
-
   }
 
   // paginación
@@ -75,15 +74,20 @@ export default class CursosPublicosComponent implements OnInit {
     this.cursoService.getCursos().subscribe((data: Curso[]) => {
       this.cursos = data;
       console.log(this.cursos);
-      
+
       this.filtrarCursos();
     });
   }
 
   getCategorias() {
     this.categoriaService.getCategorias().subscribe((data) => {
-      this.categorias  = data.categorias;
+      this.categorias = data.categorias;
       this.totalCursos = data.total;
+
+      if (this.categorias.length > 0) {
+        const primeraCategoria = this.categorias[0];
+        this.seleccionarCategoria(primeraCategoria.id);
+      }
     });
   }
 
@@ -111,10 +115,9 @@ export default class CursosPublicosComponent implements OnInit {
 
   filtrarCursos() {
     this.cursosFiltrados = this.cursos.filter((curso) => {
-
       const coincideNombre = curso.nombre
         .toLowerCase()
-        .includes(this.filtroNombre.toLowerCase());
+        .includes(this.filtroNombre.toLowerCase().trim());
 
       const coincideInstructor =
         curso.instructor?.nombre
@@ -127,13 +130,14 @@ export default class CursosPublicosComponent implements OnInit {
 
       return coincideNombre && coincideInstructor && coincideCategoria;
     });
+    this.first = 0; // Reinicia a la primera página al aplicar filtros
     this.actualizarCursosPaginados();
   }
 
   actualizarCursosPaginados() {
     const start = this.first;
     const end = this.first + this.rows;
-    this.cursosPaginados = this.cursos.slice(start, end);
+    this.cursosPaginados = this.cursosFiltrados.slice(start, end);
   }
 
   seleccionarCategoria(idCategoria: number) {
