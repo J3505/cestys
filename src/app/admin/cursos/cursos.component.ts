@@ -166,7 +166,7 @@ export default class CursosComponent implements OnInit {
 
   getCategorias() {
     this.categoriaService.getCategorias().subscribe((data) => {      
-      this.categorias = data;
+      this.categorias = data.categorias;
     });
   }
 

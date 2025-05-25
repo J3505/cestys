@@ -37,6 +37,9 @@ export default class CursosPublicosComponent implements OnInit {
   cursosFiltrados: Curso[] = [];
   cursosPaginados: Curso[] = [];
 
+  /// total de cursos
+  totalCursos: number = 0;
+
   // Paginación
   first: number = 0;
   rows: number = 5;
@@ -45,7 +48,8 @@ export default class CursosPublicosComponent implements OnInit {
   filtroNombre: string = '';
   filtroCategoria: string = '';
   filtroInstructor: string = '';
-
+  // CONTACTO
+  telefono: string = "904436204";
   constructor(
     private categoriaService: CategoriaService,
     private cursoService: CursoService,
@@ -58,13 +62,6 @@ export default class CursosPublicosComponent implements OnInit {
     this.getModulos();
     this.getCursos();
 
-    // this.cursoService.getCursos().subscribe((data: Curso[]) => {
-    //   this.cursos = data;
-    //   this.actualizarCursosPaginados();
-    //   this.getCategorias(); // Obtiene las categorías al iniciar
-    //   this.getModulos(); // Obtiene los modulos al iniciar
-    //   console.log(data);
-    // });
   }
 
   // paginación
@@ -77,13 +74,16 @@ export default class CursosPublicosComponent implements OnInit {
   getCursos() {
     this.cursoService.getCursos().subscribe((data: Curso[]) => {
       this.cursos = data;
+      console.log(this.cursos);
+      
       this.filtrarCursos();
     });
   }
 
   getCategorias() {
     this.categoriaService.getCategorias().subscribe((data) => {
-      this.categorias = data;
+      this.categorias  = data.categorias;
+      this.totalCursos = data.total;
     });
   }
 
@@ -111,6 +111,7 @@ export default class CursosPublicosComponent implements OnInit {
 
   filtrarCursos() {
     this.cursosFiltrados = this.cursos.filter((curso) => {
+
       const coincideNombre = curso.nombre
         .toLowerCase()
         .includes(this.filtroNombre.toLowerCase());
@@ -123,7 +124,7 @@ export default class CursosPublicosComponent implements OnInit {
       const coincideCategoria = this.filtroCategoria
         ? curso.categoriaId === Number(this.filtroCategoria)
         : true;
-        
+
       return coincideNombre && coincideInstructor && coincideCategoria;
     });
     this.actualizarCursosPaginados();

@@ -4,4 +4,7 @@ export interface Categoria {
   descripcion: string;
   color?: string;
   icono?: string;
+  _count: {
+    cursos: number;
+  };
  }

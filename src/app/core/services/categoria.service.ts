@@ -50,8 +50,8 @@ export class CategoriaService {
   // }
 
   // Método para obtener categorías (necesario para el formulario)
-  getCategorias(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(
+  getCategorias(): Observable<{total: number, categorias: Categoria[]}> {
+    return this.http.get<{total: number, categorias: Categoria[]}>(
       `${environment.apiUrl}/categoria`,
       { withCredentials: true }
     );
