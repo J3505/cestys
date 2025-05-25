@@ -10,10 +10,9 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './modal-categoria.component.scss'
 })
 export class ModalCategoriaComponent {
-   visible: boolean = false;
+    visible: boolean = false;
 
     showDialog() {
         this.visible = true;
     }
-
 }

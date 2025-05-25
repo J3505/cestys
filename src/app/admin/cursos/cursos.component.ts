@@ -46,7 +46,7 @@ interface City {
 @Component({
   selector: 'app-cursos',
   imports: [
-    Dialog,
+    // Dialog,
     ButtonModule,
     InputTextModule,
     FormsModule,
@@ -62,7 +62,8 @@ interface City {
     ReactiveFormsModule,
     ModalCategoriaComponent,
     ModalCursoComponent,
-    TablaCursoComponent
+    TablaCursoComponent,
+    CommonModule
 ],
   // FileUpload,
   templateUrl: './cursos.component.html',
@@ -79,8 +80,92 @@ export default class CursosComponent implements OnInit {
   cities: City[] | undefined;
   selectedCity: City | undefined;
 
+  /// modal categoria
   visible: boolean = false;
 
+  // formulario ct
+  colores = [
+    { nombre: 'red', hex: '#EF4444' },
+    { nombre: 'orange', hex: '#F97316' },
+    { nombre: 'amber', hex: '#F59E0B' },
+    { nombre: 'yellow', hex: '#EAB308' },
+    { nombre: 'lime', hex: '#84CC16' },
+    { nombre: 'green', hex: '#22C55E' },
+    { nombre: 'emerald', hex: '#10B981' },
+    { nombre: 'teal', hex: '#14B8A6' },
+    { nombre: 'cyan', hex: '#06B6D4' },
+    { nombre: 'sky', hex: '#0EA5E9' },
+    { nombre: 'blue', hex: '#3B82F6' },
+    { nombre: 'indigo', hex: '#6366F1' },
+    { nombre: 'violet', hex: '#8B5CF6' },
+    { nombre: 'purple', hex: '#A855F7' },
+    { nombre: 'fuchsia', hex: '#D946EF' },
+    { nombre: 'pink', hex: '#EC4899' }
+  ];
+
+ 
+
+  selectedColor = this.colores[10];
+  showPalette = false;
+
+
+ togglePalette() {
+  this.showPalette = !this.showPalette;
+}
+
+selectColor(color: { nombre: string; hex: string }) {
+  this.selectedColor = color;
+  this.showPalette = false;
+}
+
+onCustomColorChange(event: any) {
+  const hex = event.target.value;
+  // Si quieres permitir colores fuera de la paleta
+  this.selectedColor = { nombre: 'custom', hex };
+}
+
+submit() {
+  const body = {
+    colorNombre: this.selectedColor.nombre,
+    colorHex: this.selectedColor.hex
+  };
+  console.log('Enviar a la BD:', body);
+  // tuServicio.guardarCategoria(body).subscribe(...)
+}
+
+toggleIconPalette() {
+  this.showPalette = !this.showPalette;
+}
+
+iconList = [
+  { name: 'Folder', class: 'fa-solid fa-folder' },
+  { name: 'Star', class: 'fa-solid fa-star' },
+  { name: 'User', class: 'fa-solid fa-user' },
+  { name: 'Heart', class: 'fa-solid fa-heart' },
+  { name: 'Calendar', class: 'fa-solid fa-calendar' },
+  { name: 'Bell', class: 'fa-solid fa-bell' },
+  { name: 'File', class: 'fa-solid fa-file' },
+  { name: 'Tag', class: 'fa-solid fa-tag' },
+  { name: 'Chart', class: 'fa-solid fa-chart-line' },
+  { name: 'Wallet', class: 'fa-solid fa-wallet' }
+];
+
+filteredIcons = [...this.iconList];
+selectedIcon = this.iconList[0]; // por defecto
+
+
+
+selectIcon(icon: { name: string; class: string }) {
+  this.selectedIcon = icon;
+  this.showPalette = false;
+}
+
+filterIcons(event: Event) {
+  const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+  this.filteredIcons = this.iconList.filter(icon =>
+    icon.name.toLowerCase().includes(searchTerm)
+  );
+}
 
 
    form = signal<FormGroup>({} as FormGroup);
@@ -149,9 +234,11 @@ export default class CursosComponent implements OnInit {
 
 
 
-  showDialog() {
-    this.visible = true;
-  }
+
+    modalCategoria() {
+        this.visible = true;
+    }
+
 
   ngOnInit() {
     this.getCursos();

@@ -17,7 +17,7 @@
               <i class="fas fa-filter absolute left-3 top-2.5 text-gray-400"></i>
           </div>
           <!-- Boton de nuevo curso -->
-          <p-button (click)="showDialog()" icon="pi pi-plus-circle" label="Nuevo Curso" />
+          <!-- <p-button (click)="showDialog()" icon="pi pi-plus-circle" label="Nuevo Curso" /> -->
           <app-modal-curso></app-modal-curso>
 
       </div>
@@ -85,7 +85,7 @@
   <div class="mb-6">
       <div class="flex justify-between items-center mb-4">
           <h3 class="font-semibold">Cursos Recientes</h3>
-          <button class="text-orange-600 text-sm font-medium">Ver todos</button>
+          <!-- <button class="text-orange-600 text-sm font-medium">Ver todos</button> -->
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -136,13 +136,18 @@
   </div>
 
   <!-- Categories Section -->
+  <app-modal-categoria></app-modal-categoria>
+
   <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
       <div class="flex justify-between items-center mb-6">
-          <h3 class="font-semibold">Categorías de Cursos</h3>
+        <div>
+            <h3 class="font-semibold">Categorías de Cursos</h3>
+        </div>
+        <div>
+            <p-button (click)="modalCategoria()" label="Añadir categorías" icon="pi pi-plus-circle"  />
+        </div>  
           <!-- <button class="text-orange-600 text-sm font-medium">Administrar categorías</button> class="text-orange-600 text-sm font-medium" -->
           <!-- boton a qui -->
-           <p-button (click)="showDialog()" label="Añadir categorías" icon="pi pi-plus-circle"  />
-           <app-modal-categoria></app-modal-categoria>
 
       </div>
 
@@ -159,45 +164,17 @@
                  <span [ngClass]="categoria.icono" class="text-xl"></span>
              </div>
              <h4 class="font-medium">{{ categoria.nombre}}</h4>
-             <p class="text-sm text-gray-500 text-center mt-1">32 cursos</p>
+             <p class="text-sm text-gray-500 text-center mt-1">{{ categoria._count}} Cursos</p>
          </div>
         }
         
       </div>
   </div>
 
-  <p-button label="Nueva categoría" icon="pi pi-plus" (click)="cancelar()" styleClass="mb-3" />
+  <!-- <p-button label="Nueva categoría" icon="pi pi-plus" (click)="cancelar()" styleClass="mb-3" /> -->
 
-<!-- 🟦 Tabla con categorías -->
-<p-table [value]="categorias" [loading]="loading" [paginator]="true" [rows]="5">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Nombre</th>
-      <th>Descripción</th>
-      <th>Color</th>
-      <th>Icono</th>
-      <th>Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-cat>
-    <tr>
-      <td>{{ cat.nombre }}</td>
-      <td>{{ cat.descripcion }}</td>
-      <td>
-        <div [style.background]="cat.color" style="width: 20px; height: 20px; border-radius: 50%"></div>
-      </td>
-      <td><i [class]="'pi pi-' + cat.icono"></i> {{ cat.icono }}</td>
-      <td>
-        <p-button icon="pi pi-pencil" (click)="editar(cat)" styleClass="p-button-sm p-button-rounded mr-2" />
-        <!-- <p-button icon="pi pi-trash" (click)="eliminar(cat.id)" severity="danger" styleClass="p-button-sm p-button-rounded" /> -->
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
 
-<!-- 🟩 Diálogo de edición/creación -->
-<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-  <form [formGroup]="form()">
+  <!-- <form [formGroup]="form()">
     <div class="p-fluid">
       <div class="p-field">
         <label for="nombre">Nombre</label>
@@ -219,14 +196,117 @@
         <input pInputText id="icono" formControlName="icono" placeholder="ej: star, heart, tag" />
       </div>
     </div>
-  </form>
+  </form> -->
 
-  <ng-template pTemplate="footer">
-    <!-- <p-button label="Guardar" icon="pi pi-check" (click)="guardar()" [disabled]="!formValido()" /> -->
-    <p-button label="Cancelar" icon="pi pi-times" (click)="cancelar()" severity="secondary" />
-  </ng-template>
-</p-dialog>
+
 
 
   
 </main>
+
+
+
+
+
+  
+    <p-dialog [(visible)]="visible" [modal]="true" >
+        <form class="grid md:grid-cols-2 gap-2 w-[520px]" >
+
+          <div class="mb-5 col-span-2">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Nombre de la categoria</label>
+            <input type="email" id="email" class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  />
+          </div>
+          
+          <div class="mb-5 col-span-2">
+            <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900 ">Descripcion de general</label>
+            <textarea id="descripcion" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " ></textarea>
+          </div>
+
+
+           <div class="mb-5">
+              <label class="block mb-2 text-sm font-medium text-gray-900">Color de categoría </label>
+
+              <div class="relative" id="colorPicker">
+
+                <div (click)="togglePalette()"
+                     class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer">
+
+                        <div class="size-6 rounded-md border border-gray-200"
+                             [ngStyle]="{ 'background-color': selectedColor.hex }"></div>
+
+                        <span class="text-sm text-gray-900 flex-1">{{ selectedColor.hex }}</span>
+
+                        <input 
+                          type="color" 
+                          [value]="selectedColor.hex" 
+                          class="w-0 h-0 opacity-0 absolute" 
+                          id="colorInput"
+                          (change)="onCustomColorChange($event)"
+                        />
+
+                        <label 
+                          for="colorInput" 
+                          class="text-xs text-blue-600 cursor-pointer hover:text-blue-800">
+                          Custom
+                        </label>
+                </div>
+
+                <!-- Paleta de colores -->
+                <div *ngIf="showPalette"
+                     class="absolute z-10 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-   [280px]        grid grid-cols-4 gap-2 transition-all animate-fade-in">
+                  <div *ngFor="let color of colores"
+                       (click)="selectColor(color)"
+                       [ngStyle]="{ 'background-color': color.hex }"
+                       class="w-8 h-8 rounded-md border cursor-pointer hover:scale-105 transition"
+                       [class.ring-2]="color.hex === selectedColor.hex"
+                       [class.ring-blue-500]="color.hex === selectedColor.hex">
+                  </div>
+                </div>
+             </div>
+        </div>
+
+
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-medium text-gray-900">
+                Icono de categoría
+              </label>
+              <div class="relative" id="iconSelector">
+                <!-- Vista seleccionada -->
+                <div (click)="toggleIconPalette()"
+                     class="flex items-center gap-2 p-2.5 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer">
+                  <i [ngClass]="selectedIcon.class" class="w-5 h-5 text-gray-700"></i>
+                  <span class="text-sm text-gray-900 flex-1">{{ selectedIcon.name }}</span>
+                </div>
+            
+                <!-- Paleta de iconos -->
+                <div *ngIf="showPalette"
+                     class="absolute z-10 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-[280px]            transition-all animate-fade-in">
+
+                  <!-- Input búsqueda -->
+                  <div class="mb-2 flex items-center border border-gray-300 rounded-md px-2">
+                    <i class="fa-solid fa-search w-4 h-4 text-gray-400"></i>
+                    <input
+                      type="text"
+                      placeholder="Buscar iconos..."
+                      (input)="filterIcons($event)"
+                      class="w-full p-2 text-sm focus:outline-none"
+                    />
+                  </div>
+              
+                  <!-- Grid de iconos -->
+                  <div class="grid grid-cols-5 gap-2 max-h-[200px] overflow-y-auto">
+                    <div *ngFor="let icon of filteredIcons"
+                         (click)="selectIcon(icon)"
+                         class="p-2 rounded-lg border hover:bg-gray-100 cursor-pointer flex items-center justify-center"
+                         [class.bg-gray-100]="icon.class === selectedIcon.class">
+                      <i [ngClass]="icon.class" class="text-lg"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-end mb-5 col-span-2 ">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer">Guardar</button>
+            </div>
+        </form>
+    </p-dialog>
