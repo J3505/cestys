@@ -14,6 +14,13 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Categoria } from '../../../core/models/categoria';
+import { Modulo } from '../../../core/models/modulo';
+import { Tema } from '../../../core/models/tema';
+import { CategoriaService } from '../../../core/services/categoria.service';
+import { ModuloService } from '../../../core/services/modulo.service';
+import { TemaService } from '../../../core/services/tema.service';
+import { Usuario } from '../../../core/models/usuario';
 
 registerLocaleData(localeEs);
 @Component({
@@ -25,7 +32,7 @@ registerLocaleData(localeEs);
     NgClass,
     CommonModule,
     PaginatorModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './tabla-curso.component.html',
   styleUrl: './tabla-curso.component.scss',
@@ -37,7 +44,18 @@ registerLocaleData(localeEs);
   ],
 })
 export class TablaCursoComponent implements OnInit {
+  // interfaces de los cursos
+  categorias: Categoria[] = [];
+  modulos: Modulo[] = [];
+  temas: Tema[] = [];
   cursos: Curso[] = [];
+
+  // filtro para instructor
+  instructores: Usuario[] = [];
+  instructoresFiltrados: Usuario[] = [];
+
+  /// total de cursos
+  totalCursos: number = 0;
 
   // Variables para el filtrado
   cursosFiltrados: Curso[] = [];
@@ -47,7 +65,7 @@ export class TablaCursoComponent implements OnInit {
   first: number = 0;
   rows: number = 5;
 
-   // Variables para el filtrado
+  // Variables para el filtrado
   filtroNombre: string = '';
   filtroCategoria: string = '';
   filtroInstructor: string = '';
@@ -56,12 +74,16 @@ export class TablaCursoComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private cursoService: CursoService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private categoriaService: CategoriaService,
+    private moduloservice: ModuloService,
+    private temasService: TemaService
   ) {}
 
- ngOnInit() {
+  ngOnInit() {
     this.getCursos();
     this.getUsuario();
+    this.getCategorias();
   }
 
   confirm() {
@@ -99,7 +121,43 @@ export class TablaCursoComponent implements OnInit {
     });
   }
 
- 
+  getUsuario() {
+    this.usuarioService.getUsuarios().subscribe((data) => {
+      // console.log(data);
+    });
+  }
+
+  filtrarInstructores(event: any) {
+    const query = event.query.toLowerCase();
+    this.instructoresFiltrados = this.instructores.filter((instructor) =>
+      `${instructor.nombre} ${instructor.apellido}`
+        .toLowerCase()
+        .includes(query)
+    );
+  }
+
+  getCursos() {
+    this.cursoService.getCursos().subscribe((data: Curso[]) => {
+      this.cursos = data;
+      console.log(this.cursos);
+
+      this.filtrarCursos();
+    });
+  }
+
+  getModulos() {
+    this.moduloservice.getModulos().subscribe((data) => {
+      this.modulos = data;
+    });
+  }
+
+  getTemas(id: number) {
+    this.temasService.getTema(id).subscribe((data) => {
+      this.temas = [data];
+    });
+  }
+
+  // filtros y paginación
   // paginación
   onPageChange(event: PaginatorState) {
     this.first = event.first ?? 0;
@@ -107,48 +165,70 @@ export class TablaCursoComponent implements OnInit {
     this.actualizarCursosPaginados();
   }
 
-  actualizarCursosPaginados() {
-    const start = this.first;
-    const end = this.first + this.rows;
-    this.cursosPaginados = this.cursos.slice(start, end);
+  getCategorias() {
+    this.categoriaService.getCategorias().subscribe((data) => {
+      this.categorias = data.categorias;
+      this.totalCursos = data.total;
+
+      if (this.categorias.length > 0) {
+         this.filtroCategoria = String(this.categorias[0].id);
+        this.filtrarCursos();
+      }
+    });
   }
 
-  
-  getCursos() {
-    this.cursoService.getCursos().subscribe((data) => {
-      this.cursos = data.map((curso: Curso) => ({
-        ...curso,
-        fechaInicio: new Date(curso.fechaInicio),
-        fechaFin: new Date(curso.fechaFin),
-      }));
+  seleccionarCategoria(idCategoria: number) {
+    this.filtroCategoria = String(idCategoria);
+    this.first = 0;
     this.filtrarCursos();
+  }
 
-      console.log(this.cursos);
-    });
+  filtrarPorCategoria(nombreCategoria: string) {
+    if (this.filtroCategoria === nombreCategoria) {
+      this.filtroCategoria = ''; // Quita el filtro si se hace clic otra vez
+    } else {
+      this.filtroCategoria = nombreCategoria;
+    }
+
+    this.filtrarCursos();
   }
 
 
   filtrarCursos() {
-    this.cursosFiltrados = this.cursos.filter((curso) => {
-      const coincideNombre = curso.nombre
-        .toLowerCase()
-        .includes(this.filtroNombre.toLowerCase());
-      const coincideInstructor =
-        curso.instructor?.nombre
-          .toLowerCase()
-          .includes(this.filtroInstructor.toLowerCase()) || false;
+  this.cursosFiltrados = this.cursos.filter((curso: Curso) => {
+    const coincideNombre = this.filtroNombre
+        ? curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase().trim())
+        : true;
+
+      const instructor = curso.instructor as Usuario;
+      const coincideInstructor = this.filtroInstructor
+        ? instructor?.nombre?.toLowerCase().includes(this.filtroInstructor.toLowerCase().trim())
+        : true;
+
       const coincideCategoria = this.filtroCategoria
         ? curso.categoriaId === Number(this.filtroCategoria)
         : true;
+
       return coincideNombre && coincideInstructor && coincideCategoria;
-    });
-    this.actualizarCursosPaginados();
+  });
+
+  this.first = 0;
+  this.actualizarCursosPaginados();
+}
+
+
+
+  actualizarCursosPaginados() {
+    const start = this.first;
+    const end = this.first + this.rows;
+    this.cursosPaginados = this.cursosFiltrados.slice(start, end);
   }
 
-
-  getUsuario() {
-    this.usuarioService.getUsuarios().subscribe((data) => {
-      // console.log(data);
-    });
+  limpiarFiltros() {
+    this.filtroNombre = '';
+    this.filtroCategoria = '';
+    this.filtroInstructor = '';
+    this.first = 0;
+    this.filtrarCursos();
   }
 }

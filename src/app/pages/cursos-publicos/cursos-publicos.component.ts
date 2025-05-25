@@ -33,6 +33,7 @@ export default class CursosPublicosComponent implements OnInit {
   modulos: Modulo[] = [];
   temas: Tema[] = [];
   cursos: Curso[] = [];
+  
   // Variables para el filtrado
   cursosFiltrados: Curso[] = [];
   cursosPaginados: Curso[] = [];
