@@ -136,7 +136,7 @@
   </div>
 
   <!-- Categories Section -->
-  <app-modal-categoria [(visible)]="visible"></app-modal-categoria>
+  <app-modal-categoria [(visible)]="visibleModal" (visibleChange)="cerrarModal()" [categoriaSeleccionada]="categoriaSeleccionada" (categoriaGuardada)="onCategoriaGuardada()"></app-modal-categoria>
 
   <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
       <div class="flex justify-between items-center mb-6">
@@ -144,7 +144,7 @@
             <h3 class="font-semibold">Categorías de Cursos</h3>
         </div>
         <div>
-            <p-button (click)="modalCategoria()" label="Añadir categorías" icon="pi pi-plus-circle"  />
+            <p-button (click)="abrirModalCrear()" label="Añadir categorías" icon="pi pi-plus-circle"  />
             <!-- <app-modal-categoria  ></app-modal-categoria> -->
         </div>  
           <!-- <button class="text-orange-600 text-sm font-medium">Administrar categorías</button> class="text-orange-600 text-sm font-medium" -->
@@ -166,10 +166,27 @@
              </div>
              <h4 class="font-medium">{{ categoria.nombre}}</h4>
              <p class="text-sm text-gray-500 text-center mt-1">{{ categoria._count.cursos}} Cursos</p>
+             <button
+              pButton
+              type="button"
+              label="Editar"
+              class="p-button-outlined p-button-sm mt-2"
+              (click)="abrirModalEditar(categoria)"
+            ></button>
+
+            <button
+  pButton
+  type="button"
+  label="Eliminar"
+  icon="pi pi-trash"
+  class="p-button-danger p-button-sm mt-2 ml-2"
+  (click)="eliminarCategoria(categoria.id)"
+></button>
          </div>
         }
         
       </div>
+      <p-toast></p-toast>
   </div>
 
   <!-- <p-button label="Nueva categoría" icon="pi pi-plus" (click)="cancelar()" styleClass="mb-3" /> -->

@@ -83,95 +83,125 @@ export default class CursosComponent implements OnInit {
   cities: City[] | undefined;
   selectedCity: City | undefined;
 
-  /// modal categoria
-  visible: boolean = false;
+  /// modal categoria Padre
+  visibleModal: boolean = false;
+  categoriaSeleccionada: Categoria | null = null;
 
   // utilidades ini
-  colores: ColorItem[] = [];
-  iconos: IconItem[] = [];
-  filteredIcons: any[] = [];
+  // colores: ColorItem[] = [];
+  // iconos: IconItem[] = [];
+  // filteredIcons: any[] = [];
 
-  showPalette = false;
-  showIconPalette = false;
+  // showPalette = false;
+  // showIconPalette = false;
 
-  selectedColor = { name: 'Sky', hex: '#3B82F6' };
-  selectedIcon = { name: 'Folder', class: 'fa-solid fa-folder' };
+  // selectedColor = { name: 'Sky', hex: '#3B82F6' };
+  // selectedIcon = { name: 'Folder', class: 'fa-solid fa-folder' };
 
   // utilidades fin
 
-  form = signal<FormGroup>({} as FormGroup);
-
-  editId = signal<number | null>(null);
-  editando = computed(() => this.editId() !== null);
-  formValido = computed(() => this.form().valid);
-
   constructor(
-    private fb: FormBuilder,
     private messageService: MessageService,
     private cursoService: CursoService,
-    private categoriaService: CategoriaService,
-    private utilitiService: UtilitiService
-  ) {
-    this.form.set(
-      this.fb.group({
-        nombre: ['', Validators.required],
-        descripcion: ['', Validators.required],
-        color: [''],
-        icono: [''],
-      })
-    );
-
-    effect(() => {
-      console.log('Formulario actualizado', this.form().value);
-    });
-  }
+    private categoriaService: CategoriaService
+  ) {}
 
   ngOnInit() {
     this.getCursos();
     this.getCategorias();
-    // this.getcolores();
-    // this.getIconos();
   }
 
-
-  editar(categoria: Categoria) {
-    this.form().patchValue(categoria);
-    this.editId.set(categoria.id);
-  }
-
-  // eliminar(id: number) {
-  //   this.categoriaService.delete(id);
+  // getHexColor(colorName: string): string {
+  //   return (
+  //     this.colores.find((c) => c.name.toLowerCase() === colorName.toLowerCase())
+  //       ?.hex || '#ccc'
+  //   );
   // }
 
-  cancelar() {
-    this.form().reset();
-    this.editId.set(null);
-  }
-
-  getHexColor(colorName: string): string {
-    return (
-      this.colores.find((c) => c.name.toLowerCase() === colorName.toLowerCase())
-        ?.hex || '#ccc'
-    );
-  }
-
-
   // modal de categorias
-  modalCategoria() {
-    this.visible = true;
-  }
+  // modalCategoria() {
+  //   this.visible = true;
+  // }
 
-  
+  // editarCategoria(categoria: Categoria) {
+  //   this.categoriaSeleccionada = categoria;
+  //   this.visible = true;
+  // }
 
   getCursos() {
-    this.cursoService.getCursos().subscribe((data) => {
-      this.cursos = data;
+    this.cursoService.getCursos().subscribe({
+      next: (data) => {
+        this.cursos = data;
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudieron cargar los cursos',
+        });
+      },
     });
   }
 
   getCategorias() {
-    this.categoriaService.getCategorias().subscribe((data) => {
-      this.categorias = data.categorias;
+    this.categoriaService.getCategorias().subscribe({
+      next: (data) => {
+        this.categorias = data.categorias;
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudieron cargar las categorías',
+        });
+      },
     });
+  }
+
+  abrirModalCrear() {
+    this.categoriaSeleccionada = null;
+    this.visibleModal = true;
+  }
+
+  abrirModalEditar(categoria: Categoria) {
+    this.categoriaSeleccionada = { ...categoria };
+    this.visibleModal = true;
+  }
+
+  cerrarModal() {
+    this.visibleModal = false;
+    this.categoriaSeleccionada = null;
+  }
+
+  onCategoriaGuardada() {
+    this.getCategorias();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: 'Categoría guardada correctamente',
+    });
+    this.cerrarModal();
+  }
+
+  eliminarCategoria(id: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
+      this.categoriaService.deleteCategoria(id).subscribe({
+        next: () => {
+          this.getCategorias();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Éxito',
+            detail: 'Categoría eliminada correctamente',
+          });
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'No se pudo eliminar la categoría',
+          });
+        },
+      });
+    }
   }
 }

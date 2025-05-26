@@ -26,19 +26,19 @@ export class CategoriaService {
   }
 
 
-  getCurso(id: string): Observable<Categoria> {
+  getCategoria(id: number): Observable<Categoria> {
     return this.http.get<Categoria>(`${this.apiUrl}/${id}`);
   }
 
-  createCurso(categoria: Categoria): Observable<Categoria> {
+  createCategoria(categoria: Categoria): Observable<Categoria> {
     return this.http.post<Categoria>(this.apiUrl, categoria);
   }
 
-  updateCategoria(id: string, categoria: Categoria): Observable<Categoria> {
+  updateCategoria(id: number, categoria: Categoria): Observable<Categoria> {
     return this.http.patch<Categoria>(`${this.apiUrl}/${id}`, categoria);
   }
 
-  deleteCategoria(id: string): Observable<void> {
+  deleteCategoria(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
