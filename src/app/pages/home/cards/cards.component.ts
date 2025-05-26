@@ -66,18 +66,6 @@ export  class CardsComponent {
     private categoriaService: CategoriaService 
   ) {
 
-     this.form.set(
-      this.fb.group({
-        nombre: ['', Validators.required],
-        descripcion: ['', Validators.required],
-        color: [''],
-        icono: [''],
-      })
-    );
-    
-    effect(() => {
-      console.log('Formulario actualizado', this.form().value);
-    });
    }
 
 
@@ -97,9 +85,7 @@ export  class CardsComponent {
   //   return this.categoriaService.categorias();
   // }
 
-  get loading() {
-    return this.categoriaService.loading();
-  }
+
 
   guardar() {
     if (!this.formValido()) return;

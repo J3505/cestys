@@ -129,13 +129,10 @@ export default class CursosComponent implements OnInit {
   ngOnInit() {
     this.getCursos();
     this.getCategorias();
-    this.getcolores();
-    this.getIconos();
+    // this.getcolores();
+    // this.getIconos();
   }
 
-  get loading() {
-    return this.categoriaService.loading();
-  }
 
   editar(categoria: Categoria) {
     this.form().patchValue(categoria);
@@ -151,59 +148,20 @@ export default class CursosComponent implements OnInit {
     this.editId.set(null);
   }
 
-  // utilidades ini
-  getcolores() {
-    this.utilitiService.getColors().subscribe((data) => {
-      this.colores = data;
-      // console.log(data);
-      
-    });
-  }
-
-  getIconos() {
-    this.utilitiService.getIcons().subscribe((data) => {
-      this.iconos = data; 
-      
-      this.filteredIcons = data;
-    });
-    console.log("hola");
-  }
-
-  togglePalette() {
-    this.showPalette = !this.showPalette;
-  }
-
-  selectColor(color: any) {
-    this.selectedColor = color;
-    this.showPalette = false;
-  }
-
-  onCustomColorChange(event: Event) {
-    const hex = (event.target as HTMLInputElement).value;
-    this.selectedColor = { name: 'Custom', hex };
-  }
-
-  toggleIconPalette() {
-    this.showIconPalette = !this.showIconPalette;
-  }
-
-  selectIcon(icon: any) {
-    this.selectedIcon = icon;
-    this.showIconPalette = false;
-  }
-
-  filterIcons(event: Event) {
-    const search = (event.target as HTMLInputElement).value.toLowerCase();
-    this.filteredIcons = this.iconos.filter((icon) =>
-      icon.name.toLowerCase().includes(search)
+  getHexColor(colorName: string): string {
+    return (
+      this.colores.find((c) => c.name.toLowerCase() === colorName.toLowerCase())
+        ?.hex || '#ccc'
     );
   }
-  //  utilidades fin
+
 
   // modal de categorias
   modalCategoria() {
     this.visible = true;
   }
+
+  
 
   getCursos() {
     this.cursoService.getCursos().subscribe((data) => {

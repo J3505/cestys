@@ -1,6 +1,6 @@
 [
   { "name": "Red", "hex": "#EF4444" },
-  { "name": "Orange", "hex": "#F97316" },
+  { "name": "Orange", "hex": "#f97316"},
   { "name": "Amber", "hex": "#F59E0B" },
   { "name": "Yellow", "hex": "#EAB308" },
   { "name": "Lime", "hex": "#84CC16" },
