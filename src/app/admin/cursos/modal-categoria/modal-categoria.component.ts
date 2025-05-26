@@ -166,50 +166,6 @@ export class ModalCategoriaComponent {
     });
   }
 
-  // crud
-  // guardarCategoria() {
-  //   if (this.formCategoria.invalid) {
-  //     this.formCategoria.markAllAsTouched();
-  //     return;
-  //   }
-
-  //   const categoria: Categoria = {
-  //     id: this.categoriaSeleccionada?.id || 0,
-  //     nombre: this.formCategoria.value.nombre,
-  //     descripcion: this.formCategoria.value.descripcion,
-  //     color: this.formCategoria.value.color,
-  //     icono: this.formCategoria.value.icono,
-  //     _count: this.categoriaSeleccionada?._count || { cursos: 0 },
-  //   };
-
-  //   const action = this.categoriaSeleccionada
-  //     ? this.categoriaService.updateCategoria(categoria.id, categoria)
-  //     : this.categoriaService.createCategoria(categoria);
-
-  //   action.subscribe({
-  //     next: () => {
-  //       this.visible = false;
-  //       this.visibleChange.emit(false);
-  //       this.categoriaGuardada.emit();
-  //       this.formCategoria.reset();
-  //       this.selectedColor = { name: 'Sky', hex: '#3B82F6' };
-  //       this.selectedIcon = { name: 'Folder', class: 'fa-solid fa-folder' };
-  //       this.messageService.add({
-  //         severity: 'success',
-  //         summary: 'Éxito',
-  //         detail: 'Categoría guardada correctamente',
-  //       });
-  //     },
-  //     error: (err) => {
-  //       console.error('Error al guardar', err);
-  //       this.messageService.add({
-  //         severity: 'error',
-  //         summary: 'Error',
-  //         detail: 'No se pudo guardar la categoría',
-  //       });
-  //     },
-  //   });
-  // }
   guardarCategoria() {
     if (this.formCategoria.invalid) {
       this.formCategoria.markAllAsTouched();

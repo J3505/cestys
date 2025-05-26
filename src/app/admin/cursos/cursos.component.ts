@@ -13,7 +13,7 @@ import { Select } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { CommonModule, NgClass } from '@angular/common';
 
 import { CursoService } from '../../core/services/curso.service';
@@ -31,6 +31,7 @@ import { TablaCursoComponent } from './tabla-curso/tabla-curso.component';
 import { ColorItem } from '../../core/models/colorItem';
 import { IconItem } from '../../core/models/IconItem';
 import { UtilitiService } from '../../core/services/utiliti.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 // interface PrimeNgUploadEvent {
 //   originalEvent: HttpEvent<any>;
@@ -50,28 +51,29 @@ interface City {
   selector: 'app-cursos',
   imports: [
     // Dialog,
-    ButtonModule,
+
     InputTextModule,
     FormsModule,
     TextareaModule,
     ToastModule,
-    ButtonModule,
     NgClass,
     TableModule,
-    ButtonModule,
     DialogModule,
-    InputTextModule,
     ColorPickerModule,
     ReactiveFormsModule,
     ModalCategoriaComponent,
     ModalCursoComponent,
     TablaCursoComponent,
+    ConfirmDialogModule,
     CommonModule,
+    ButtonModule,
+
+
   ],
   // FileUpload,
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.scss',
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
 })
 export default class CursosComponent implements OnInit {
   // implements OnInit
@@ -103,7 +105,8 @@ export default class CursosComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private cursoService: CursoService,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
@@ -184,24 +187,51 @@ export default class CursosComponent implements OnInit {
   }
 
   eliminarCategoria(id: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
-      this.categoriaService.deleteCategoria(id).subscribe({
-        next: () => {
-          this.getCategorias();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Éxito',
-            detail: 'Categoría eliminada correctamente',
-          });
-        },
-        error: (err) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'No se pudo eliminar la categoría',
-          });
-        },
-      });
-    }
+    console.log('no sale nada', this.eliminarCategoria);
+    
+    this.confirmationService.confirm({
+      header: 'Confirmar eliminación',
+      message: '¿Estás seguro de que deseas eliminar esta categoría?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptButtonProps: {
+        label: 'Eliminar',
+        icon: 'pi pi-check',
+        severity: 'danger',
+      },
+      rejectButtonProps: {
+        label: 'Cancelar',
+        icon: 'pi pi-times',
+        outlined: true,
+      },
+      accept: () => {
+        this.categoriaService.deleteCategoria(id).subscribe({
+          next: () => {
+            this.getCategorias();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Categoría eliminada correctamente',
+              life: 3000,
+            });
+          },
+          error: () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'No se pudo eliminar la categoría',
+              life: 3000,
+            });
+          },
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Cancelado',
+          detail: 'Eliminación cancelada',
+          life: 3000,
+        });
+      },
+    });
   }
 }
