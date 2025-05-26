@@ -193,14 +193,8 @@
     <p-confirmDialog />
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       @for(categoria of categorias; track categoria.id){
-      <div
-        class="p-4 rounded-xl flex flex-col items-center transition cursor-pointer"
-        [ngStyle]="{ 'background-color': categoria.color }"
-      >
-        <div
-          class="w-12 h-12 rounded-full flex items-center justify-center mb-3"
-          [ngStyle]="{ 'background-color': categoria.color, color: 'white' }"
-        >
+      <div class="p-4  bg-gray-50 rounded-xl flex flex-col items-center hover:bg-gray-100 transition cursor-pointer">
+        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3" >
           <!-- <i class="fas text-xl" [ngClass]="categoria.icono"></i> -->
           <span [ngClass]="categoria.icono" class="text-xl"></span>
         </div>
@@ -219,7 +213,7 @@
         <button
           pButton
           type="button"
-          label="Eliminar dddd"
+          label="Eliminar"
           icon="pi pi-trash"
           class="p-button-danger p-button-sm mt-2 ml-2"
           (click)="eliminarCategoria(categoria.id)"
