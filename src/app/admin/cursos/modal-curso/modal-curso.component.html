@@ -320,6 +320,7 @@
         <div *ngIf="modulos.length === 0" class="text-gray-500">
           No hay módulos asignados.
         </div>
+
         <div formArrayName="modulos">
           <div
             *ngFor="let modulo of modulos.controls; let i = index"
@@ -358,7 +359,6 @@
                 [formGroupName]="j"
                 class="mb-2 ml-4 flex items-center gap-2"
               >
-                {{ modulo.get("temas") | json }}
                 <div class="flex-1">
                   <label
                     for="tema-nombre-{{ i }}-{{ j }}"
@@ -392,6 +392,13 @@
                   class="p-button-text"
                 />
               </div>
+              <!-- Add button to add a new topic -->
+              <p-button
+                label="Agregar Tema"
+                icon="pi pi-plus"
+                (click)="addTema(i)"
+                class="p-button-outlined mt-2"
+              />
             </div>
             <div class="flex justify-end">
               <p-button
@@ -408,6 +415,7 @@
           icon="pi pi-plus"
           (click)="addModulo()"
           class="p-button-outlined"
+          *ngIf="modulos.length < 5"
         />
       </div>
     </div>
@@ -427,7 +435,6 @@
         [disabled]="formCurso.invalid"
       >
         Guardar
-        
       </button>
     </div>
   </form>

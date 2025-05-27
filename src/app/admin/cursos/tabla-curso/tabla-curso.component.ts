@@ -224,11 +224,21 @@ export class TablaCursoComponent implements OnInit {
     this.cursosPaginados = this.cursosFiltrados.slice(start, end);
   }
 
-  limpiarFiltros() {
-    this.filtroNombre = '';
-    this.filtroCategoria = '';
-    this.filtroInstructor = '';
-    this.first = 0;
-    this.filtrarCursos();
+  eliminarCurso(curso: Curso) {
+    this.confirmationService.confirm({
+      message: `¿Estás seguro de que quieres eliminar el curso "${curso.nombre}"?`,
+      header: 'Confirmación',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.cursoService.deleteCurso(curso.id).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Éxito',
+            detail: `Curso "${curso.nombre}" eliminado correctamente.`,
+          });
+          this.getCursos();
+        });
+      },
+    });
   }
 }

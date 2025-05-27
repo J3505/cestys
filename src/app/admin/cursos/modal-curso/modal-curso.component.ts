@@ -32,6 +32,7 @@ import { UsuarioService } from '../../../core/services/usuario.service';
 import { Usuario } from '../../../core/models/usuario';
 import { CursoService } from '../../../core/services/curso.service';
 import { Modulo } from '../../../core/models/modulo';
+import { Tema } from '../../../core/models/tema';
 
 @Component({
   selector: 'app-modal-curso',
@@ -124,6 +125,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
   getTemas(moduloIndex: number): FormArray {
     return this.modulos.at(moduloIndex).get('temas') as FormArray;
   }
+
   get modulos(): FormArray {
     return this.formCurso.get('modulos') as FormArray;
   }
@@ -144,8 +146,8 @@ export class ModalCursoComponent implements OnInit, OnChanges {
         nombre: ['', Validators.required],
       })
     );
+    console.log(`Temas for module ${moduloIndex}:`, temas.value);
   }
-
   removeModulo(index: number) {
     this.modulos.removeAt(index);
   }
@@ -219,7 +221,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
               create: {
                 nombre: modulo.nombre,
                 temas: {
-                  create: modulo.temas.map((tema: any) => ({
+                  create: modulo.temas.map((tema: Tema) => ({
                     nombre: tema.nombre,
                   })),
                 },
@@ -227,7 +229,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
               update: {
                 nombre: modulo.nombre,
                 temas: {
-                  upsert: modulo.temas.map((tema: any) => ({
+                  upsert: modulo.temas.map((tema: Tema) => ({
                     where: { id: tema.id || 0 },
                     create: { nombre: tema.nombre },
                     update: { nombre: tema.nombre },
@@ -237,7 +239,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
             })),
           }
         : {
-            create: this.modulos.value.map((modulo: any) => ({
+            create: this.modulos.value.map((modulo: Modulo) => ({
               nombre: modulo.nombre,
               temas: {
                 create: modulo.temas.map((tema: any) => ({
@@ -247,10 +249,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
             })),
           },
     };
-    console.log(
-      'Datos enviados al backend:',
-      JSON.stringify(cursoData, null, 2)
-    );
+    console.log('Curso Data to Backend:', JSON.stringify(cursoData, null, 2));
 
     const cursoServiceCall = this.cursoSeleccionado
       ? this.cursoService.updateCurso(this.cursoSeleccionado.id, cursoData)
@@ -282,11 +281,11 @@ export class ModalCursoComponent implements OnInit, OnChanges {
   }
 
   cerrarModal() {
-  this.formCurso.reset();
-  this.formCurso.setControl('modulos', this.fb.array([]));
-  this.visible = false;
-  this.visibleChange.emit(false);
-}
+    this.formCurso.reset();
+    this.formCurso.setControl('modulos', this.fb.array([]));
+    this.visible = false;
+    this.visibleChange.emit(false);
+  }
 
   private markAllControlsAsTouched(group: FormGroup | FormArray) {
     Object.values(group.controls).forEach((control) => {
