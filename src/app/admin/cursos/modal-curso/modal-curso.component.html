@@ -1,55 +1,366 @@
-<!-- Modal de productos -->
-
 <p-dialog
-  header="Crear nuevo curso."
-  class="items-center"
-  [modal]="true"
   [(visible)]="visible"
-  [style]="{ width: '25rem' }"
+  [modal]="true"
+  [closable]="true"
+  (onHide)="cerrarModal()"
+  header="{{ cursoSeleccionado ? 'Editar Curso' : 'Crear Curso' }}"
 >
-  <div class="items-center gap-4 mb-4 hidden">
-    <input pInputText id="id" class="flex-auto" />
-  </div>
+  <form
+    [formGroup]="formCurso"
+    (ngSubmit)="guardarCurso()"
+    class="grid md:grid-cols-3 gap-2 w-[825px]"
+  >
+    <!-- Imagen -->
+    <div class="mb-5 col-span-3">
+      <label for="imagen" class="block mb-2 text-sm font-medium text-gray-900"
+        >Imagen</label
+      >
+      <input
+        type="text"
+        id="imagen"
+        formControlName="imagen"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('imagen')?.invalid && formCurso.get('imagen')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          formCurso.get('imagen')?.invalid && formCurso.get('imagen')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        La URL de la imagen es requerida.
+      </div>
+    </div>
 
-  <div class="flex items-center gap-4 mb-4">
-    <label for="categoria" class="font-semibold w-24">Categoria</label>
-    <p-treeselect
-      class="md:w-80 w-full"
-      containerStyleClass="w-full"
-      [(ngModel)]="selectedNodes"
-      [options]="nodes"
-      placeholder="Select Item"
-    />
-  </div>
+    <!-- Nombre -->
+    <div class="mb-5 col-span-3">
+      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900"
+        >Nombre del curso</label
+      >
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('nombre')?.invalid && formCurso.get('nombre')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          formCurso.get('nombre')?.invalid && formCurso.get('nombre')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        El nombre del curso es requerido.
+      </div>
+    </div>
 
-  <div class="flex items-center gap-4 mb-4">
-    <label for="username" class="font-semibold w-24">Nombre</label>
-    <input pInputText id="username" class="flex-auto" autocomplete="off" />
-  </div>
+    <!-- Descripción -->
+    <div class="mb-5 col-span-3">
+      <label
+        for="descripcion"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Descripción general</label
+      >
+      <textarea
+        id="descripcion"
+        rows="4"
+        formControlName="descripcion"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('descripcion')?.invalid &&
+            formCurso.get('descripcion')?.touched
+        }"
+      ></textarea>
+      <div
+        *ngIf="
+          formCurso.get('descripcion')?.invalid &&
+          formCurso.get('descripcion')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        La descripción es requerida.
+      </div>
+    </div>
 
-  <div class="flex items-center gap-4 mb-4">
-    <label for="descripcion" class="font-semibold w-24">Descripcion</label>
-    <textarea
-      rows="5"
-      cols="30"
-      pTextarea
-      class="flex-auto"
-      [(ngModel)]="value"
-    ></textarea>
-  </div>
-  <!--
-      <div class="card flex justify-center">
-        <p-toast />
-        <p-fileupload mode="basic" name="demo[]" chooseIcon="pi pi-upload" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse" />
-    </div> -->
+    <!-- Fecha de Inicio -->
+    <div class="mb-5">
+      <label
+        for="fechaInicio"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Fecha de inicio</label
+      >
+      <input
+        type="date"
+        id="fechaInicio"
+        formControlName="fechaInicio"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('fechaInicio')?.invalid &&
+            formCurso.get('fechaInicio')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          formCurso.get('fechaInicio')?.invalid &&
+          formCurso.get('fechaInicio')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        La fecha de inicio es requerida.
+      </div>
+    </div>
 
-  <div class="flex items-center gap-4 mb-8">
-    <label for="email" class="font-semibold w-24">Email</label>
-    <input pInputText id="email" class="flex-auto" autocomplete="off" />
-  </div>
+    <!-- Fecha de Fin -->
+    <div class="mb-5">
+      <label for="fechaFin" class="block mb-2 text-sm font-medium text-gray-900"
+        >Fecha de finalización</label
+      >
+      <input
+        type="date"
+        id="fechaFin"
+        formControlName="fechaFin"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('fechaFin')?.invalid &&
+            formCurso.get('fechaFin')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          formCurso.get('fechaFin')?.invalid &&
+          formCurso.get('fechaFin')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        La fecha de finalización es requerida.
+      </div>
+    </div>
 
-  <div class="flex justify-end gap-2">
-    <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-    <p-button label="Guardar" (click)="visible = false" />
-  </div>
+    <!-- Horas -->
+    <div class="mb-5">
+      <label for="horas" class="block mb-2 text-sm font-medium text-gray-900"
+        >Horas totales</label
+      >
+      <input
+        type="number"
+        id="horas"
+        formControlName="horas"
+        min="1"
+        step="1"
+        placeholder="250 horas"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('horas')?.invalid && formCurso.get('horas')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          formCurso.get('horas')?.invalid && formCurso.get('horas')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        Las horas deben ser un número mayor a 0.
+      </div>
+    </div>
+
+    <!-- Precio -->
+    <div class="mb-5">
+      <label for="precio" class="block mb-2 text-sm font-medium text-gray-900"
+        >Precio de inscripción</label
+      >
+      <input
+        type="number"
+        id="precio"
+        formControlName="precio"
+        min="0"
+        step="0.01"
+        placeholder="S/. 150.00"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('precio')?.invalid && formCurso.get('precio')?.touched
+        }"
+      />
+    </div>
+
+    <!-- Descuento -->
+    <div class="mb-5">
+      <label
+        for="descuento"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Descuento del curso</label
+      >
+      <input
+        type="number"
+        id="descuento"
+        formControlName="descuento"
+        min="0"
+        max="100"
+        step="0.01"
+        placeholder="S/. 10.00"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('descuento')?.invalid &&
+            formCurso.get('descuento')?.touched
+        }"
+      />
+    </div>
+
+    <!-- Estado -->
+    <div class="mb-5">
+      <label for="estado" class="block mb-2 text-sm font-medium text-gray-900"
+        >Estado del curso</label
+      >
+      <select
+        id="estado"
+        formControlName="estado"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('estado')?.invalid && formCurso.get('estado')?.touched
+        }"
+      >
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+        <option value="Proximamente">Próximamente</option>
+      </select>
+      <div
+        *ngIf="
+          formCurso.get('estado')?.invalid && formCurso.get('estado')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        El estado es requerido.
+      </div>
+    </div>
+
+    <!-- Categoría -->
+    <div class="mb-5">
+      <label
+        for="categoriaId"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Categoría</label
+      >
+      <select
+        id="categoriaId"
+        formControlName="categoriaId"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('categoriaId')?.invalid &&
+            formCurso.get('categoriaId')?.touched
+        }"
+      >
+        <option value="">Seleccione una categoría</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{ categoria.nombre }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          formCurso.get('categoriaId')?.invalid &&
+          formCurso.get('categoriaId')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        La categoría es requerida.
+      </div>
+    </div>
+
+    <!-- Instructor -->
+    <div class="mb-5">
+      <label
+        for="instructorId"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Instructor</label
+      >
+      <select
+        id="instructorId"
+        formControlName="instructorId"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [ngClass]="{
+          'border-red-500':
+            formCurso.get('instructorId')?.invalid &&
+            formCurso.get('instructorId')?.touched
+        }"
+      >
+        <option value="">Seleccione un instructor</option>
+        <option *ngFor="let instructor of instructores" [value]="instructor.id">
+          {{ instructor.nombre }} {{ instructor.apellido }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          formCurso.get('instructorId')?.invalid &&
+          formCurso.get('instructorId')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        El instructor es requerido.
+      </div>
+    </div>
+
+    <!-- Lista de Módulos -->
+    <div class="mb-5 col-span-3">
+      <label class="block mb-2 text-sm font-medium text-gray-900"
+        >Módulos del curso</label
+      >
+      <div class="border p-4 rounded-lg">
+        <div *ngIf="modulos.length === 0" class="text-gray-500">
+          No hay módulos asignados.
+        </div>
+        <div
+          *ngFor="let modulo of modulos; let i = index"
+          class="flex justify-between items-center mb-2"
+        >
+          <span>{{ modulo.nombre }}</span>
+          <div>
+            <p-button
+              icon="pi pi-pencil"
+              severity="secondary"
+              (click)="abrirModalModulo(modulo)"
+            />
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              (click)="eliminarModulo(i)"
+            />
+          </div>
+        </div>
+        <p-button
+          label="Agregar Módulo"
+          icon="pi pi-plus"
+          (click)="abrirModalModulo()"
+        />
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex justify-end gap-2 col-span-3">
+      <p-button label="Cancelar" severity="secondary" (click)="cerrarModal()" />
+      <p-button label="Guardar" type="submit" [disabled]="formCurso.invalid" />
+    </div>
+  </form>
+
+  <!-- Modal de Módulos -->
+  <app-modal-modulo
+    [(visible)]="visibleModalModulo"
+    [moduloSeleccionado]="moduloSeleccionado"
+    [cursoId]="cursoSeleccionado ? cursoSeleccionado.id : null"
+    (moduloGuardado)="onModuloGuardado($event)"
+    (visibleChange)="visibleModalModulo = false"
+  ></app-modal-modulo>
 </p-dialog>
+
+<p-toast />

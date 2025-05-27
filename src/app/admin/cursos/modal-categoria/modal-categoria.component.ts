@@ -69,10 +69,6 @@ export class ModalCategoriaComponent {
       color: ['', Validators.required],
       icono: ['', Validators.required],
     });
-
-    // if (this.categoriaSeleccionada) {
-    //   this.formCategoria.patchValue(this.categoriaSeleccionada);
-    // }
   }
 
   ngOnChanges(changes: SimpleChanges) {

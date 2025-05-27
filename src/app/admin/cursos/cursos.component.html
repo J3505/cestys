@@ -20,9 +20,36 @@
         </select>
         <i class="fas fa-filter absolute left-3 top-2.5 text-gray-400"></i>
       </div>
-      <!-- Boton de nuevo curso -->
-      <!-- <p-button (click)="showDialog()" icon="pi pi-plus-circle" label="Nuevo Curso" /> -->
-      <app-modal-curso></app-modal-curso>
+      <!-- Boton de crear nuevo curso -->
+      <p-button  icon="pi pi-plus-circle" label="Nuevo Curso" (click)="abrirModalCrearCurso()"/>
+      <app-modal-curso 
+        [(visible)]="visibleModalCurso"
+        (visibleChange)="cerrarModalCurso()"
+        [cursoSeleccionado]="cursoSeleccionado"
+        (cursoGuardado)="onCursoGuardado()"
+      
+      ></app-modal-curso>
+
+      <p-button  icon="pi pi-plus-circle" label="Nuevo Modulo" (click)="abrirModalCrearModulo()"/>
+
+      <!-- Modal de Módulos -->
+        
+
+      <!-- <app-modal-modulo 
+        [(visible)]="visibleModalModulo"
+        (visibleChange)="cerrarModalModulo()"
+        [moduloSeleccionado]="moduloSeleccionado"
+        (moduloGuardado)="onModuloGuardado()"
+      ></app-modal-modulo> -->
+
+      <!-- <p-button  icon="pi pi-plus-circle" label="Nuevo Tema" (click)="abrirModalCrearTema()"/>
+
+      <app-modal-tema 
+        [(visible)]="visibleModalTema"
+        (visibleChange)="cerrarModalTema()"
+        [temaSeleccionado]="temaSeleccionado"
+        (temaGuardado)="onTemaGuardado()"
+      ></app-modal-tema> -->
     </div>
   </div>
 

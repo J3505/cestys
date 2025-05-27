@@ -3,13 +3,8 @@ import { Component, computed, effect, OnInit, signal } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
-import { Select } from 'primeng/select';
+import { FormsModule } from '@angular/forms';
+
 import { TextareaModule } from 'primeng/textarea';
 
 import { ToastModule } from 'primeng/toast';
@@ -28,20 +23,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalCategoriaComponent } from './modal-categoria/modal-categoria.component';
 import { ModalCursoComponent } from './modal-curso/modal-curso.component';
 import { TablaCursoComponent } from './tabla-curso/tabla-curso.component';
-import { ColorItem } from '../../core/models/colorItem';
-import { IconItem } from '../../core/models/IconItem';
-import { UtilitiService } from '../../core/services/utiliti.service';
+
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Modulo } from '../../core/models/modulo';
+import { Tema } from '../../core/models/tema';
+import { ModalModuloComponent } from "./modal-modulo/modal-modulo.component";
+import { ModalTemaComponent } from "./modal-tema/modal-tema.component";
 
-// interface PrimeNgUploadEvent {
-//   originalEvent: HttpEvent<any>;
-//   files: File[];
-// }
-
-// interface UploadEvent {
-//   originalEvent: HttpEvent<any>;
-//   files: File[];
-// }
 interface City {
   name: string;
   code: string;
@@ -50,8 +38,6 @@ interface City {
 @Component({
   selector: 'app-cursos',
   imports: [
-    // Dialog,
-
     InputTextModule,
     FormsModule,
     TextareaModule,
@@ -67,9 +53,9 @@ interface City {
     ConfirmDialogModule,
     CommonModule,
     ButtonModule,
-
-
   ],
+  // ModalModuloComponent,
+  // ModalTemaComponent
   // FileUpload,
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.scss',
@@ -89,18 +75,18 @@ export default class CursosComponent implements OnInit {
   visibleModal: boolean = false;
   categoriaSeleccionada: Categoria | null = null;
 
-  // utilidades ini
-  // colores: ColorItem[] = [];
-  // iconos: IconItem[] = [];
-  // filteredIcons: any[] = [];
+  // modal curso padre
+  cursoSeleccionado: Curso | null = null;
+  visibleModalCurso: boolean = false;
 
-  // showPalette = false;
-  // showIconPalette = false;
+  // modal modulo
+  moduloSeleccionado: Modulo | null = null;
+  visibleModalModulo: boolean = false;
 
-  // selectedColor = { name: 'Sky', hex: '#3B82F6' };
-  // selectedIcon = { name: 'Folder', class: 'fa-solid fa-folder' };
 
-  // utilidades fin
+  // modal tema
+  temaSeleccionado: Tema | null = null;
+  visibleModalTema: boolean = false;
 
   constructor(
     private messageService: MessageService,
@@ -113,23 +99,6 @@ export default class CursosComponent implements OnInit {
     this.getCursos();
     this.getCategorias();
   }
-
-  // getHexColor(colorName: string): string {
-  //   return (
-  //     this.colores.find((c) => c.name.toLowerCase() === colorName.toLowerCase())
-  //       ?.hex || '#ccc'
-  //   );
-  // }
-
-  // modal de categorias
-  // modalCategoria() {
-  //   this.visible = true;
-  // }
-
-  // editarCategoria(categoria: Categoria) {
-  //   this.categoriaSeleccionada = categoria;
-  //   this.visible = true;
-  // }
 
   getCursos() {
     this.cursoService.getCursos().subscribe({
@@ -161,6 +130,75 @@ export default class CursosComponent implements OnInit {
     });
   }
 
+  //  Modulo inicializar
+  abrirModalCrearModulo(){
+    this.visibleModalModulo = true;
+    this.moduloSeleccionado = null;
+
+  }
+
+  cerrarModalModulo() {
+    this.visibleModalModulo = false;
+    this.moduloSeleccionado = null;
+  }
+  onModuloGuardado() {
+    this.getCursos();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: 'Módulo guardado correctamente',
+    });
+    this.cerrarModalModulo();
+  }
+  // Modulo fin
+
+  //  Tema inicializar
+  abrirModalCrearTema(){
+    this.visibleModalTema = true;
+    this.temaSeleccionado = null;
+
+  }
+
+  cerrarModalTema() {
+    this.visibleModalTema = false;
+    this.temaSeleccionado = null;
+  }
+
+  onTemaGuardado() {
+    this.getCategorias();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: 'Tema guardado correctamente',
+    });
+    this.cerrarModalTema();
+  }
+  // Tema fin
+
+  //  boton para crear curso inicializar
+  abrirModalCrearCurso(){
+    this.visibleModalCurso = true;
+    this.cursoSeleccionado = null;
+
+  }
+
+  cerrarModalCurso() {
+    this.visibleModalCurso = false;
+    this.cursoSeleccionado = null;
+  }
+
+  onCursoGuardado() {
+    this.getCursos();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: 'Curso  guardado correctamente',
+    });
+    this.cerrarModalCurso();
+  }
+  //  boton para crear curso fin
+
+  /// boton para categoria
   abrirModalCrear() {
     this.categoriaSeleccionada = null;
     this.visibleModal = true;
@@ -187,8 +225,7 @@ export default class CursosComponent implements OnInit {
   }
 
   eliminarCategoria(id: number) {
-    console.log('no sale nada', this.eliminarCategoria);
-    
+    // console.log('no sale nada', this.eliminarCategoria);
     this.confirmationService.confirm({
       header: 'Confirmar eliminación',
       message: '¿Estás seguro de que deseas eliminar esta categoría?',

@@ -1,6 +1,4 @@
 
-import { Curso } from './curso';
-import { CategoriaCurso } from './models/categoria.enum';
 
 export const CURSOS: Curso [] = [
   {

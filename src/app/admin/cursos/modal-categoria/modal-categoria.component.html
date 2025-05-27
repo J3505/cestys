@@ -1,5 +1,14 @@
-<p-dialog [(visible)]="visible" [modal]="true" [closable]="true" (onHide)="onDialogHide()">
-  <form class="grid md:grid-cols-2 gap-2 w-[520px] " [formGroup]="formCategoria" (ngSubmit)="guardarCategoria()" >
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [closable]="true"
+  (onHide)="onDialogHide()"
+>
+  <form
+    class="grid md:grid-cols-2 gap-2 w-[520px]"
+    [formGroup]="formCategoria"
+    (ngSubmit)="guardarCategoria()"
+  >
     <div class="mb-5 col-span-2">
       <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900"
         >Nombre de la categoria</label
@@ -9,18 +18,25 @@
         id="nombre"
         formControlName="nombre"
         class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-
         [ngClass]="{
-        'border-red-500 focus:ring-red-500 focus:border-red-500': formCategoria.get('nombre')?.invalid && formCategoria.get('nombre')?.touched,
-        'border-gray-300': !(formCategoria.get('nombre')?.invalid && formCategoria.get('nombre')?.touched)
-      }"
+          'border-red-500 focus:ring-red-500 focus:border-red-500':
+            formCategoria.get('nombre')?.invalid &&
+            formCategoria.get('nombre')?.touched,
+          'border-gray-300': !(
+            formCategoria.get('nombre')?.invalid &&
+            formCategoria.get('nombre')?.touched
+          )
+        }"
       />
-       <p
-      *ngIf="formCategoria.get('nombre')?.invalid && formCategoria.get('nombre')?.touched"
-      class="text-red-600 text-xs mt-1"
-    >
-      El nombre es obligatorio.
-    </p>
+      <p
+        *ngIf="
+          formCategoria.get('nombre')?.invalid &&
+          formCategoria.get('nombre')?.touched
+        "
+        class="text-red-600 text-xs mt-1"
+      >
+        El nombre es obligatorio.
+      </p>
     </div>
 
     <div class="mb-5 col-span-2">
@@ -34,17 +50,26 @@
         rows="4"
         formControlName="descripcion"
         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-         [ngClass]="{
-        'border-red-500 focus:ring-red-500 focus:border-red-500': formCategoria.get('descripcion')?.invalid && formCategoria.get('descripcion')?.touched,
-        'border-gray-300': !(formCategoria.get('descripcion')?.invalid && formCategoria.get('descripcion')?.touched)
-      }"
+        
+        [ngClass]="{
+          'border-red-500 focus:ring-red-500 focus:border-red-500':
+            formCategoria.get('descripcion')?.invalid &&
+            formCategoria.get('descripcion')?.touched,
+          'border-gray-300': !(
+            formCategoria.get('descripcion')?.invalid &&
+            formCategoria.get('descripcion')?.touched
+          )
+        }"
       ></textarea>
       <p
-      *ngIf="formCategoria.get('descripcion')?.invalid && formCategoria.get('descripcion')?.touched"
-      class="text-red-600 text-xs mt-1"
-    >
-      La descripción es obligatoria.
-    </p>
+        *ngIf="
+          formCategoria.get('descripcion')?.invalid &&
+          formCategoria.get('descripcion')?.touched
+        "
+        class="text-red-600 text-xs mt-1"
+      >
+        La descripción es obligatoria.
+      </p>
     </div>
 
     <div class="mb-5">
@@ -84,9 +109,8 @@
         </div>
 
         <!-- Paleta de colores -->
-         <!-- showPalette -->
+        <!-- showPalette -->
         <div
-
           *ngIf="showPalette"
           class="absolute z-10 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w- [280px] grid grid-cols-4 gap-2 transition-all animate-fade-in"
         >

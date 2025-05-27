@@ -1,0 +1,71 @@
+<!-- Modal de productos -->
+
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [closable]="true"
+  (onHide)="onDialogHide()"
+>
+  <form class="grid md:grid-cols-3 gap-2 w-[825px]">
+    <div class="mb-5 col-span-3">
+      <label for="imagen" class="block mb-2 text-sm font-medium text-gray-900"
+        >Imagen</label
+      >
+      <input
+        type="text"
+        id="imagen"
+        formControlName="imagen"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      />
+    </div>
+
+    <div class="mb-5 col-span-3">
+      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900"
+        >Nombre del curso</label
+      >
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      />
+    </div>
+
+    <div class="mb-5 col-span-3">
+      <label
+        for="descripcion"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Descripcion de general</label
+      >
+      <textarea
+        id="descripcion"
+        rows="4"
+        formControlName="descripcion"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+      ></textarea>
+    </div>
+
+    <div class="mb-5">
+      <label for="estado" class="block mb-2 text-sm font-medium text-gray-900"
+        >Estado del curso</label
+      >
+      <select
+        name="estado"
+        id="estado"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+        <option value="Proximamente">Próximamente</option>
+      </select>
+    </div>
+  </form>
+  <div class="items-center gap-4 mb-4 hidden">
+    <input pInputText id="id" class="flex-auto" />
+  </div>
+
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+    <p-button label="Guardar" (click)="visible = false" />
+  </div>
+</p-dialog>

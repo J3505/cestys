@@ -139,7 +139,7 @@ export class TablaCursoComponent implements OnInit {
   getCursos() {
     this.cursoService.getCursos().subscribe((data: Curso[]) => {
       this.cursos = data;
-      console.log(this.cursos);
+      // console.log(this.cursos);
 
       this.filtrarCursos();
     });

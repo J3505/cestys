@@ -23,20 +23,12 @@ export class CursoService {
     return this.http.get<Curso>(`${this.apiUrl}/${id}`);
   }
 
-  // Método para obtener instructores (necesario para el formulario)
-  getInstructores(): Observable<{ id: string; nombre: string; email: string }[]> {
-    return this.http.get<{ id: string; nombre: string; email: string }[]>(
-      `${environment.apiUrl}/usuario?rol=Instructor`,
-      { withCredentials: true }
-    );
-  }
-
 
   createCurso(curso: Curso): Observable<Curso> {
     return this.http.post<Curso>(this.apiUrl, curso);
   }
 
-  updateCurso(id: string, curso: Curso): Observable<Curso> {
+  updateCurso(id: string, curso: Partial<Curso>): Observable<Curso> {
     return this.http.put<Curso>(`${this.apiUrl}/${id}`, curso);
   }
 
