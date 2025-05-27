@@ -23,8 +23,10 @@
                   [(ngModel)]="filtroCategoria"
                   (ngModelChange)="filtrarCursos()"
           >
-                  <option [ngValue]="''" selected >Todos los cursos</option>
-                  @for (categoria of categorias; track categoria ) {
+        
+                  <option [ngValue]="'null'" selected >Todos los cursos</option>
+                  @for (categoria of categorias; track  $index ) {
+         
                       <option [ngValue]="categoria.id"> {{categoria.nombre}} </option>
                   }
 

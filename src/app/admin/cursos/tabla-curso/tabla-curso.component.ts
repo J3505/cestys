@@ -159,11 +159,20 @@ export class TablaCursoComponent implements OnInit {
 
   // filtros y paginación
   // paginación
-  onPageChange(event: PaginatorState) {
-    this.first = event.first ?? 0;
-    this.rows = event.rows ?? 5;
-    this.actualizarCursosPaginados();
-  }
+  // onPageChange(event: PaginatorState) {
+  //   this.first = event.first ?? 0;
+  //   this.rows = event.rows ?? 5;
+  //   this.actualizarCursosPaginados();
+
+  //   console.log('Total cursos:', this.cursos.length);
+  //   console.log('Cursos filtrados:', this.cursosFiltrados.length);
+  // }
+
+  onPageChange(event: any) {
+  this.first = event.first;
+  this.rows = event.rows;
+  this.actualizarCursosPaginados();
+}
 
   getCategorias() {
     this.categoriaService.getCategorias().subscribe((data) => {
@@ -171,7 +180,7 @@ export class TablaCursoComponent implements OnInit {
       this.totalCursos = data.total;
 
       if (this.categorias.length > 0) {
-         this.filtroCategoria = String(this.categorias[0].id);
+        this.filtroCategoria = String(this.categorias[0].id);
         this.filtrarCursos();
       }
     });
@@ -193,40 +202,37 @@ export class TablaCursoComponent implements OnInit {
     this.filtrarCursos();
   }
 
-
   filtrarCursos() {
-  this.cursosFiltrados = this.cursos.filter((curso: Curso) => {
-    const coincideNombre = this.filtroNombre
-        ? curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase().trim())
-        : true;
+  this.cursosFiltrados = this.cursos.filter((curso) => {
+    const nombreCoincide = curso.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase());
+    const instructorCoincide =
+      curso.instructor &&
+      (curso.instructor.nombre.toLowerCase().includes(this.filtroInstructor.toLowerCase()) ||
+       curso.instructor.apellido?.toLowerCase().includes(this.filtroInstructor.toLowerCase()));
+    const categoriaCoincide =
+      !this.filtroCategoria || curso.categoria.id === Number(this.filtroCategoria);
 
-      const instructor = curso.instructor as Usuario;
-      const coincideInstructor = this.filtroInstructor
-        ? instructor?.nombre?.toLowerCase().includes(this.filtroInstructor.toLowerCase().trim())
-        : true;
-
-      const coincideCategoria = this.filtroCategoria
-        ? curso.categoriaId === Number(this.filtroCategoria)
-        : true;
-
-      return coincideNombre && coincideInstructor && coincideCategoria;
+    return nombreCoincide && instructorCoincide && categoriaCoincide;
   });
 
+  // Reiniciar a la primera página
   this.first = 0;
+
+  // Actualizar cursosPaginados
   this.actualizarCursosPaginados();
 }
 
 
 
-  actualizarCursosPaginados() {
-    const start = this.first;
-    const end = this.first + this.rows;
-    this.cursosPaginados = this.cursosFiltrados.slice(start, end);
-  }
+actualizarCursosPaginados() {
+  const start = this.first;
+  const end = this.first + this.rows;
+  this.cursosPaginados = this.cursosFiltrados.slice(start, end);
+}
 
-  eliminarCurso(curso: Curso) {
-    this.confirmationService.confirm({
-      message: `¿Estás seguro de que quieres eliminar el curso "${curso.nombre}"?`,
+eliminarCurso(curso: Curso) {
+  this.confirmationService.confirm({
+    message: `¿Estás seguro de que quieres eliminar el curso "${curso.nombre}"?`,
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

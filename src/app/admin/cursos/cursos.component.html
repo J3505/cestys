@@ -21,20 +21,22 @@
         <i class="fas fa-filter absolute left-3 top-2.5 text-gray-400"></i>
       </div>
       <!-- Boton de crear nuevo curso -->
-      <p-button  icon="pi pi-plus-circle" label="Nuevo Curso" (click)="abrirModalCrearCurso()"/>
-      
-      <app-modal-curso 
+      <p-button
+        icon="pi pi-plus-circle"
+        label="Nuevo Curso"
+        (click)="abrirModalCrearCurso()"
+      />
+
+      <app-modal-curso
         [(visible)]="visibleModalCurso"
-        (visibleChange)="cerrarModalCurso()"
         [cursoSeleccionado]="cursoSeleccionado"
+        (visibleChange)="cerrarModalCurso()"
         (cursoGuardado)="onCursoGuardado()"
-      
       ></app-modal-curso>
 
       <!-- <p-button  icon="pi pi-plus-circle" label="Nuevo Modulo" (click)="abrirModalCrearModulo()"/> -->
 
       <!-- Modal de Módulos -->
-        
 
       <!-- <app-modal-modulo 
         [(visible)]="visibleModalModulo"
@@ -151,7 +153,10 @@
             <button
               class="p-2 bg-white rounded-full text-orange-600 hover:bg-orange-100"
             >
-              <i class="fas fa-edit"></i>
+              <i
+                class="fas fa-edit cursor-pointer"
+                (click)="editarCurso(curso)"
+              ></i>
             </button>
             <button
               class="p-2 bg-white rounded-full text-orange-600 hover:bg-orange-100"
@@ -182,6 +187,9 @@
             <p class="font-bold text-orange-600">S/.{{ curso.precio }}</p>
             <div class="flex items-center text-sm text-gray-500">
               <i class="fas fa-users mr-1"></i>
+              <!-- Ejemplo de botón -->
+              <!-- <button pButton type="button" icon="pi pi-pencil" label="Editar" (click)="editarCurso(curso)"></button> -->
+
               <span>45</span>
             </div>
           </div>
@@ -211,18 +219,23 @@
           label="Añadir categorías"
           icon="pi pi-plus-circle"
         />
-        <!-- <app-modal-categoria  ></app-modal-categoria> -->
+
       </div>
-      <!-- <button class="text-orange-600 text-sm font-medium">Administrar categorías</button> class="text-orange-600 text-sm font-medium" -->
-      <!-- boton a qui -->
+
     </div>
 
     <p-toast />
     <p-confirmDialog />
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+    >
       @for(categoria of categorias; track categoria.id){
-      <div class="p-4  bg-gray-50 rounded-xl flex flex-col items-center hover:bg-gray-100 transition cursor-pointer">
-        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3" >
+      <div
+        class="p-4 bg-gray-50 rounded-xl flex flex-col items-center hover:bg-gray-100 transition cursor-pointer"
+      >
+        <div
+          class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3"
+        >
           <!-- <i class="fas text-xl" [ngClass]="categoria.icono"></i> -->
           <span [ngClass]="categoria.icono" class="text-xl"></span>
         </div>
@@ -246,11 +259,8 @@
           class="p-button-danger p-button-sm mt-2 ml-2"
           (click)="eliminarCategoria(categoria.id)"
         ></button>
-  
       </div>
       }
     </div>
   </div>
-
-  
 </main>

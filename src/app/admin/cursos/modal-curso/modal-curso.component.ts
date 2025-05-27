@@ -105,18 +105,24 @@ export class ModalCursoComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['cursoSeleccionado'] && this.cursoSeleccionado) {
+      // Format dates for input[type="date"]
+      const formatDate = (date: string | Date | null): string | null => {
+        if (!date) return null;
+        const d = new Date(date);
+        return isNaN(d.getTime()) ? null : d.toISOString().split('T')[0];
+      };
       this.formCurso.patchValue({
-        nombre: this.cursoSeleccionado.nombre,
-        descripcion: this.cursoSeleccionado.descripcion,
-        fechaInicio: this.cursoSeleccionado.fechaInicio,
-        fechaFin: this.cursoSeleccionado.fechaFin,
-        horas: this.cursoSeleccionado.horas,
-        precio: this.cursoSeleccionado.precio,
-        descuento: this.cursoSeleccionado.descuento,
-        imagen: this.cursoSeleccionado.imagen,
-        categoriaId: Number(this.cursoSeleccionado.categoriaId),
-        instructorId: this.cursoSeleccionado.instructorId,
-        estado: this.cursoSeleccionado.estado,
+        nombre: this.cursoSeleccionado.nombre || '',
+        descripcion: this.cursoSeleccionado.descripcion || '',
+        fechaInicio: formatDate(this.cursoSeleccionado.fechaInicio),
+        fechaFin: formatDate(this.cursoSeleccionado.fechaFin),
+        horas: this.cursoSeleccionado.horas || 0,
+        precio: this.cursoSeleccionado.precio || null,
+        descuento: this.cursoSeleccionado.descuento || null,
+        imagen: this.cursoSeleccionado.imagen || '',
+        categoriaId: Number(this.cursoSeleccionado.categoriaId) || null,
+        instructorId: this.cursoSeleccionado.instructorId || '',
+        estado: this.cursoSeleccionado.estado || 'Activo',
       });
       this.setModulos(this.cursoSeleccionado.modulos || []);
     }
@@ -156,12 +162,12 @@ export class ModalCursoComponent implements OnInit, OnChanges {
     const moduloFGs = modulos.map((modulo) =>
       this.fb.group({
         id: [modulo.id || null],
-        nombre: [modulo.nombre, Validators.required],
+        nombre: [modulo.nombre || '', Validators.required],
         temas: this.fb.array(
           (modulo.temas || []).map((tema) =>
             this.fb.group({
               id: [tema.id || null],
-              nombre: [tema.nombre, Validators.required],
+              nombre: [tema.nombre || '', Validators.required],
             })
           )
         ),
@@ -169,8 +175,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
     );
     const moduloFormArray = this.fb.array(moduloFGs);
     this.formCurso.setControl('modulos', moduloFormArray);
-    console.log('Modulos FormArray:', moduloFGs);
-    this.formCurso.setControl('modulos', moduloFormArray);
+    console.log('Modulos FormArray:', moduloFormArray.value); // Debug
   }
 
   guardarCurso() {
@@ -209,6 +214,21 @@ export class ModalCursoComponent implements OnInit, OnChanges {
       return;
     }
 
+    // Get existing modules and topics for comparison (if editing)
+    const existingModuleIds = this.cursoSeleccionado
+      ? (this.cursoSeleccionado.modulos || [])
+          .map((m) => m.id)
+          .filter((id) => id)
+      : [];
+    const existingTopicIdsByModule = this.cursoSeleccionado
+      ? (this.cursoSeleccionado.modulos || []).reduce((acc, m) => {
+          acc[m.id] = (m.temas || [])
+            .map((t) => t.id)
+            .filter((id) => id !== undefined);
+          return acc;
+        }, {} as { [key: number]: number[] })
+      : {};
+
     const cursoData: Curso = {
       ...this.formCurso.value,
       categoriaId: Number(this.formCurso.value.categoriaId),
@@ -216,8 +236,8 @@ export class ModalCursoComponent implements OnInit, OnChanges {
       fechaFin: fechaFin ? fechaFin.toISOString() : null,
       modulos: this.cursoSeleccionado
         ? {
-            upsert: this.modulos.value.map((modulo: any) => ({
-              where: { id: modulo.id || 0 },
+            upsert: this.modulos.value.map((modulo: any, index: number) => ({
+              where: modulo.id ? { id: modulo.id } : undefined,
               create: {
                 nombre: modulo.nombre,
                 temas: {
@@ -234,9 +254,18 @@ export class ModalCursoComponent implements OnInit, OnChanges {
                     create: { nombre: tema.nombre },
                     update: { nombre: tema.nombre },
                   })),
+                  // Delete topics that were removed
+                  delete: (existingTopicIdsByModule[modulo.id] || [])
+                    .filter(
+                      (id) => !modulo.temas.some((t: Tema) => t.id === id)
+                    )
+                    .map((id) => ({ id })),
                 },
               },
             })),
+            delete: existingModuleIds
+              .filter((id) => !this.modulos.value.some((m: any) => m.id === id))
+              .map((id) => ({ id })),
           }
         : {
             create: this.modulos.value.map((modulo: Modulo) => ({
@@ -249,6 +278,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
             })),
           },
     };
+
     console.log('Curso Data to Backend:', JSON.stringify(cursoData, null, 2));
 
     const cursoServiceCall = this.cursoSeleccionado

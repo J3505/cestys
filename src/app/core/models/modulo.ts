@@ -1,7 +1,7 @@
 import { Tema } from "./tema";
 
 export interface Modulo {
-  id: string;
+  id: number;
   nombre: string;
   temas: { id?: number; nombre: string }[];
 }

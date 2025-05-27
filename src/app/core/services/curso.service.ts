@@ -29,7 +29,7 @@ export class CursoService {
   }
 
   updateCurso(id: string, curso: Partial<Curso>): Observable<Curso> {
-    return this.http.put<Curso>(`${this.apiUrl}/${id}`, curso);
+    return this.http.patch<Curso>(`${this.apiUrl}/${id}`, curso);
   }
 
   deleteCurso(id: string): Observable<void> {

@@ -115,6 +115,13 @@ export default class CursosComponent implements OnInit {
     });
   }
 
+  // En el componente padre
+  editarCurso(curso: Curso) {
+  this.cursoSeleccionado = { ...curso }; // copia segura del curso
+  this.visibleModalCurso = true;
+}
+
+
   getCategorias() {
     this.categoriaService.getCategorias().subscribe({
       next: (data) => {
