@@ -27,7 +27,7 @@ import { TablaCursoComponent } from './tabla-curso/tabla-curso.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Modulo } from '../../core/models/modulo';
 import { Tema } from '../../core/models/tema';
-import { ModalModuloComponent } from "./modal-modulo/modal-modulo.component";
+
 import { ModalTemaComponent } from "./modal-tema/modal-tema.component";
 
 interface City {

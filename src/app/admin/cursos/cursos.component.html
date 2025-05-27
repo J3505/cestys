@@ -22,6 +22,7 @@
       </div>
       <!-- Boton de crear nuevo curso -->
       <p-button  icon="pi pi-plus-circle" label="Nuevo Curso" (click)="abrirModalCrearCurso()"/>
+      
       <app-modal-curso 
         [(visible)]="visibleModalCurso"
         (visibleChange)="cerrarModalCurso()"
@@ -30,7 +31,7 @@
       
       ></app-modal-curso>
 
-      <p-button  icon="pi pi-plus-circle" label="Nuevo Modulo" (click)="abrirModalCrearModulo()"/>
+      <!-- <p-button  icon="pi pi-plus-circle" label="Nuevo Modulo" (click)="abrirModalCrearModulo()"/> -->
 
       <!-- Modal de Módulos -->
         

@@ -19,5 +19,5 @@ export interface Curso {
   estado: 'Activo' | 'Inactivo' | 'Proximamente';
   instructorId: string;
   instructor?: Usuario;
-  modulos?: Modulo[];
+  modulos?:  Modulo[];
 }

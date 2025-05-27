@@ -32,7 +32,6 @@ import { UsuarioService } from '../../../core/services/usuario.service';
 import { Usuario } from '../../../core/models/usuario';
 import { CursoService } from '../../../core/services/curso.service';
 import { Modulo } from '../../../core/models/modulo';
-import { ModalModuloComponent } from '../modal-modulo/modal-modulo.component';
 
 @Component({
   selector: 'app-modal-curso',
@@ -45,7 +44,6 @@ import { ModalModuloComponent } from '../modal-modulo/modal-modulo.component';
     TextareaModule,
     ReactiveFormsModule,
     ToastModule,
-    ModalModuloComponent,
   ],
   templateUrl: './modal-curso.component.html',
   styleUrl: './modal-curso.component.scss',
@@ -63,7 +61,9 @@ export class ModalCursoComponent implements OnInit, OnChanges {
   categorias: Categoria[] = [];
   instructores: Usuario[] = [];
   estudiantes: Usuario[] = [];
-  modulos: Modulo[] = [];
+  // modulos: Modulo[] = [];
+
+  estados = ['Activo', 'Inactivo', 'Proximamente'];
 
   visibleModalModulo = false;
   moduloSeleccionado: Modulo | null = null;
@@ -71,7 +71,6 @@ export class ModalCursoComponent implements OnInit, OnChanges {
   value!: string;
   nodes!: any[];
   selectedNodes: any;
-  estados = Object.values('activo');
 
   constructor(
     private nodeService: NodeService,
@@ -93,7 +92,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
       categoriaId: [null, Validators.required],
       instructorId: ['', Validators.required],
       estado: ['Activo', Validators.required],
-      // modulos: this.fb.array([]),
+      modulos: this.fb.array([]),
     });
   }
 
@@ -114,48 +113,68 @@ export class ModalCursoComponent implements OnInit, OnChanges {
         precio: this.cursoSeleccionado.precio,
         descuento: this.cursoSeleccionado.descuento,
         imagen: this.cursoSeleccionado.imagen,
-        categoriaId: this.cursoSeleccionado.categoriaId,
+        categoriaId: Number(this.cursoSeleccionado.categoriaId),
         instructorId: this.cursoSeleccionado.instructorId,
         estado: this.cursoSeleccionado.estado,
       });
-      this.modulos = this.cursoSeleccionado.modulos || [];
+      this.setModulos(this.cursoSeleccionado.modulos || []);
     }
   }
 
-  abrirModalModulo(modulo: Modulo | null = null) {
-    if (!this.cursoSeleccionado && modulo) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'No se puede editar un módulo sin un curso seleccionado.',
-      });
-      return;
-    }
-    this.moduloSeleccionado = modulo;
-    this.visibleModalModulo = true;
+  getTemas(moduloIndex: number): FormArray {
+    return this.modulos.at(moduloIndex).get('temas') as FormArray;
+  }
+  get modulos(): FormArray {
+    return this.formCurso.get('modulos') as FormArray;
   }
 
-  onModuloGuardado(modulo: Modulo) {
-    if (this.moduloSeleccionado) {
-      // Editar módulo existente
-      const index = this.modulos.findIndex((m) => m.id === modulo.id);
-      if (index !== -1) {
-        this.modulos[index] = modulo;
-      }
-    } else {
-      // Agregar nuevo módulo
-      this.modulos.push({ ...modulo, id: modulo.id || `temp-${Date.now()}` }); // ID temporal si no hay backend
-    }
-    this.visibleModalModulo = false;
+  addModulo() {
+    this.modulos.push(
+      this.fb.group({
+        nombre: ['', Validators.required],
+        temas: this.fb.array([]),
+      })
+    );
   }
 
-  eliminarModulo(index: number) {
-    this.modulos.splice(index, 1);
+  addTema(moduloIndex: number) {
+    const temas = this.modulos.at(moduloIndex).get('temas') as FormArray;
+    temas.push(
+      this.fb.group({
+        nombre: ['', Validators.required],
+      })
+    );
+  }
+
+  removeModulo(index: number) {
+    this.modulos.removeAt(index);
+  }
+
+  setModulos(modulos: Modulo[]) {
+    const moduloFGs = modulos.map((modulo) =>
+      this.fb.group({
+        id: [modulo.id || null],
+        nombre: [modulo.nombre, Validators.required],
+        temas: this.fb.array(
+          (modulo.temas || []).map((tema) =>
+            this.fb.group({
+              id: [tema.id || null],
+              nombre: [tema.nombre, Validators.required],
+            })
+          )
+        ),
+      })
+    );
+    const moduloFormArray = this.fb.array(moduloFGs);
+    this.formCurso.setControl('modulos', moduloFormArray);
+    console.log('Modulos FormArray:', moduloFGs);
+    this.formCurso.setControl('modulos', moduloFormArray);
   }
 
   guardarCurso() {
     if (this.formCurso.invalid) {
-      this.formCurso.markAllAsTouched();
+      this.logFormErrors();
+      this.markAllControlsAsTouched(this.formCurso);
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -164,11 +183,74 @@ export class ModalCursoComponent implements OnInit, OnChanges {
       return;
     }
 
+    const fechaInicio = this.formCurso.value.fechaInicio
+      ? new Date(this.formCurso.value.fechaInicio)
+      : null;
+    const fechaFin = this.formCurso.value.fechaFin
+      ? new Date(this.formCurso.value.fechaFin)
+      : null;
+
+    if (fechaInicio && isNaN(fechaInicio.getTime())) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'La fecha de inicio es inválida.',
+      });
+      return;
+    }
+    if (fechaFin && isNaN(fechaFin.getTime())) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'La fecha de finalización es inválida.',
+      });
+      return;
+    }
+
     const cursoData: Curso = {
       ...this.formCurso.value,
-      // Solo incluir modulos si no está vacío
-      ...(this.modulos.length > 0 && { modulos: this.modulos }),
+      categoriaId: Number(this.formCurso.value.categoriaId),
+      fechaInicio: fechaInicio ? fechaInicio.toISOString() : null,
+      fechaFin: fechaFin ? fechaFin.toISOString() : null,
+      modulos: this.cursoSeleccionado
+        ? {
+            upsert: this.modulos.value.map((modulo: any) => ({
+              where: { id: modulo.id || 0 },
+              create: {
+                nombre: modulo.nombre,
+                temas: {
+                  create: modulo.temas.map((tema: any) => ({
+                    nombre: tema.nombre,
+                  })),
+                },
+              },
+              update: {
+                nombre: modulo.nombre,
+                temas: {
+                  upsert: modulo.temas.map((tema: any) => ({
+                    where: { id: tema.id || 0 },
+                    create: { nombre: tema.nombre },
+                    update: { nombre: tema.nombre },
+                  })),
+                },
+              },
+            })),
+          }
+        : {
+            create: this.modulos.value.map((modulo: any) => ({
+              nombre: modulo.nombre,
+              temas: {
+                create: modulo.temas.map((tema: any) => ({
+                  nombre: tema.nombre,
+                })),
+              },
+            })),
+          },
     };
+    console.log(
+      'Datos enviados al backend:',
+      JSON.stringify(cursoData, null, 2)
+    );
 
     const cursoServiceCall = this.cursoSeleccionado
       ? this.cursoService.updateCurso(this.cursoSeleccionado.id, cursoData)
@@ -183,35 +265,66 @@ export class ModalCursoComponent implements OnInit, OnChanges {
             this.cursoSeleccionado ? 'actualizado' : 'creado'
           } correctamente.`,
         });
-        this.modulos = curso.modulos || [];
         this.CursoGuardado.emit();
         this.cerrarModal();
       },
       error: (err) => {
+        console.error('Error completo:', err);
+        const errorMessage =
+          err.error?.message || err.message || 'Error desconocido';
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'No se pudo guardar el curso.',
+          detail: `No se pudo guardar el curso: ${errorMessage}`,
         });
       },
     });
   }
 
-  get temas(): FormArray {
-    return this.formCurso.get('temas') as FormArray;
+  cerrarModal() {
+  this.formCurso.reset();
+  this.formCurso.setControl('modulos', this.fb.array([]));
+  this.visible = false;
+  this.visibleChange.emit(false);
+}
+
+  private markAllControlsAsTouched(group: FormGroup | FormArray) {
+    Object.values(group.controls).forEach((control) => {
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.markAllControlsAsTouched(control);
+      } else {
+        control.markAsTouched();
+      }
+    });
   }
 
-  agregarTema() {
-    this.temas.push(
-      this.fb.group({
-        nombre: ['', Validators.required],
-        descripcion: [''],
-      })
-    );
+  private logFormErrors() {
+    Object.keys(this.formCurso.controls).forEach((key) => {
+      const control = this.formCurso.get(key);
+      if (control?.invalid) {
+        console.log(`Campo ${key} inválido:`, control.errors);
+      }
+    });
+    const modulosArray = this.formCurso.get('modulos') as FormArray;
+    modulosArray.controls.forEach((modulo: any, index: number) => {
+      if (modulo.invalid) {
+        console.log(`Módulo ${index} inválido:`, modulo.errors);
+        const temasArray = modulo.get('temas') as FormArray;
+        temasArray.controls.forEach((tema: any, temaIndex: number) => {
+          if (tema.invalid) {
+            console.log(
+              `Tema ${temaIndex} del módulo ${index} inválido:`,
+              tema.errors
+            );
+          }
+        });
+      }
+    });
   }
 
-  eliminarTema(index: number) {
-    this.temas.removeAt(index);
+  removeTema(moduloIndex: number, temaIndex: number) {
+    const temas = this.modulos.at(moduloIndex).get('temas') as FormArray;
+    temas.removeAt(temaIndex);
   }
 
   onDialogHide() {
@@ -219,17 +332,14 @@ export class ModalCursoComponent implements OnInit, OnChanges {
     this.visibleChange.emit(false);
   }
 
-  cerrarModal() {
-    this.formCurso.reset();
-    this.modulos = [];
-    this.visible = false;
-    this.visibleChange.emit(false);
-  }
-
   getCategorias() {
     this.categoriaService.getCategorias().subscribe({
       next: (data) => {
-        this.categorias = data.categorias;
+        this.categorias = data.categorias.map((cat: Categoria) => ({
+          ...cat,
+          id: Number(cat.id),
+        }));
+        console.log('Categorías:', this.categorias);
         if (this.categorias.length > 0 && !this.cursoSeleccionado) {
           this.formCurso.patchValue({ categoriaId: this.categorias[0].id });
         }

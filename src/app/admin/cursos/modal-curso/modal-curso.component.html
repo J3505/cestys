@@ -154,7 +154,7 @@
         type="number"
         id="horas"
         formControlName="horas"
-        min="1"
+        min="100"
         step="1"
         placeholder="250 horas"
         class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -169,7 +169,7 @@
         "
         class="text-red-500 text-sm"
       >
-        Las horas deben ser un número mayor a 0.
+        Las horas deben ser un número mayor a 100.
       </div>
     </div>
 
@@ -316,51 +316,121 @@
       <label class="block mb-2 text-sm font-medium text-gray-900"
         >Módulos del curso</label
       >
-      <div class="border p-4 rounded-lg">
+      <div class="border p-4 rounded-lg bg-gray-50">
         <div *ngIf="modulos.length === 0" class="text-gray-500">
           No hay módulos asignados.
         </div>
-        <div
-          *ngFor="let modulo of modulos; let i = index"
-          class="flex justify-between items-center mb-2"
-        >
-          <span>{{ modulo.nombre }}</span>
-          <div>
-            <p-button
-              icon="pi pi-pencil"
-              severity="secondary"
-              (click)="abrirModalModulo(modulo)"
-            />
-            <p-button
-              icon="pi pi-trash"
-              severity="danger"
-              (click)="eliminarModulo(i)"
-            />
+        <div formArrayName="modulos">
+          <div
+            *ngFor="let modulo of modulos.controls; let i = index"
+            [formGroupName]="i"
+            class="mb-4 border-b pb-4"
+          >
+            <div class="mb-2">
+              <label
+                for="modulo-nombre-{{ i }}"
+                class="block mb-2 text-sm font-medium text-gray-900"
+                >Nombre del módulo</label
+              >
+              <input
+                type="text"
+                id="modulo-nombre-{{ i }}"
+                formControlName="nombre"
+                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                [ngClass]="{
+                  'border-red-500':
+                    modulo.get('nombre')?.invalid &&
+                    modulo.get('nombre')?.touched
+                }"
+              />
+              <div
+                *ngIf="
+                  modulo.get('nombre')?.invalid && modulo.get('nombre')?.touched
+                "
+                class="text-red-500 text-sm"
+              >
+                El nombre del módulo es requerido.
+              </div>
+            </div>
+            <div formArrayName="temas" *ngIf="getTemas(i)?.controls">
+              <div
+                *ngFor="let tema of getTemas(i).controls; let j = index"
+                [formGroupName]="j"
+                class="mb-2 ml-4 flex items-center gap-2"
+              >
+                {{ modulo.get("temas") | json }}
+                <div class="flex-1">
+                  <label
+                    for="tema-nombre-{{ i }}-{{ j }}"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Nombre del tema</label
+                  >
+                  <input
+                    type="text"
+                    id="tema-nombre-{{ i }}-{{ j }}"
+                    formControlName="nombre"
+                    class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    [ngClass]="{
+                      'border-red-500':
+                        tema.get('nombre')?.invalid &&
+                        tema.get('nombre')?.touched
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      tema.get('nombre')?.invalid && tema.get('nombre')?.touched
+                    "
+                    class="text-red-500 text-sm"
+                  >
+                    El nombre del tema es requerido.
+                  </div>
+                </div>
+                <p-button
+                  icon="pi pi-trash"
+                  severity="danger"
+                  (click)="removeTema(i, j)"
+                  class="p-button-text"
+                />
+              </div>
+            </div>
+            <div class="flex justify-end">
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                (click)="removeModulo(i)"
+                class="p-button-text"
+              />
+            </div>
           </div>
         </div>
         <p-button
           label="Agregar Módulo"
           icon="pi pi-plus"
-          (click)="abrirModalModulo()"
+          (click)="addModulo()"
+          class="p-button-outlined"
         />
       </div>
     </div>
 
     <!-- Botones -->
     <div class="flex justify-end gap-2 col-span-3">
-      <p-button label="Cancelar" severity="secondary" (click)="cerrarModal()" />
-      <p-button label="Guardar" type="submit" [disabled]="formCurso.invalid" />
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        (click)="cerrarModal()"
+        class="p-button-outlined"
+      />
+
+      <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
+        [disabled]="formCurso.invalid"
+      >
+        Guardar
+        
+      </button>
     </div>
   </form>
-
-  <!-- Modal de Módulos -->
-  <app-modal-modulo
-    [(visible)]="visibleModalModulo"
-    [moduloSeleccionado]="moduloSeleccionado"
-    [cursoId]="cursoSeleccionado ? cursoSeleccionado.id : null"
-    (moduloGuardado)="onModuloGuardado($event)"
-    (visibleChange)="visibleModalModulo = false"
-  ></app-modal-modulo>
 </p-dialog>
 
-<p-toast />
+<p-toast></p-toast>
