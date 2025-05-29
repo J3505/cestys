@@ -66,33 +66,17 @@
 
       <!-- Módulos -->
       <div class="mt-8 md:mt-0">
-        <h3 class="text-base font-bold text-gray-900 mb-5 uppercase tracking-wider">Módulos</h3>
+        <h3 class="text-base font-bold text-gray-900 mb-5 uppercase tracking-wider">Categorías</h3>
         <ul class="space-y-3">
+          @for (item of categorias; track $index) {
           <li>
-            <a href="#" class="text-gray-600 hover:text-orange-600 transition-colors duration-300 flex items-center group">
+            <a [routerLink]="['/cursos']" class="text-gray-600 hover:text-orange-600 transition-colors duration-300 flex items-center group">
               <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
-              Ingeniería - Arquitectura
+              {{ item.nombre }}
             </a>
           </li>
+          }
 
-          <li>
-            <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors duration-300 flex items-center group">
-              <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
-              Gestión publica
-            </a>
-          </li>
-          <li>
-            <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors duration-300 flex items-center group">
-              <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
-              Tecnología
-            </a>
-          </li>
-          <li>
-            <a href="#" class="text-gray-600 hover:text-orange-500 transition-colors duration-300 flex items-center group">
-              <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
-              Ciencias de la Salud
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -109,13 +93,13 @@
           <li class="flex items-center">
             <span class="icon-[line-md--phone]  h-6 w-6 text-orange-600 mr-3 mt-0.5 hover:text-blue-600"></span>
             <a href="tel:+51965835151" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">
-              (+51) 965-835-151
+              (+51) {{telefono}}
             </a>
           </li>
           <li class="flex items-center">
             <span class="icon-[material-symbols--mail-outline-rounded] h-6 w-6 text-orange-600 mr-3 mt-0.5 hover:text-blue-600"></span>
             <a href="mailto:info@incitecsa.edu.pe" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">
-              infosincitecsa.edu.pe
+              {{correo}}
             </a>
           </li>
         </ul>

@@ -133,18 +133,14 @@
     >
       <!-- Course Card 1 -->
       @for (curso of cursos; track curso.id) {
-      <div
-        class="bg-white rounded-xl shadow-sm overflow-hidden hover-scale course-card"
-      >
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden hover-scale course-card">
         <div class="relative">
           <img
             [src]="curso.imagen"
             [alt]="curso.nombre"
             class="w-full h-40 object-cover"
           />
-          <div
-            class="absolute top-3 right-3 bg-white rounded-full px-2 py-1 text-xs font-medium text-orange-600"
-          >
+          <div class="absolute top-3 right-3 bg-white rounded-full px-2 py-1 text-xs font-medium text-orange-600">
             Nuevo
           </div>
           <div
@@ -226,39 +222,45 @@
 
     <p-toast />
     <p-confirmDialog />
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
-    >
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       @for(categoria of categorias; track categoria.id){
-      <div
-        class="p-4 bg-gray-50 rounded-xl flex flex-col items-center hover:bg-gray-100 transition cursor-pointer"
-      >
-        <div
-          class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3"
+        <div class="p-4 bg-gray-50 rounded-xl flex flex-col items-center justify-center hover:bg-gray-100 transition cursor-pointer">
+          <div class="flex justify-between items-center  text-white mb-3 w-full">
+
+            <div class="flex gap-2 rounded-full p-2 bg-gray-100 hover:bg-gray-500">
+              <i class="fas fa-trash cursor-pointer" (click)="eliminarCategoria(categoria.id)"></i>
+            </div>
+
+            <div class="flex gap-2 rounded-full p-2 bg-gray-100 hover:bg-gray-500">
+              <i class="fas fa-edit cursor-pointer" (click)="abrirModalEditar(categoria)"></i>
+            </div>
+
+          </div>
+
+        
+
+        <div class="w-12 h-12 rounded-full flex items-center justify-center  mb-3"
+          [ngClass]="[
+            categoria.color
+              ? colorMap[categoria.color.toLowerCase()].bg || 'bg-gray-50'
+              : 'bg-gray-50',
+              
+            categoria.color
+              ? colorMap[categoria.color.toLowerCase()].text || 'text-gray-600'
+              : 'text-gray-600'
+          ]"
         >
           <!-- <i class="fas text-xl" [ngClass]="categoria.icono"></i> -->
           <span [ngClass]="categoria.icono" class="text-xl"></span>
         </div>
-        <h4 class="font-medium">{{ categoria.nombre }}</h4>
+
+        <h4 class="font-medium italic text-center">{{ categoria.nombre }}</h4>
         <p class="text-sm text-gray-500 text-center mt-1">
           {{ categoria._count.cursos }} Cursos
         </p>
-        <button
-          pButton
-          type="button"
-          label="Editar"
-          class="p-button-outlined p-button-sm mt-2"
-          (click)="abrirModalEditar(categoria)"
-        ></button>
 
-        <button
-          pButton
-          type="button"
-          label="Eliminar"
-          icon="pi pi-trash"
-          class="p-button-danger p-button-sm mt-2 ml-2"
-          (click)="eliminarCategoria(categoria.id)"
-        ></button>
+
+
       </div>
       }
     </div>

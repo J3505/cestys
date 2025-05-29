@@ -29,6 +29,7 @@ import { Modulo } from '../../core/models/modulo';
 import { Tema } from '../../core/models/tema';
 
 import { ModalTemaComponent } from "./modal-tema/modal-tema.component";
+import { UtilitiService } from '../../core/services/utiliti.service';
 
 interface City {
   name: string;
@@ -88,16 +89,24 @@ export default class CursosComponent implements OnInit {
   temaSeleccionado: Tema | null = null;
   visibleModalTema: boolean = false;
 
+  colorMap: Record<string, { bg: string; text: string }> = {};
+
   constructor(
     private messageService: MessageService,
     private cursoService: CursoService,
     private categoriaService: CategoriaService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private utilitiService: UtilitiService
   ) {}
 
   ngOnInit() {
     this.getCursos();
     this.getCategorias();
+
+    this.utilitiService.getColorMap().subscribe((mapa) => {
+      this.colorMap = mapa;
+    });
+
   }
 
   getCursos() {

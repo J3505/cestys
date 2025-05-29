@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000/incitecsa',
-  authUrl: 'http://localhost:3000/auth',
-  socketUrl: 'http://localhost:3000/socket',
+  apiUrl: 'https://c001back.onrender.com/incitecsa',
+  authUrl: 'https://c001back.onrender.com/auth',
+  socketUrl: 'https://c001back.onrender.com/socket',
   // Add other environment variables as needed
 };

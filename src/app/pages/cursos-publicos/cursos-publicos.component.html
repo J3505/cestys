@@ -112,11 +112,11 @@
                     <li class="font-semibold text-orange-600">
                       {{ modulo.nombre }}
                     </li>
-                    <ul class="pl-4 list-disc">
+                    <!-- <ul class="pl-4 ">
                       @for (tema of modulo.temas; track tema.id) {
                       <li>{{ tema.nombre }}</li>
                       }
-                    </ul>
+                    </ul> -->
                     }
                   </ul>
 
@@ -150,16 +150,14 @@
 
                     <div class="mt-3 sm:mt-0">
                       <span class="text-xl font-bold text-orange-500"
-                        >S/ {{ curso.precio }}</span
-                      >
-                      <span class="text-sm text-gray-500 line-through ml-2"
-                        >S/ {{ curso.precio }}</span
-                      >
-                      <!-- * 1.33 | number : "1.0-0"  -->
-                      <span
-                        class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded ml-2"
-                        >25% OFF</span
-                      >
+                        >S/ {{ curso.precio }}</span>
+
+                      <!-- <span class="text-sm text-gray-500 line-through ml-2"
+                        >S/ {{ curso.precio }}</span >
+                      * 1.33 | number : "1.0-0" 
+                      <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded ml-2"
+                        >25% OFF</span > -->
+
                     </div>
                   </div>
 

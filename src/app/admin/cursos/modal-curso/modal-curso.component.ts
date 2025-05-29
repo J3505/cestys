@@ -205,6 +205,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
       });
       return;
     }
+    
     if (fechaFin && isNaN(fechaFin.getTime())) {
       this.messageService.add({
         severity: 'error',
@@ -237,7 +238,7 @@ export class ModalCursoComponent implements OnInit, OnChanges {
       modulos: this.cursoSeleccionado
         ? {
             upsert: this.modulos.value.map((modulo: any, index: number) => ({
-              where: modulo.id ? { id: modulo.id } : undefined,
+              where: modulo.id ,
               create: {
                 nombre: modulo.nombre,
                 temas: {

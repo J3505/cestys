@@ -16,17 +16,17 @@
           Adquiere las habilidades técnicas, clínicas y de gestión más demandadas
           y destaca en tu sector.
         </p>
-  
+
         <div
           class="mt-5 lg:mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-3"
         >
-          <a 
+          <a
           routerLink="cursos"
           class="boton-home scale-up-center" > Explorar nuevos cursos </a>
         </div>
       </div>
       <!-- End Col -->
-  
+
       <div class="lg:col-span-4 mt-10 lg:mt-0 scale-up-center">
         <img
           class="w-full rounded-xl "
@@ -48,12 +48,8 @@
   <div class="container mx-auto px-6">
 
     <div class="text-center mb-16" >
-      <h2
-        class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration"
-      >
-        <span class="uppercase italic"
-          >Cursos Populares</span
-        >
+      <h2 class="text-4xl md:text-5xl font-bold text-center text-orange-500 mb-4 title-decoration">
+        <span class="uppercase italic">Cursos Populares</span>
       </h2>
       <p class="text-gray-600 mt-8 max-w-2xl mx-auto">
         Descubre nuestros cursos más demandados y lleva tus habilidades al
@@ -258,7 +254,7 @@
           </div>
           <div>
             <p class="text-gray-500 text-sm">Teléfono</p>
-            <p class="font-medium">(+51) 985 555 780</p>
+            <p class="font-medium">(+51) {{telefono}}</p>
           </div>
         </div>
 
@@ -297,8 +293,8 @@
 <a
   href="https://api.whatsapp.com/send?phone={{telefono}}&text=%C2%A1Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n."
   target="_blank"
-  class="animationx fixed bottom-6 right-6 
-  bg-green-500 text-white w-14 h-14 rounded-full flex 
+  class="animationx fixed bottom-6 right-6
+  bg-green-500 text-white w-14 h-14 rounded-full flex
   items-center justify-center shadow-lg
 hover:bg-green-600 transition"
 >
